@@ -1,5 +1,7 @@
-var Cards = React.createClass({
-    render: function () {
+import React from 'react'
+
+class Cards extends React.Component {
+    render() {
         var cardClickedCallback = this.props.cardClickedCallback;
         return (
             <div className={this.props.className} scrollTop={this.props.scroll}>
@@ -14,4 +16,6 @@ var Cards = React.createClass({
             </div>
         );
     }
-});
+}
+
+export default Cards;

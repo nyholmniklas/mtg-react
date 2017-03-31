@@ -1,5 +1,8 @@
-var Deck = React.createClass({
-    render: function () {
+import React from 'react'
+import Cards from './Cards.js'
+
+class Deck extends React.Component {
+    render() {
         return (
             <div className="deck">
                 <span><h1>Deck</h1></span>
@@ -7,4 +10,6 @@ var Deck = React.createClass({
             </div>
         )
     }
-});
+}
+
+export default Deck;

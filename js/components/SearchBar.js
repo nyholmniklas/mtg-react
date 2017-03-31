@@ -1,5 +1,11 @@
-var SearchBar = React.createClass({
-    render: function () {
+import React from 'react'
+import SearchField from './SearchField.js'
+import ManaColorSelector from './ManaColorSelector.js'
+import DeckUtils from '../util/DeckUtils.js'
+import ExportButton from './ExportButton.js'
+
+class SearchBar extends React.Component {
+    render() {
         return (
             <div className="searchBar">
                 Card name: <SearchField searchText={this.props.searchText}
@@ -14,4 +20,6 @@ var SearchBar = React.createClass({
             </div>
         )
     }
-});
+}
+
+export default SearchBar;

@@ -1,8 +1,17 @@
-/** Controller View */
+import React from 'react'
+import ReactDOM from 'react-dom'
+import CardStore from './store.js'
+import CardActions, {getDeck, getCards} from './actions.js'
+import Card from './components/Deck.js'
+import Cards from './components/Cards.js'
+import Deck from './components/Deck.js'
+import ExportButton from './components/ExportButton.js'
+import ManaColorSelector from './components/ManaColorSelector.js'
+import SearchBar from './components/SearchBar.js'
+import SearchResults from './components/SearchResults.js'
 
-var CardController = React.createClass({
-    mixins: [CardStore.mixin],
-    getInitialState: function () {
+export const CardController = React.createClass({
+    getInitialState: function (store) {
         return {
             deck: getDeck(),
             cards: getCards(),
@@ -21,8 +30,8 @@ var CardController = React.createClass({
     },
     storeDidChange: function () {
         this.setState({
-            deck: getDeck(),
-            cards: getCards(),
+            deck: CardActions.getDeck(),
+            cards: CardActions.getCards(),
             searchText: this.state.searchText,
             searchOracleText: this.state.searchOracleText,
             searchSubtypeText: this.state.searchSubtypeText,
@@ -90,13 +99,13 @@ var CardController = React.createClass({
         });
     },
     updateCards: function () {
-        CardsActions.updateCards(this.state.searchText, this.state.searchOracleText, this.state.searchSubtypeText, this.state.manaParams);
+        CardActions.updateCards(this.state.searchText, this.state.searchOracleText, this.state.searchSubtypeText, this.state.manaParams);
     },
     addCardToDeck(card) {
-        CardsActions.addCardToDeck(card);
+        CardActions.addCardToDeck(card);
     },
     removeCardfromDeck(card) {
-        CardsActions.removeCardfromDeck(card);
+        CardActions.removeCardfromDeck(card);
     },
     render: function () {
         return (
@@ -120,4 +129,4 @@ var CardController = React.createClass({
     }
 });
 
-React.render(<CardController />, document.body);
+ReactDOM.render(<CardController />, document.body);

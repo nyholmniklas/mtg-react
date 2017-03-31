@@ -1,6 +1,9 @@
-/** Actions */
+import McFly from 'mcfly'
+import {CardStore} from "./store.js"
 
-var CardsActions = Flux.createActions({
+var Flux = new McFly();
+
+export default Flux.createActions({
     updateCards: function (searchText, searchOracleText, searchSubtypeText, manaParams) {
         return {
             actionType: "UPDATE_CARDS",
@@ -24,10 +27,10 @@ var CardsActions = Flux.createActions({
     }
 });
 
-var getCards = function () {
+export var getCards = function () {
     return CardStore.getCards();
 }
 
-var getDeck = function(){
+export var getDeck = function(){
     return CardStore.getDeck();
 }

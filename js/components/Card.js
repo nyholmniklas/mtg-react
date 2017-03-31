@@ -1,5 +1,7 @@
-var Card = React.createClass({
-    getCardImages: function (card) {
+import React from 'react'
+
+class Card extends React.Component {
+    getCardImages(card) {
         var cardImages = [];
         for (var i = 0; i < card.ammount; i++) {
             var offsetFromTop = ((30 * i) + 'px')
@@ -11,8 +13,9 @@ var Card = React.createClass({
             cardImages.push(cardImage);
         }
         return cardImages;
-    },
-    render: function () {
+    }
+
+    render() {
         var card = this.props.card;
         var callback = this.props.cardClickedCallback;
         var cardClicked = function () {
@@ -26,4 +29,4 @@ var Card = React.createClass({
             </div>
         );
     }
-});
+}

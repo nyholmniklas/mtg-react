@@ -1,10 +1,10 @@
-/** McFly */
+import McFly from 'mcfly'
 
-var Flux = new McFly();
+var mcFly = new McFly();
 
 /** Store */
-_cards = [];
-_deck = {
+var _cards = [];
+var _deck = {
     cards: []
 };
 function updateCards(searchText, searchOracleText, searchSubtypeText, manaParams) {
@@ -123,7 +123,7 @@ function removeCardFromDeck(cardToRemove) {
     }
 }
 
-var CardStore = Flux.createStore({
+export let CardStore = mcFly.createStore({
     getCards: function () {
         return _cards;
     },

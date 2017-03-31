@@ -1,5 +1,7 @@
-var ExportButton = React.createClass({
-    render: function () {
+import React from 'react'
+
+class ExportButton extends React.Component {
+    render() {
         var deck = this.props.deck;
         var downloadAsTextFile = function (text) {
             var data = new Blob([text], {type: 'text/plain'});
@@ -19,4 +21,6 @@ var ExportButton = React.createClass({
             <button onClick={handleButtonClicked}>Export Deck</button>
         )
     }
-});
+}
+
+export default ExportButton;

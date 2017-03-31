@@ -1,0 +1,32 @@
+{
+	"name": "owlbrew",
+	"version": "0.0.1",
+	"description": "Demo of React + Webpack + Docker",
+	"author": "Niklas Nyholm <nyholmniklas@gmail.com>",
+	"scripts": {
+		"start": "webpack ./js/app.js bundle.js",
+		"server": "webpack-dev-server"
+	},
+	"devDependencies": {
+		"babel-core": "^6.7.2",
+		"babel-eslint": "^6.0.4",
+		"babel-loader": "^6.2.4",
+		"babel-preset-es2015": "^6.9.1",
+		"babel-preset-react": "^6.5.0",
+		"babel-preset-stage-0": "^6.5.0",
+		"babel-register": "^6.7.2",
+		"webpack": "^2.2.0",
+		"webpack-dev-server": "^2.2.0",
+		"react": "^15.3.1",
+		"react-dom": "^15.3.1",
+		"mcfly": "1.0.0"
+	},
+	"dependencies": {
+		"webpack": "^2.2.0",
+		"webpack-dev-server": "^2.2.0",
+		"react": "^15.3.1",
+		"react-dom": "^15.3.1",
+		"mcfly": "1.0.0"
+	},
+	"license": "MIT"
+}

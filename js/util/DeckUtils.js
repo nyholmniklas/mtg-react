@@ -1,4 +1,4 @@
-var DeckUtils = {
+export default {
     getDeckAsText: function (deck) {
         var output = '';
         for (var i = 0; i < deck.cards.length; i++) {
