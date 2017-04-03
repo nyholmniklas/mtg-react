@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import reactMixin from 'react-mixin'
 import CardStore from './store.js'
 import CardActions, {getDeck, getCards} from './actions.js'
 import Card from './components/Deck.js'
@@ -10,9 +11,10 @@ import ManaColorSelector from './components/ManaColorSelector.js'
 import SearchBar from './components/SearchBar.js'
 import SearchResults from './components/SearchResults.js'
 
-export const CardController = React.createClass({
-    getInitialState: function (store) {
-        return {
+class CardController extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             deck: getDeck(),
             cards: getCards(),
             searchText: '',
@@ -27,19 +29,35 @@ export const CardController = React.createClass({
             },
             searchResultsScroll: 0
         };
-    },
-    storeDidChange: function () {
+        this.storeDidChange = this.storeDidChange.bind(this);
+        this.handleUserInput = this.handleUserInput.bind(this);
+        this.handleOracleUserInput = this.handleOracleUserInput.bind(this);
+        this.handleSubtypeUserInput = this.handleSubtypeUserInput.bind(this);
+        this.handleManaParamsInput = this.handleManaParamsInput.bind(this);
+        this.onSearchResultsScroll = this.onSearchResultsScroll.bind(this);
+        this.handleManaParamsInput = this.handleManaParamsInput.bind(this);
+        this.updateCards = this.updateCards.bind(this);
+        this.addCardToDeck = this.addCardToDeck.bind(this);
+        this.removeCardfromDeck = this.removeCardfromDeck.bind(this);
+    }
+
+    isMounted() {
+        return true;
+    }
+
+    storeDidChange() {
         this.setState({
-            deck: CardActions.getDeck(),
-            cards: CardActions.getCards(),
+            deck: getDeck(),
+            cards: getCards(),
             searchText: this.state.searchText,
             searchOracleText: this.state.searchOracleText,
             searchSubtypeText: this.state.searchSubtypeText,
             manaParams: this.state.manaParams,
             searchResultsScroll: 0
         });
-    },
-    handleUserInput: function (searchText) {
+    }
+
+    handleUserInput(searchText) {
         this.setState({
             deck: this.state.deck,
             cards: this.state.cards,
@@ -50,8 +68,9 @@ export const CardController = React.createClass({
             searchResultsScroll: this.state.searchResultsScroll
         });
         this.updateCards();
-    },
-    handleOracleUserInput: function (oracleSearchText) {
+    }
+
+    handleOracleUserInput(oracleSearchText) {
         this.setState({
             deck: this.state.deck,
             cards: this.state.cards,
@@ -62,10 +81,11 @@ export const CardController = React.createClass({
             searchResultsScroll: this.state.searchResultsScroll
         });
         this.updateCards();
-    },
-    handleSubtypeUserInput: function (subtypeSearchText) {
-        this.setState({
-            deck: this.state.deck,
+    }
+
+    handleSubtypeUserInput(subtypeSearchText) {
+        this.setState(
+{            deck: this.state.deck,
             cards: this.state.cards,
             searchText: this.state.searchText,
             searchOracleText: this.state.searchOracleText,
@@ -74,8 +94,9 @@ export const CardController = React.createClass({
             searchResultsScroll: this.state.searchResultsScroll
         });
         this.updateCards();
-    },
-    handleManaParamsInput(manaParams){
+    }
+
+    handleManaParamsInput(manaParams) {
         this.setState({
             deck: this.state.deck,
             cards: this.state.cards,
@@ -86,7 +107,8 @@ export const CardController = React.createClass({
             searchResultsScroll: this.state.searchResultsScroll
         });
         this.updateCards();
-    },
+    }
+
     onSearchResultsScroll(scroll) {
         this.setState({
             deck: this.state.deck,
@@ -97,17 +119,23 @@ export const CardController = React.createClass({
             manaParams: this.state.manaParams,
             searchResultsScroll: scroll
         });
-    },
-    updateCards: function () {
+    }
+
+    updateCards() {
         CardActions.updateCards(this.state.searchText, this.state.searchOracleText, this.state.searchSubtypeText, this.state.manaParams);
-    },
+    }
+
     addCardToDeck(card) {
         CardActions.addCardToDeck(card);
-    },
+    }
+
     removeCardfromDeck(card) {
         CardActions.removeCardfromDeck(card);
-    },
-    render: function () {
+    }
+
+    render(){
+        var x = this.state.cards;
+        var y = this.state.deck.cards;
         return (
             <div className="app">
                 <SearchResults ref="searchResults" cards={this.state.cards} cardClickedCallback={this.addCardToDeck}
@@ -122,11 +150,14 @@ export const CardController = React.createClass({
                            manaParamsInputCallback={this.handleManaParamsInput}/>
             </div>
         )
-    },
-    componentWillMount: function () {
+    }
+
+    componentWillMount() {
         this.updateCards = _.debounce(this.updateCards, 100);
         this.updateCards();
     }
-});
+}
+
+reactMixin(CardController.prototype, CardStore.mixin)
 
 ReactDOM.render(<CardController />, document.body);

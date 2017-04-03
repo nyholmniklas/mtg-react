@@ -123,7 +123,7 @@ function removeCardFromDeck(cardToRemove) {
     }
 }
 
-export let CardStore = mcFly.createStore({
+var store = mcFly.createStore({
     getCards: function () {
         return _cards;
     },
@@ -133,14 +133,16 @@ export let CardStore = mcFly.createStore({
 }, function (payload) {
     if (payload.actionType === "UPDATE_CARDS") {
         updateCards(payload.searchText, payload.searchOracleText, payload.searchSubtypeText, payload.manaParams);
-        CardStore.emitChange();
+        store.emitChange();
     }
     if (payload.actionType === "ADD_CARD_TO_DECK") {
         addCardToDeck(payload.card);
-        CardStore.emitChange();
+        store.emitChange();
     }
     if (payload.actionType === "REMOVE_CARD_FROM_DECK") {
         removeCardFromDeck(payload.card);
-        CardStore.emitChange();
+        store.emitChange();
     }
 });
+
+export default store;

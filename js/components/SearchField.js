@@ -8,14 +8,14 @@ class SearchField extends React.Component {
 
     handleChange() {
         this.props.onUserInput(
-            this.searchFieldValue
+            this.searchField.value
         );
     }
 
     render() {
         return (
             <form>
-                <input type="text" ref={(input) => {this.searchFieldValue = input;}} onChange={this.handleChange}
+                <input type="text" ref={(input) => {this.searchField = input;}} onChange={this.handleChange}
                        value={this.props.searchText}/>
             </form>
         )

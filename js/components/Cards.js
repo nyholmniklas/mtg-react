@@ -1,10 +1,15 @@
 import React from 'react'
+import Card from './Card.js'
 
 class Cards extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         var cardClickedCallback = this.props.cardClickedCallback;
         return (
-            <div className={this.props.className} scrollTop={this.props.scroll}>
+            <div className={this.props.className}>
                 <ul className="cards">
                     {
                         this.props.cards.map(function (card) {
