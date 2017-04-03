@@ -42,7 +42,7 @@ class CardController extends React.Component {
     }
 
     isMounted() {
-        return true;
+        return this.mounted;
     }
 
     storeDidChange() {
@@ -134,8 +134,6 @@ class CardController extends React.Component {
     }
 
     render(){
-        var x = this.state.cards;
-        var y = this.state.deck.cards;
         return (
             <div className="app">
                 <SearchResults ref="searchResults" cards={this.state.cards} cardClickedCallback={this.addCardToDeck}
@@ -152,7 +150,12 @@ class CardController extends React.Component {
         )
     }
 
+    componentDidMount() {
+        this.mounted = true;
+    }
+
     componentWillMount() {
+        this.mounted = false;
         this.updateCards = _.debounce(this.updateCards, 100);
         this.updateCards();
     }

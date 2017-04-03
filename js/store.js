@@ -8,7 +8,7 @@ var _deck = {
     cards: []
 };
 function updateCards(searchText, searchOracleText, searchSubtypeText, manaParams) {
-    var sets = ['KTK', 'FRF', 'DTK', 'ORI', 'BFZ', 'OGW'];
+    var sets = [];
     makeRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
 }
 
@@ -20,7 +20,7 @@ function handleResponse(response, sets) {
 
 function getCardsFromResponse(response, sets) {
     var cards = JSON.parse(response.responseText);
-    cards = setCardImageUrlsBasedOnEdition(cards, sets);
+    cards = setCardImageUrls(cards, sets);
     return cards;
 }
 
@@ -40,6 +40,7 @@ function buildQueryParams(searchText, searchOracleText, searchSubtypeText, manaP
     for (var i = 0; i < sets.length; i++) {
         setQuery = setQuery + '&set=' + sets[i];
     }
+    setQuery = '';
     //Subtype query params
     var subtypeQuery = '';
     if (searchSubtypeText != null && searchSubtypeText != '') {
@@ -78,18 +79,16 @@ function buildQueryParams(searchText, searchOracleText, searchSubtypeText, manaP
     return requestUrlParams;
 }
 
-function setCardImageUrlsBasedOnEdition(cards, sets) {
+function setCardImageUrls(cards) {
     for (var i = 0; i < cards.length; i++) {
         var card = cards[i];
-        for (var j = 0; j < sets.length; j++) {
-            for (var k = 0; k < card.editions.length; k++) {
-                if (card.editions[k].set_url.indexOf(sets[j]) > -1) {
-                    card.img_url = card.editions[k].image_url;
-                    break;
-                }
+        for (var k = 0; k < card.editions.length; k++) {
+            if (card.editions[k].image_url != "https://image.deckbrew.com/mtg/multiverseid/0.jpg") {
+                card.img_url = card.editions[k].image_url;
+                break;
             }
-            cards[i] = card;
         }
+        cards[i] = card;
     }
     return cards;
 }
