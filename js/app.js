@@ -19,7 +19,6 @@ class CardController extends React.Component {
         this.state = {
             deck: DeckStore.getDeck(),
             cards: CardStore.getCards(),
-            searchText: '',
             searchOracleText: '',
             searchSubtypeText: '',
             manaParams: {
@@ -32,13 +31,12 @@ class CardController extends React.Component {
             searchResultsScroll: 0
         };
         this.storeDidChange = this.storeDidChange.bind(this);
-        this.handleUserInput = this.handleUserInput.bind(this);
         this.handleOracleUserInput = this.handleOracleUserInput.bind(this);
         this.handleSubtypeUserInput = this.handleSubtypeUserInput.bind(this);
         this.handleManaParamsInput = this.handleManaParamsInput.bind(this);
         this.onSearchResultsScroll = this.onSearchResultsScroll.bind(this);
         this.handleManaParamsInput = this.handleManaParamsInput.bind(this);
-        this.updateCards = this.updateCards.bind(this);
+        this.searchCards = this.searchCards.bind(this);
     }
 
     isMounted() {
@@ -53,32 +51,25 @@ class CardController extends React.Component {
         }));
     }
 
-    handleUserInput(searchText) {
-        this.setState(update(this.state, {
-            searchText: {$set: searchText}
-        }));
-        this.updateCards();
-    }
-
     handleOracleUserInput(oracleSearchText) {
         this.setState(update(this.state, {
             oracleSearchText: {$set: oracleSearchText}
         }));
-        this.updateCards();
+        this.searchCards();
     }
 
     handleSubtypeUserInput(subtypeSearchText) {
         this.setState(update(this.state, {
             subtypeSearchText: {$set: subtypeSearchText}
         }));
-        this.updateCards();
+        this.searchCards();
     }
 
     handleManaParamsInput(manaParams) {
         this.setState(update(this.state, {
             manaParams: {$set: manaParams}
         }));
-        this.updateCards();
+        this.searchCards();
     }
 
     onSearchResultsScroll(scroll) {
@@ -87,8 +78,12 @@ class CardController extends React.Component {
         }));
     }
 
-    updateCards() {
-        CardActions.updateCards(this.state.searchText, this.state.searchOracleText, this.state.searchSubtypeText, this.state.manaParams);
+    searchCards() {
+        CardActions.updateCards('', this.state.searchOracleText, this.state.searchSubtypeText, this.state.manaParams);
+    }
+
+    searchCards(searchText) {
+        CardActions.updateCards('', this.state.searchOracleText, this.state.searchSubtypeText, this.state.manaParams);
     }
 
     render(){
@@ -97,7 +92,7 @@ class CardController extends React.Component {
                 <SearchResults ref="searchResults" cards={this.state.cards} cardClickedCallback={CardActions.addCardToDeck}
                                scroll={this.state.searchResultsScroll} onScroll={this.onSearchResultsScroll}/>
                 <Deck cards={this.state.deck.cards} cardClickedCallback={CardActions.removeCardfromDeck}/>
-                <SearchBar deck={this.state.deck} searchText={this.state.searchText}
+                <SearchBar searchCards={this.searchCards} deck={this.state.deck}
                            searchOracleText={this.state.searchOracleText}
                            searchSubtypeText={this.state.searchSubtypeText}
                            handleInputCallback={this.handleUserInput}
@@ -114,8 +109,8 @@ class CardController extends React.Component {
 
     componentWillMount() {
         this.mounted = false;
-        this.updateCards = _.debounce(this.updateCards, 100);
-        this.updateCards();
+        this.searchCards = _.debounce(this.searchCards, 100);
+        this.searchCards();
     }
 }
 
