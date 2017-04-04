@@ -1,5 +1,5 @@
 import McFly from 'mcfly'
-import QueryUtils from './util/QueryUtils.js'
+import QueryUtils from './../util/QueryUtils.js'
 
 var mcFly = new McFly();
 
