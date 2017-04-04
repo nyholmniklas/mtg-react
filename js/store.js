@@ -1,4 +1,5 @@
 import McFly from 'mcfly'
+import QueryUtils from './util/QueryUtils.js'
 
 var mcFly = new McFly();
 
@@ -8,20 +9,14 @@ var _deck = {
     cards: []
 };
 function updateCards(searchText, searchOracleText, searchSubtypeText, manaParams) {
-    var sets = [];
+    const sets = [];
     makeRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
 }
 
 function handleResponse(response, sets) {
     if (response.readyState == 4 && response.status == 200) {
-        _cards = (getCardsFromResponse(response, sets));
+        _cards = (QueryUtils.getCardsFromResponse(response, sets));
     }
-}
-
-function getCardsFromResponse(response, sets) {
-    var cards = JSON.parse(response.responseText);
-    cards = setCardImageUrls(cards, sets);
-    return cards;
 }
 
 function makeRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets) {
@@ -29,68 +24,9 @@ function makeRequest(searchText, searchOracleText, searchSubtypeText, manaParams
     xmlHttp.onreadystatechange = function () {
         handleResponse(xmlHttp, sets);
     };
-    var requestUrlParams = buildQueryParams(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
+    var requestUrlParams = QueryUtils.buildQueryParams(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
     xmlHttp.open("GET", "https://api.deckbrew.com/mtg/cards?" + requestUrlParams, false); // false for synchronous request
     xmlHttp.send(null);
-}
-
-function buildQueryParams(searchText, searchOracleText, searchSubtypeText, manaParams, sets) {
-    //Set query params
-    var setQuery = '';
-    for (var i = 0; i < sets.length; i++) {
-        setQuery = setQuery + '&set=' + sets[i];
-    }
-    setQuery = '';
-    //Subtype query params
-    var subtypeQuery = '';
-    if (searchSubtypeText != null && searchSubtypeText != '') {
-        subtypeQuery = '&subtype=' + searchSubtypeText
-    }
-    //Mana colors query params
-    var manaQuery = '';
-    if (manaParams.white || manaParams.blue || manaParams.black || manaParams.red || manaParams.green) {
-        var numberOfColors = 0;
-        if (manaParams.white) {
-            manaQuery = manaQuery.concat('&color=white');
-            numberOfColors++;
-        }
-        if (manaParams.blue) {
-            manaQuery = manaQuery.concat('&color=blue');
-            numberOfColors++;
-        }
-        if (manaParams.black) {
-            manaQuery = manaQuery.concat('&color=black');
-            numberOfColors++;
-        }
-        if (manaParams.red) {
-            manaQuery = manaQuery.concat('&color=red');
-            numberOfColors++;
-        }
-        if (manaParams.green) {
-            manaQuery = manaQuery.concat('&color=green');
-            numberOfColors++;
-        }
-        //if (numberOfColors > 1) {
-        //    manaQuery = manaQuery.concat('&multicolor=true');
-        //}
-    }
-    if (searchOracleText == null) searchOracleText = '';
-    var requestUrlParams = "name=" + searchText + "&oracle=" + searchOracleText + setQuery + subtypeQuery + manaQuery;
-    return requestUrlParams;
-}
-
-function setCardImageUrls(cards) {
-    for (var i = 0; i < cards.length; i++) {
-        var card = cards[i];
-        for (var k = 0; k < card.editions.length; k++) {
-            if (card.editions[k].image_url != "https://image.deckbrew.com/mtg/multiverseid/0.jpg") {
-                card.img_url = card.editions[k].image_url;
-                break;
-            }
-        }
-        cards[i] = card;
-    }
-    return cards;
 }
 
 function addCardToDeck(cardToAdd) {
@@ -122,7 +58,7 @@ function removeCardFromDeck(cardToRemove) {
     }
 }
 
-var store = mcFly.createStore({
+const store = mcFly.createStore({
     getCards: function () {
         return _cards;
     },
