@@ -19,23 +19,10 @@ class CardController extends React.Component {
         this.state = {
             deck: DeckStore.getDeck(),
             cards: CardStore.getCards(),
-            searchOracleText: '',
-            searchSubtypeText: '',
-            manaParams: {
-                white: false,
-                blue: false,
-                black: false,
-                red: false,
-                green: false
-            },
             searchResultsScroll: 0
         };
         this.storeDidChange = this.storeDidChange.bind(this);
-        this.handleOracleUserInput = this.handleOracleUserInput.bind(this);
-        this.handleSubtypeUserInput = this.handleSubtypeUserInput.bind(this);
-        this.handleManaParamsInput = this.handleManaParamsInput.bind(this);
         this.onSearchResultsScroll = this.onSearchResultsScroll.bind(this);
-        this.handleManaParamsInput = this.handleManaParamsInput.bind(this);
         this.searchCards = this.searchCards.bind(this);
     }
 
@@ -51,66 +38,44 @@ class CardController extends React.Component {
         }));
     }
 
-    handleOracleUserInput(oracleSearchText) {
-        this.setState(update(this.state, {
-            oracleSearchText: {$set: oracleSearchText}
-        }));
-        this.searchCards();
-    }
-
-    handleSubtypeUserInput(subtypeSearchText) {
-        this.setState(update(this.state, {
-            subtypeSearchText: {$set: subtypeSearchText}
-        }));
-        this.searchCards();
-    }
-
-    handleManaParamsInput(manaParams) {
-        this.setState(update(this.state, {
-            manaParams: {$set: manaParams}
-        }));
-        this.searchCards();
-    }
-
     onSearchResultsScroll(scroll) {
         this.setState(update(this.state, {
             searchResultsScroll: {$set: scroll}
         }));
     }
 
-    searchCards() {
-        CardActions.updateCards('', this.state.searchOracleText, this.state.searchSubtypeText, this.state.manaParams);
+    searchCards(searchText, searchOracleText, searchSubtypeText, manaParams) {
+        CardActions.updateCards(searchText, searchOracleText, searchSubtypeText, manaParams);
     }
 
-    searchCards(searchText) {
-        CardActions.updateCards('', this.state.searchOracleText, this.state.searchSubtypeText, this.state.manaParams);
-    }
-
-    render(){
+    render() {
         return (
             <div className="app">
-                <SearchResults ref="searchResults" cards={this.state.cards} cardClickedCallback={CardActions.addCardToDeck}
+                <SearchResults ref="searchResults" cards={this.state.cards}
+                               cardClickedCallback={CardActions.addCardToDeck}
                                scroll={this.state.searchResultsScroll} onScroll={this.onSearchResultsScroll}/>
                 <Deck cards={this.state.deck.cards} cardClickedCallback={CardActions.removeCardfromDeck}/>
-                <SearchBar searchCards={this.searchCards} deck={this.state.deck}
-                           searchOracleText={this.state.searchOracleText}
-                           searchSubtypeText={this.state.searchSubtypeText}
-                           handleInputCallback={this.handleUserInput}
-                           handleOracleInputCallback={this.handleOracleUserInput}
-                           handleSubtypeInputCallback={this.handleSubtypeUserInput} manaParams={this.state.manaParams}
-                           manaParamsInputCallback={this.handleManaParamsInput}/>
+                <SearchBar searchCards={this.searchCards} deck={this.state.deck}/>
             </div>
         )
     }
 
-    componentDidMount() {
-        this.mounted = true;
-    }
-
     componentWillMount() {
         this.mounted = false;
+
+    }
+
+    componentDidMount() {
+        this.mounted = true;
+        const initManaParams = {
+            white: false,
+            blue: false,
+            black: false,
+            red: false,
+            green: false
+        };
         this.searchCards = _.debounce(this.searchCards, 100);
-        this.searchCards();
+        this.searchCards('', '', '', initManaParams);
     }
 }
 
