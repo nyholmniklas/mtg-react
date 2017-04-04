@@ -13,7 +13,7 @@ import ManaColorSelector from './components/ManaColorSelector.js'
 import SearchBar from './components/SearchBar.js'
 import SearchResults from './components/SearchResults.js'
 
-class CardController extends React.Component {
+class OwlbrewApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -74,12 +74,12 @@ class CardController extends React.Component {
             red: false,
             green: false
         };
-        this.searchCards = _.debounce(this.searchCards, 100);
+        this.searchCards = _.debounce(this.searchCards, 200);
         this.searchCards('', '', '', initManaParams);
     }
 }
 
-reactMixin(CardController.prototype, CardStore.mixin)
-reactMixin(CardController.prototype, DeckStore.mixin)
+reactMixin(OwlbrewApp.prototype, CardStore.mixin)
+reactMixin(OwlbrewApp.prototype, DeckStore.mixin)
 
-ReactDOM.render(<CardController />, document.body);
+ReactDOM.render(<OwlbrewApp />, document.body);
