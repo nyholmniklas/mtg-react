@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from './Card.js'
 
-class Cards extends React.Component {
+export default class Cards extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -9,7 +9,7 @@ class Cards extends React.Component {
     render() {
         var cardClickedCallback = this.props.cardClickedCallback;
         return (
-            <div className={this.props.className}>
+            <div>
                 <ul className="cards">
                     {
                         this.props.cards.map(function (card) {
@@ -23,4 +23,7 @@ class Cards extends React.Component {
     }
 }
 
-export default Cards;
+Cards.propTypes = {
+    cards: React.PropTypes.array.isRequired,
+    cardClickedCallback: React.PropTypes.func.isRequired
+}
