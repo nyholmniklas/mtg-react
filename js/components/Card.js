@@ -9,7 +9,7 @@ export default class Card extends React.Component {
                 position: 'absolute',
                 top: offsetFromTop,
             };
-            var cardImage = <img src={card.img_url} style={style}/>;
+            var cardImage = <img key={i} src={card.img_url} style={style}/>;
             cardImages.push(cardImage);
         }
         return cardImages;
