@@ -16,7 +16,6 @@ class CardController extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            deck: DeckStore.getDeck(),
             cards: CardStore.getCards(),
             searchText: '',
             searchOracleText: '',
@@ -48,7 +47,6 @@ class CardController extends React.Component {
 
     storeDidChange() {
         this.setState({
-            deck: DeckStore.getDeck(),
             cards: CardStore.getCards(),
             searchText: this.state.searchText,
             searchOracleText: this.state.searchOracleText,
@@ -60,7 +58,6 @@ class CardController extends React.Component {
 
     handleUserInput(searchText) {
         this.setState({
-            deck: this.state.deck,
             cards: this.state.cards,
             searchText: searchText,
             searchOracleText: this.state.searchOracleText,
@@ -73,7 +70,6 @@ class CardController extends React.Component {
 
     handleOracleUserInput(oracleSearchText) {
         this.setState({
-            deck: this.state.deck,
             cards: this.state.cards,
             searchText: this.state.searchText,
             searchOracleText: oracleSearchText,
@@ -85,8 +81,7 @@ class CardController extends React.Component {
     }
 
     handleSubtypeUserInput(subtypeSearchText) {
-        this.setState(
-{            deck: this.state.deck,
+        this.setState({
             cards: this.state.cards,
             searchText: this.state.searchText,
             searchOracleText: this.state.searchOracleText,
@@ -99,7 +94,6 @@ class CardController extends React.Component {
 
     handleManaParamsInput(manaParams) {
         this.setState({
-            deck: this.state.deck,
             cards: this.state.cards,
             searchText: this.state.searchText,
             searchOracleText: this.state.searchOracleText,
@@ -112,7 +106,6 @@ class CardController extends React.Component {
 
     onSearchResultsScroll(scroll) {
         this.setState({
-            deck: this.state.deck,
             cards: this.state.cards,
             searchText: this.state.searchText,
             searchOracleText: this.state.searchOracleText,
@@ -139,8 +132,8 @@ class CardController extends React.Component {
             <div className="app">
                 <SearchResults ref="searchResults" cards={this.state.cards} cardClickedCallback={this.addCardToDeck}
                                scroll={this.state.searchResultsScroll} onScroll={this.onSearchResultsScroll}/>
-                <Deck cards={this.state.deck.cards} cardClickedCallback={this.removeCardfromDeck}/>
-                <SearchBar deck={this.state.deck} searchText={this.state.searchText}
+                <Deck cards={DeckStore.getDeck().cards} cardClickedCallback={this.removeCardfromDeck}/>
+                <SearchBar deck={DeckStore.getDeck()} searchText={this.state.searchText}
                            searchOracleText={this.state.searchOracleText}
                            searchSubtypeText={this.state.searchSubtypeText}
                            handleInputCallback={this.handleUserInput}
