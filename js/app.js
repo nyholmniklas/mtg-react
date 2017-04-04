@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import reactMixin from 'react-mixin'
+import update from 'react-addons-update'
 import CardStore from './stores/CardStore.js'
 import DeckStore from './stores/DeckStore.js'
 import CardActions from './actions.js'
@@ -16,6 +17,7 @@ class CardController extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            deck: DeckStore.getDeck(),
             cards: CardStore.getCards(),
             searchText: '',
             searchOracleText: '',
@@ -37,8 +39,6 @@ class CardController extends React.Component {
         this.onSearchResultsScroll = this.onSearchResultsScroll.bind(this);
         this.handleManaParamsInput = this.handleManaParamsInput.bind(this);
         this.updateCards = this.updateCards.bind(this);
-        this.addCardToDeck = this.addCardToDeck.bind(this);
-        this.removeCardfromDeck = this.removeCardfromDeck.bind(this);
     }
 
     isMounted() {
@@ -46,94 +46,58 @@ class CardController extends React.Component {
     }
 
     storeDidChange() {
-        this.setState({
-            cards: CardStore.getCards(),
-            searchText: this.state.searchText,
-            searchOracleText: this.state.searchOracleText,
-            searchSubtypeText: this.state.searchSubtypeText,
-            manaParams: this.state.manaParams,
-            searchResultsScroll: 0
-        });
+        this.setState(update(this.state, {
+            deck: {$set: DeckStore.getDeck()},
+            cards: {$set: CardStore.getCards()},
+            searchResultsScroll: {$set: 0}
+        }));
     }
 
     handleUserInput(searchText) {
-        this.setState({
-            cards: this.state.cards,
-            searchText: searchText,
-            searchOracleText: this.state.searchOracleText,
-            searchSubtypeText: this.state.searchSubtypeText,
-            manaParams: this.state.manaParams,
-            searchResultsScroll: this.state.searchResultsScroll
-        });
+        this.setState(update(this.state, {
+            searchText: {$set: searchText}
+        }));
         this.updateCards();
     }
 
     handleOracleUserInput(oracleSearchText) {
-        this.setState({
-            cards: this.state.cards,
-            searchText: this.state.searchText,
-            searchOracleText: oracleSearchText,
-            searchSubtypeText: this.state.searchSubtypeText,
-            manaParams: this.state.manaParams,
-            searchResultsScroll: this.state.searchResultsScroll
-        });
+        this.setState(update(this.state, {
+            oracleSearchText: {$set: oracleSearchText}
+        }));
         this.updateCards();
     }
 
     handleSubtypeUserInput(subtypeSearchText) {
-        this.setState({
-            cards: this.state.cards,
-            searchText: this.state.searchText,
-            searchOracleText: this.state.searchOracleText,
-            searchSubtypeText: subtypeSearchText,
-            manaParams: this.state.manaParams,
-            searchResultsScroll: this.state.searchResultsScroll
-        });
+        this.setState(update(this.state, {
+            subtypeSearchText: {$set: subtypeSearchText}
+        }));
         this.updateCards();
     }
 
     handleManaParamsInput(manaParams) {
-        this.setState({
-            cards: this.state.cards,
-            searchText: this.state.searchText,
-            searchOracleText: this.state.searchOracleText,
-            searchSubtypeText: this.state.searchSubtypeText,
-            manaParams: manaParams,
-            searchResultsScroll: this.state.searchResultsScroll
-        });
+        this.setState(update(this.state, {
+            manaParams: {$set: manaParams}
+        }));
         this.updateCards();
     }
 
     onSearchResultsScroll(scroll) {
-        this.setState({
-            cards: this.state.cards,
-            searchText: this.state.searchText,
-            searchOracleText: this.state.searchOracleText,
-            searchSubtypeText: this.state.searchSubtypeText,
-            manaParams: this.state.manaParams,
-            searchResultsScroll: scroll
-        });
+        this.setState(update(this.state, {
+            searchResultsScroll: {$set: scroll}
+        }));
     }
 
     updateCards() {
         CardActions.updateCards(this.state.searchText, this.state.searchOracleText, this.state.searchSubtypeText, this.state.manaParams);
     }
 
-    addCardToDeck(card) {
-        CardActions.addCardToDeck(card);
-    }
-
-    removeCardfromDeck(card) {
-        CardActions.removeCardfromDeck(card);
-    }
-
     render(){
         return (
             <div className="app">
-                <SearchResults ref="searchResults" cards={this.state.cards} cardClickedCallback={this.addCardToDeck}
+                <SearchResults ref="searchResults" cards={this.state.cards} cardClickedCallback={CardActions.addCardToDeck}
                                scroll={this.state.searchResultsScroll} onScroll={this.onSearchResultsScroll}/>
-                <Deck cards={DeckStore.getDeck().cards} cardClickedCallback={this.removeCardfromDeck}/>
-                <SearchBar deck={DeckStore.getDeck()} searchText={this.state.searchText}
+                <Deck cards={this.state.deck.cards} cardClickedCallback={CardActions.removeCardfromDeck}/>
+                <SearchBar deck={this.state.deck} searchText={this.state.searchText}
                            searchOracleText={this.state.searchOracleText}
                            searchSubtypeText={this.state.searchSubtypeText}
                            handleInputCallback={this.handleUserInput}

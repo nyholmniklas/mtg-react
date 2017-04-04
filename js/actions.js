@@ -1,5 +1,4 @@
 import McFly from 'mcfly'
-import CardStore from "./stores/CardStore.js"
 
 var Flux = new McFly();
 
