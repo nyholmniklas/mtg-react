@@ -22,4 +22,9 @@ class SearchField extends React.Component {
     }
 }
 
+SearchField.propTypes = {
+    searchText: React.PropTypes.string.isRequired,
+    onUserInput: React.PropTypes.func
+}
+
 export default SearchField;
