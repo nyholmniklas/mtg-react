@@ -30,3 +30,8 @@ export default class Card extends React.Component {
         );
     }
 }
+
+Card.propTypes = {
+    card: React.PropTypes.object.isRequired,
+    cardClickedCallback: React.PropTypes.func
+}
