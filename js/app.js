@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import reactMixin from 'react-mixin'
-import CardStore from './stores/store.js'
-import CardActions, {getDeck, getCards} from './actions.js'
+import CardStore from './stores/CardStore.js'
+import DeckStore from './stores/DeckStore.js'
+import CardActions from './actions.js'
 import Card from './components/Deck.js'
 import Cards from './components/Cards.js'
 import Deck from './components/Deck.js'
@@ -15,8 +16,8 @@ class CardController extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            deck: getDeck(),
-            cards: getCards(),
+            deck: DeckStore.getDeck(),
+            cards: CardStore.getCards(),
             searchText: '',
             searchOracleText: '',
             searchSubtypeText: '',
@@ -47,8 +48,8 @@ class CardController extends React.Component {
 
     storeDidChange() {
         this.setState({
-            deck: getDeck(),
-            cards: getCards(),
+            deck: DeckStore.getDeck(),
+            cards: CardStore.getCards(),
             searchText: this.state.searchText,
             searchOracleText: this.state.searchOracleText,
             searchSubtypeText: this.state.searchSubtypeText,
@@ -162,5 +163,6 @@ class CardController extends React.Component {
 }
 
 reactMixin(CardController.prototype, CardStore.mixin)
+reactMixin(CardController.prototype, DeckStore.mixin)
 
 ReactDOM.render(<CardController />, document.body);

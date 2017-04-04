@@ -1,33 +1,8 @@
 import McFly from 'mcfly'
-import QueryUtils from './../util/QueryUtils.js'
 
-var mcFly = new McFly();
-
-/** Store */
-var _cards = [];
 var _deck = {
     cards: []
 };
-function updateCards(searchText, searchOracleText, searchSubtypeText, manaParams) {
-    const sets = [];
-    makeRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
-}
-
-function handleResponse(response, sets) {
-    if (response.readyState == 4 && response.status == 200) {
-        _cards = (QueryUtils.getCardsFromResponse(response, sets));
-    }
-}
-
-function makeRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function () {
-        handleResponse(xmlHttp, sets);
-    };
-    var requestUrlParams = QueryUtils.buildQueryParams(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
-    xmlHttp.open("GET", "https://api.deckbrew.com/mtg/cards?" + requestUrlParams, false); // false for synchronous request
-    xmlHttp.send(null);
-}
 
 function addCardToDeck(cardToAdd) {
     // Check to see if we can find the card in the deck already and then increment id
@@ -58,18 +33,11 @@ function removeCardFromDeck(cardToRemove) {
     }
 }
 
-const store = mcFly.createStore({
-    getCards: function () {
-        return _cards;
-    },
+const store = new McFly().createStore({
     getDeck: function () {
         return _deck;
     }
 }, function (payload) {
-    if (payload.actionType === "UPDATE_CARDS") {
-        updateCards(payload.searchText, payload.searchOracleText, payload.searchSubtypeText, payload.manaParams);
-        store.emitChange();
-    }
     if (payload.actionType === "ADD_CARD_TO_DECK") {
         addCardToDeck(payload.card);
         store.emitChange();

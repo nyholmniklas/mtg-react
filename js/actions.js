@@ -1,5 +1,5 @@
 import McFly from 'mcfly'
-import CardStore from "./stores/store.js"
+import CardStore from "./stores/CardStore.js"
 
 var Flux = new McFly();
 
@@ -26,11 +26,3 @@ export default Flux.createActions({
         }
     }
 });
-
-export var getCards = function () {
-    return CardStore.getCards();
-}
-
-export var getDeck = function(){
-    return CardStore.getDeck();
-}
