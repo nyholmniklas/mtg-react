@@ -21,7 +21,8 @@
 		"react-dom": "^15.3.1",
 		"react-mixin": "3.0.5",
 	  	"react-addons-update": "15.4.2",
-		"mcfly": "1.0.0"
+		"mcfly": "1.0.0",
+	  	"underscore": "1.8.3"
 	},
 	"dependencies": {
 		"webpack": "^2.2.0",
