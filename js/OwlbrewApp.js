@@ -83,4 +83,4 @@ class OwlbrewApp extends React.Component {
 reactMixin(OwlbrewApp.prototype, CardStore.mixin)
 reactMixin(OwlbrewApp.prototype, DeckStore.mixin)
 
-ReactDOM.render(<OwlbrewApp />, document.body);
+ReactDOM.render(<OwlbrewApp />, document.getElementById('app-container'));
