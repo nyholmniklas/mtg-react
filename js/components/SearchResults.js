@@ -1,5 +1,5 @@
 import React from 'react';
-import Cards from './Cards.js';
+import Cards from './Cards.jsx';
 
 export default class SearchResults extends React.Component {
     constructor(props) {

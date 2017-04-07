@@ -1,9 +1,9 @@
 import React from 'react';
 import update from 'react-addons-update';
-import SearchField from './SearchField.js';
-import ManaColorSelector from './ManaColorSelector.js';
+import SearchField from './SearchField.jsx';
+import ManaColorSelector from './ManaColorSelector.jsx';
 import DeckUtils from '../util/DeckUtils.js';
-import ExportButton from './ExportButton.js';
+import ExportButton from './ExportButton.jsx';
 
 export default class SearchBar extends React.Component {
     constructor(props) {

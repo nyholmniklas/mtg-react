@@ -6,8 +6,8 @@ import _ from 'underscore';
 import CardStore from './stores/CardStore.js';
 import DeckStore from './stores/DeckStore.js';
 import CardActions from './Actions.js';
-import Deck from './components/Deck.js';
-import SearchBar from './components/SearchBar.js';
+import Deck from './components/Deck.jsx';
+import SearchBar from './components/SearchBar.jsx';
 import SearchResults from './components/SearchResults.js';
 
 class OwlbrewApp extends React.Component {
