@@ -34,13 +34,13 @@ export default class SearchBar extends React.Component {
 
     handleOracleUserInput(oracleSearchText) {
         this.setState(update(this.state, {
-            oracleSearchText: {$set: oracleSearchText}
+            searchOracleText: {$set: oracleSearchText}
         }), this.searchCards);
     }
 
     handleSubtypeUserInput(subtypeSearchText) {
         this.setState(update(this.state, {
-            subtypeSearchText: {$set: subtypeSearchText}
+            searchSubtypeText: {$set: subtypeSearchText}
         }), this.searchCards);
     }
 
