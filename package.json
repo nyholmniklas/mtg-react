@@ -16,15 +16,16 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
     "eslint": "3.19.0",
+    "eslint-loader": "^1.7.1",
     "eslint-plugin-react": "6.10.3",
-    "webpack": "2.2.0",
-    "webpack-dev-server": "2.2.0",
     "mcfly": "1.0.0",
     "react": "^15.3.1",
     "react-addons-update": "15.4.2",
     "react-dom": "^15.3.1",
     "react-mixin": "3.0.5",
-    "underscore": "1.8.3"
+    "underscore": "1.8.3",
+    "webpack": "2.2.0",
+    "webpack-dev-server": "2.2.0"
   },
   "dependencies": {
     "mcfly": "1.0.0",
