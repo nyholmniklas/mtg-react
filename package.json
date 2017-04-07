@@ -23,9 +23,9 @@
     "react-addons-update": "15.4.2",
     "react-dom": "^15.3.1",
     "react-mixin": "3.0.5",
-    "inquirer": "3.0.6",
     "semantic-ui": "^2.2.10",
     "semantic-ui-css": "^2.2.10",
+    "inquirer": "3.0.6",
     "underscore": "1.8.3",
     "webpack": "2.2.0",
     "webpack-dev-server": "2.2.0"
