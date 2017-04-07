@@ -14,10 +14,12 @@ export default class SearchField extends React.Component {
 
     render() {
         return (
-            <form>
-                <input type="text" ref={(input) => {this.searchField = input;}} onChange={this.handleChange}
-                       value={this.props.searchText}/>
-            </form>
+            <div className="ui input">
+                <form>
+                    <input type="text" ref={(input) => {this.searchField = input;}} onChange={this.handleChange}
+                           value={this.props.searchText}/>
+                </form>
+            </div>
         );
     }
 }
