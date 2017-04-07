@@ -23,5 +23,10 @@ export default Flux.createActions({
             actionType: "REMOVE_CARD_FROM_DECK",
             card: card
         }
+    },
+    downloadDeck: function() {
+        return {
+            actionType: "DOWNLOAD_DECK"
+        }
     }
 });
