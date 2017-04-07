@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './js/OwlbrewApp.js',
+    entry: './js/OwlbrewApp.jsx',
     plugins: [
         new webpack.LoaderOptionsPlugin({
             debug: true
