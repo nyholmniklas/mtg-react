@@ -8,7 +8,7 @@ import DeckStore from './stores/DeckStore.js';
 import CardActions from './Actions.js';
 import Deck from './components/Deck.jsx';
 import SearchBar from './components/SearchBar.jsx';
-import SearchResults from './components/SearchResults.js';
+import SearchResults from './components/SearchResults.jsx';
 
 class OwlbrewApp extends React.Component {
     constructor(props) {
