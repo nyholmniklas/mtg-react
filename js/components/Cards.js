@@ -1,5 +1,5 @@
-import React from 'react'
-import Card from './Card.js'
+import React from 'react';
+import Card from './Card.js';
 
 export default class Cards extends React.Component {
     constructor(props) {

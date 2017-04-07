@@ -1,18 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import reactMixin from 'react-mixin'
-import update from 'react-addons-update'
-import _ from 'underscore'
-import CardStore from './stores/CardStore.js'
-import DeckStore from './stores/DeckStore.js'
-import CardActions from './Actions.js'
-import Card from './components/Deck.js'
-import Cards from './components/Cards.js'
-import Deck from './components/Deck.js'
-import ExportButton from './components/ExportButton.js'
-import ManaColorSelector from './components/ManaColorSelector.js'
-import SearchBar from './components/SearchBar.js'
-import SearchResults from './components/SearchResults.js'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import reactMixin from 'react-mixin';
+import update from 'react-addons-update';
+import _ from 'underscore';
+import CardStore from './stores/CardStore.js';
+import DeckStore from './stores/DeckStore.js';
+import CardActions from './Actions.js';
+import Card from './components/Deck.js';
+import Cards from './components/Cards.js';
+import Deck from './components/Deck.js';
+import ExportButton from './components/ExportButton.js';
+import ManaColorSelector from './components/ManaColorSelector.js';
+import SearchBar from './components/SearchBar.js';
+import SearchResults from './components/SearchResults.js';
 
 class OwlbrewApp extends React.Component {
     constructor(props) {

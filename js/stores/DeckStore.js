@@ -1,5 +1,5 @@
-import McFly from 'mcfly'
-import DeckUtils from './../util/DeckUtils'
+import McFly from 'mcfly';
+import DeckUtils from './../util/DeckUtils';
 
 var _deck = {
     cards: []

@@ -1,5 +1,5 @@
-import McFly from 'mcfly'
-import QueryUtils from './../util/QueryUtils.js'
+import McFly from 'mcfly';
+import QueryUtils from './../util/QueryUtils.js';
 
 var _cards = [];
 
