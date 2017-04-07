@@ -8,7 +8,10 @@ module.exports = {
     extends: 'eslint:recommended',
     parserOptions: {
         sourceType: 'module',
-        "jsx": true
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        }
     },
     "plugins": [
         "react"
