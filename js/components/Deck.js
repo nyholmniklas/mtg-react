@@ -1,7 +1,7 @@
 import React from 'react'
 import Cards from './Cards.js'
 
-class Deck extends React.Component {
+export default class Deck extends React.Component {
     render() {
         return (
             <div className="deck">
@@ -11,4 +11,7 @@ class Deck extends React.Component {
     }
 }
 
-export default Deck;
+Deck.propTypes = {
+    cards: React.PropTypes.array.isRequired,
+    cardClickedCallback: React.PropTypes.func
+}

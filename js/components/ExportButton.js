@@ -1,6 +1,6 @@
 import React from 'react'
 
-class ExportButton extends React.Component {
+export default class ExportButton extends React.Component {
     render() {
         var deck = this.props.deck;
         var downloadAsTextFile = function (text) {
@@ -23,4 +23,6 @@ class ExportButton extends React.Component {
     }
 }
 
-export default ExportButton;
+ExportButton.propTypes = {
+    deck: React.PropTypes.object.isRequired
+}

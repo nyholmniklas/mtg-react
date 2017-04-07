@@ -5,7 +5,7 @@ import ManaColorSelector from './ManaColorSelector.js'
 import DeckUtils from '../util/DeckUtils.js'
 import ExportButton from './ExportButton.js'
 
-class SearchBar extends React.Component {
+export default class SearchBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -72,4 +72,7 @@ class SearchBar extends React.Component {
     }
 }
 
-export default SearchBar;
+SearchBar.propTypes = {
+    searchCards: React.PropTypes.func.isRequired,
+    deck: React.PropTypes.object.isRequired
+}

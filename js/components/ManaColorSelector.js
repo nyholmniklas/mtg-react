@@ -1,6 +1,6 @@
 import React from 'react'
 
-class ManaColorSelector extends React.Component {
+export default class ManaColorSelector extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -35,4 +35,7 @@ class ManaColorSelector extends React.Component {
     }
 }
 
-export default ManaColorSelector;
+ManaColorSelector.propTypes = {
+    manaParams: React.PropTypes.object.isRequired,
+    manaParamsInputCallback: React.PropTypes.func.isRequired
+}
