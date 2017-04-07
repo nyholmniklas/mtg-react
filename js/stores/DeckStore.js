@@ -1,4 +1,5 @@
 import McFly from 'mcfly'
+import DeckUtils from './../util/DeckUtils'
 
 var _deck = {
     cards: []
@@ -33,6 +34,18 @@ function removeCardFromDeck(cardToRemove) {
     }
 }
 
+function downloadDeck(deck) {
+    var data = new Blob([DeckUtils.getDeckAsText(_deck)], {type: 'text/plain'});
+    var url = (window.webkitURL || window.URL).createObjectURL(data);
+    //TODO check if element already exists and replace it
+    var a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style = "display: none";
+    a.href = url;
+    a.download = 'mydeck.txt';
+    a.click();
+}
+
 const store = new McFly().createStore({
     getDeck: function () {
         return _deck;
@@ -45,6 +58,9 @@ const store = new McFly().createStore({
     if (payload.actionType === "REMOVE_CARD_FROM_DECK") {
         removeCardFromDeck(payload.card);
         store.emitChange();
+    }
+    if (payload.actionType === "DOWNLOAD_DECK") {
+        downloadDeck();
     }
 });
 

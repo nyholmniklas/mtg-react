@@ -56,7 +56,8 @@ class OwlbrewApp extends React.Component {
                                cardClickedCallback={CardActions.addCardToDeck}
                                scroll={this.state.searchResultsScroll} onScroll={this.onSearchResultsScroll}/>
                 <Deck cards={this.state.deck.cards} cardClickedCallback={CardActions.removeCardfromDeck}/>
-                <SearchBar searchCards={this.searchCards} deck={this.state.deck}/>
+                <SearchBar searchCards={this.searchCards} deck={this.state.deck}
+                           downloadDeckCallback={CardActions.downloadDeck}/>
             </div>
         )
     }

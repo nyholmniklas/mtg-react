@@ -66,7 +66,7 @@ export default class SearchBar extends React.Component {
                 <ManaColorSelector manaParams={this.state.manaParams}
                                    manaParamsInputCallback={this.handleManaParamsInput}/>
                 Cards: {DeckUtils.getCardCount(this.props.deck)} / 60
-                <ExportButton deck={this.props.deck}/>
+                <ExportButton onClick={this.props.downloadDeckCallback}/>
             </div>
         )
     }
@@ -74,5 +74,6 @@ export default class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
     searchCards: React.PropTypes.func.isRequired,
-    deck: React.PropTypes.object.isRequired
+    deck: React.PropTypes.object.isRequired,
+    downloadDeckCallback: React.PropTypes.func.isRequired
 }
