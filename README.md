@@ -2,7 +2,6 @@ Owlbrew
 ===========
 
 [![Build Status](https://travis-ci.org/nyholmniklas/owlbrew.github.io.svg?branch=master)](https://travis-ci.org/nyholmniklas/owlbrew.github.io)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]
 
 Prerequisites
 -------
