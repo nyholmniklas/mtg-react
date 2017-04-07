@@ -4,9 +4,8 @@
   "description": "Demo of React + Webpack + Docker",
   "author": "Niklas Nyholm <nyholmniklas@gmail.com>",
   "scripts": {
-    "start": "webpack ./js/app.js bundle.js",
     "server": "webpack-dev-server",
-    "test": "./node_modules/jshint/bin/jshint ./js/OwlbrewApp.js"
+    "test": "eslint js/ webpack.*.js --cache"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
@@ -16,22 +15,24 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
-    "jshint": "^2.9.4",
+    "eslint": "3.19.0",
+    "eslint-plugin-react": "6.10.3",
+    "webpack": "2.2.0",
+    "webpack-dev-server": "2.2.0",
     "mcfly": "1.0.0",
     "react": "^15.3.1",
     "react-addons-update": "15.4.2",
     "react-dom": "^15.3.1",
     "react-mixin": "3.0.5",
-    "underscore": "1.8.3",
-    "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0"
+    "underscore": "1.8.3"
   },
   "dependencies": {
-    "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0",
+    "mcfly": "1.0.0",
     "react": "^15.3.1",
+    "react-addons-update": "15.4.2",
     "react-dom": "^15.3.1",
-    "mcfly": "1.0.0"
+    "react-mixin": "3.0.5",
+    "underscore": "1.8.3"
   },
   "license": "MIT"
 }
