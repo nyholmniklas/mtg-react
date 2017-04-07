@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack ./js/app.js bundle.js",
     "server": "webpack-dev-server",
-    "test": "./node_modules/jshint/bin/jshint hello.js"
+    "test": "./node_modules/jshint/bin/jshint ./js/OwlbrewApp.js"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
