@@ -1,6 +1,6 @@
 import React from 'react'
 
-class SearchField extends React.Component {
+export default class SearchField extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -26,5 +26,3 @@ SearchField.propTypes = {
     searchText: React.PropTypes.string.isRequired,
     onUserInput: React.PropTypes.func
 }
-
-export default SearchField;

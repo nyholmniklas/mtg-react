@@ -2,7 +2,7 @@ import React from 'react'
 import Card from './Card.js';
 import Cards from './Cards.js';
 
-class SearchResults extends React.Component {
+export default class SearchResults extends React.Component {
     constructor(props) {
         super(props);
         this.onScroll = this.onScroll.bind(this);
@@ -27,4 +27,8 @@ class SearchResults extends React.Component {
     }
 }
 
-export default SearchResults;
+SearchResults.propTypes = {
+    scroll: React.PropTypes.number,
+    cards: React.PropTypes.array.isRequired,
+    cardClickedCallback: React.PropTypes.func
+}
