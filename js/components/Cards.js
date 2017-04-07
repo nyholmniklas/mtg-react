@@ -26,4 +26,4 @@ export default class Cards extends React.Component {
 Cards.propTypes = {
     cards: React.PropTypes.array.isRequired,
     cardClickedCallback: React.PropTypes.func.isRequired
-}
+};

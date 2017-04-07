@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from './Card.js';
 import Cards from './Cards.js';
 
 export default class SearchResults extends React.Component {
@@ -23,7 +22,7 @@ export default class SearchResults extends React.Component {
                  onScroll={this.onScroll}>
                 <Cards cards={this.props.cards} cardClickedCallback={this.props.cardClickedCallback}/>
             </div>
-        )
+        );
     }
 }
 
@@ -31,4 +30,4 @@ SearchResults.propTypes = {
     scroll: React.PropTypes.number,
     cards: React.PropTypes.array.isRequired,
     cardClickedCallback: React.PropTypes.func
-}
+};

@@ -31,11 +31,11 @@ export default class ManaColorSelector extends React.Component {
                 <input type="checkbox" ref={(green) => {this.green = green;}} checked={this.props.manaParams.green}
                        onChange={this.handleChange} value='G'/>
             </div>
-        )
+        );
     }
 }
 
 ManaColorSelector.propTypes = {
     manaParams: React.PropTypes.object.isRequired,
     manaParamsInputCallback: React.PropTypes.func.isRequired
-}
+};

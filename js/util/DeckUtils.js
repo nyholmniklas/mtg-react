@@ -3,7 +3,7 @@ export default {
         var output = '';
         for (var i = 0; i < deck.cards.length; i++) {
             var card = deck.cards[i];
-            output = output.concat('\r\n' + card.ammount + ' ' + card.name)
+            output = output.concat('\r\n' + card.ammount + ' ' + card.name);
         }
         return output;
     },
@@ -15,4 +15,4 @@ export default {
         return count;
     }
 
-}
+};

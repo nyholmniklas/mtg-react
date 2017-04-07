@@ -68,7 +68,7 @@ export default class SearchBar extends React.Component {
                 Cards: {DeckUtils.getCardCount(this.props.deck)} / 60
                 <ExportButton onClick={this.props.downloadDeckCallback}/>
             </div>
-        )
+        );
     }
 }
 
@@ -76,4 +76,4 @@ SearchBar.propTypes = {
     searchCards: React.PropTypes.func.isRequired,
     deck: React.PropTypes.object.isRequired,
     downloadDeckCallback: React.PropTypes.func.isRequired
-}
+};

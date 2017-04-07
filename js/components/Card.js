@@ -4,7 +4,7 @@ export default class Card extends React.Component {
     getCardImages(card) {
         var cardImages = [];
         for (var i = 0; i < card.ammount; i++) {
-            var offsetFromTop = ((30 * i) + 'px')
+            var offsetFromTop = ((30 * i) + 'px');
             var style = {
                 position: 'absolute',
                 top: offsetFromTop,
@@ -34,4 +34,4 @@ export default class Card extends React.Component {
 Card.propTypes = {
     card: React.PropTypes.object.isRequired,
     cardClickedCallback: React.PropTypes.func
-}
+};

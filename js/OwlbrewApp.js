@@ -6,11 +6,7 @@ import _ from 'underscore';
 import CardStore from './stores/CardStore.js';
 import DeckStore from './stores/DeckStore.js';
 import CardActions from './Actions.js';
-import Card from './components/Deck.js';
-import Cards from './components/Cards.js';
 import Deck from './components/Deck.js';
-import ExportButton from './components/ExportButton.js';
-import ManaColorSelector from './components/ManaColorSelector.js';
 import SearchBar from './components/SearchBar.js';
 import SearchResults from './components/SearchResults.js';
 
@@ -59,7 +55,7 @@ class OwlbrewApp extends React.Component {
                 <SearchBar searchCards={this.searchCards} deck={this.state.deck}
                            downloadDeckCallback={CardActions.downloadDeck}/>
             </div>
-        )
+        );
     }
 
     componentWillMount() {
@@ -81,7 +77,7 @@ class OwlbrewApp extends React.Component {
     }
 }
 
-reactMixin(OwlbrewApp.prototype, CardStore.mixin)
-reactMixin(OwlbrewApp.prototype, DeckStore.mixin)
+reactMixin(OwlbrewApp.prototype, CardStore.mixin);
+reactMixin(OwlbrewApp.prototype, DeckStore.mixin);
 
 ReactDOM.render(<OwlbrewApp />, document.getElementById('app-container'));

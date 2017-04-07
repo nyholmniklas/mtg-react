@@ -19,38 +19,29 @@ class QueryUtils {
         //Subtype query params
         let subtypeQuery = '';
         if (searchSubtypeText != null && searchSubtypeText != '') {
-            subtypeQuery = '&subtype=' + searchSubtypeText
+            subtypeQuery = '&subtype=' + searchSubtypeText;
         }
         //Mana colors query params
         let manaQuery = '';
         if (manaParams.white || manaParams.blue || manaParams.black || manaParams.red || manaParams.green) {
-            var numberOfColors = 0;
             if (manaParams.white) {
                 manaQuery = manaQuery.concat('&color=white');
-                numberOfColors++;
             }
             if (manaParams.blue) {
                 manaQuery = manaQuery.concat('&color=blue');
-                numberOfColors++;
             }
             if (manaParams.black) {
                 manaQuery = manaQuery.concat('&color=black');
-                numberOfColors++;
             }
             if (manaParams.red) {
                 manaQuery = manaQuery.concat('&color=red');
-                numberOfColors++;
             }
             if (manaParams.green) {
                 manaQuery = manaQuery.concat('&color=green');
-                numberOfColors++;
             }
-            //if (numberOfColors > 1) {
-            //    manaQuery = manaQuery.concat('&multicolor=true');
-            //}
         }
         if (searchOracleText == null) searchOracleText = '';
-        const requestUrlParams = "name=" + searchText + "&oracle=" + searchOracleText + setQuery + subtypeQuery + manaQuery;
+        const requestUrlParams = 'name=' + searchText + '&oracle=' + searchOracleText + setQuery + subtypeQuery + manaQuery;
         return requestUrlParams;
     }
 
@@ -66,7 +57,7 @@ class QueryUtils {
             let card = cards[i];
             let imageFound = false;
             for (var k = 0; k < card.editions.length; k++) {
-                if (card.editions[k].image_url != "https://image.deckbrew.com/mtg/multiverseid/0.jpg") {
+                if (card.editions[k].image_url != 'https://image.deckbrew.com/mtg/multiverseid/0.jpg') {
                     card.img_url = card.editions[k].image_url;
                     imageFound = true;
                     break;

@@ -28,19 +28,19 @@ function removeCardFromDeck(cardToRemove) {
             if (card.ammount > 1) {
                 card.ammount--;
             } else if (card.ammount == 1) {
-                _deck.cards.splice(i, 1)
+                _deck.cards.splice(i, 1);
             }
         }
     }
 }
 
-function downloadDeck(deck) {
+function downloadDeck() {
     var data = new Blob([DeckUtils.getDeckAsText(_deck)], {type: 'text/plain'});
     var url = (window.webkitURL || window.URL).createObjectURL(data);
     //TODO check if element already exists and replace it
-    var a = document.createElement("a");
+    var a = document.createElement('a');
     document.body.appendChild(a);
-    a.style = "display: none";
+    a.style = 'display: none';
     a.href = url;
     a.download = 'mydeck.txt';
     a.click();
@@ -51,15 +51,15 @@ const store = new McFly().createStore({
         return _deck;
     }
 }, function (payload) {
-    if (payload.actionType === "ADD_CARD_TO_DECK") {
+    if (payload.actionType === 'ADD_CARD_TO_DECK') {
         addCardToDeck(payload.card);
         store.emitChange();
     }
-    if (payload.actionType === "REMOVE_CARD_FROM_DECK") {
+    if (payload.actionType === 'REMOVE_CARD_FROM_DECK') {
         removeCardFromDeck(payload.card);
         store.emitChange();
     }
-    if (payload.actionType === "DOWNLOAD_DECK") {
+    if (payload.actionType === 'DOWNLOAD_DECK') {
         downloadDeck();
     }
 });

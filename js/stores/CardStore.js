@@ -21,7 +21,7 @@ function makeRequest(searchText, searchOracleText, searchSubtypeText, manaParams
         handleResponse(xmlHttp, sets);
     };
     var requestUrlParams = QueryUtils.buildQueryParams(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
-    xmlHttp.open("GET", "https://api.deckbrew.com/mtg/cards?" + requestUrlParams); // false for synchronous request
+    xmlHttp.open('GET', 'https://api.deckbrew.com/mtg/cards?' + requestUrlParams); // false for synchronous request
     xmlHttp.send(null);
 }
 
@@ -30,7 +30,7 @@ const store = new McFly().createStore({
         return _cards;
     }
 }, function (payload) {
-    if (payload.actionType === "UPDATE_CARDS") {
+    if (payload.actionType === 'UPDATE_CARDS') {
         updateCards(payload.searchText, payload.searchOracleText, payload.searchSubtypeText, payload.manaParams);
     }
 });
