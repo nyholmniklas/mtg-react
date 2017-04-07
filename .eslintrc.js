@@ -17,7 +17,6 @@ module.exports = {
         "react"
     ],
     rules: {
-        'comma-dangle': ['error', 'always-multiline'],
         indent: ['error', 4],
         'linebreak-style': ['error', 'unix'],
         quotes: ['error', 'single'],

@@ -15,14 +15,14 @@ module.exports = {
     module: {
         loaders: [
             {test: /\.css$/, loaders: ['style', 'css']},
-            {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/}
+            {test: /\.(js|jsx)$/, loader: 'babel-loader', exclude: /node_modules/}
         ],
         rules: [
             {
                 enforce: 'pre',
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/, // do not lint third-party code
-                loader: 'jshint-loader'
+                loader: ['babel-loader', 'eslint-loader']
             }
         ]
     }
