@@ -21,7 +21,7 @@ module.exports = {
             {
                 enforce: 'pre',
                 test: /\.(js|jsx)$/,
-                exclude: /node_modules/, // do not lint third-party code
+                exclude: /node_modules/,
                 loader: ['babel-loader', 'eslint-loader']
             }
         ]
