@@ -6,7 +6,7 @@ Owlbrew
 Prerequisites
 -------
 
-## Install Node
+#### Install Node
 
 ```
 git clone git://github.com/nodejs/node.git
@@ -16,7 +16,7 @@ make
 sudo make install
 ```
 
-## Install Gulp
+#### Install Gulp
 
 You must install Gulp globally for Semantic UI to work.
 
@@ -27,20 +27,20 @@ npm install -g gulp
 Setup
 -------
 
-## Build Semantic UI
+#### Build Semantic UI
 
 ```
 cd semantic/
 gulp build
 ```
 
-## Run eslint and build
+#### Run eslint and build
 
 ```
 npm run test
 ```
 
-## Run dev server
+#### Run dev server
 
 ```
 npm install
