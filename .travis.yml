@@ -2,4 +2,8 @@ language: node_js
 node_js:
   - 6.10.2
 before_script:
+  - npm install -g gulp
   - npm install < travisinput.txt
+  - cd semantic
+  - gulp build
+  - cd ..
