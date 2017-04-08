@@ -16,10 +16,8 @@ class OwlbrewApp extends React.Component {
         this.state = {
             deck: DeckStore.getDeck(),
             cards: CardStore.getCards(),
-            searchResultsScroll: 0
         };
         this.storeDidChange = this.storeDidChange.bind(this);
-        this.onSearchResultsScroll = this.onSearchResultsScroll.bind(this);
         this.searchCards = this.searchCards.bind(this);
     }
 
@@ -30,14 +28,7 @@ class OwlbrewApp extends React.Component {
     storeDidChange() {
         this.setState(update(this.state, {
             deck: {$set: DeckStore.getDeck()},
-            cards: {$set: CardStore.getCards()},
-            searchResultsScroll: {$set: 0}
-        }));
-    }
-
-    onSearchResultsScroll(scroll) {
-        this.setState(update(this.state, {
-            searchResultsScroll: {$set: scroll}
+            cards: {$set: CardStore.getCards()}
         }));
     }
 
@@ -51,8 +42,7 @@ class OwlbrewApp extends React.Component {
                 <SearchBar searchCards={this.searchCards} deck={this.state.deck}
                            downloadDeckCallback={CardActions.downloadDeck}/>
                 <SearchResults ref="searchResults" cards={this.state.cards}
-                               cardClickedCallback={CardActions.addCardToDeck}
-                               scroll={this.state.searchResultsScroll} onScroll={this.onSearchResultsScroll}/>
+                               cardClickedCallback={CardActions.addCardToDeck}/>
                 <Deck cards={this.state.deck.cards} cardClickedCallback={CardActions.removeCardfromDeck}/>
             </div>
         );
