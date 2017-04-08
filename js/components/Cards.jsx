@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card.jsx';
+import { Grid } from 'semantic-ui-react'
 
 export default class Cards extends React.Component {
     constructor(props) {
@@ -9,16 +10,14 @@ export default class Cards extends React.Component {
     render() {
         var cardClickedCallback = this.props.cardClickedCallback;
         return (
-            <div>
-                <ul className="cards">
-                    {
-                        this.props.cards.map(function (card) {
-                            return (<li key={card.id}>
-                                <Card card={card} cardClickedCallback={cardClickedCallback}/>
-                            </li>);
-                        })}
-                </ul>
-            </div>
+            <Grid centered='true'>
+                {
+                    this.props.cards.map(function (card) {
+                        return (<Grid.Column key={card.id} className="cardColumn">
+                            <Card card={card} cardClickedCallback={cardClickedCallback}/>
+                        </Grid.Column>);
+                    })}
+            </Grid>
         );
     }
 }

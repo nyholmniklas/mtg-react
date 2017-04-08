@@ -1,11 +1,3 @@
 .card {
-    width: 223px;
-    height: 310px;
-    display: inline-flex;
-    position: relative;
     cursor: pointer;
-}
-
-.card > img {
-    width: 223px;
 }
