@@ -12,7 +12,8 @@ html, body {
     height: 100vh;
 }
 
-.deck {
+.deckForm {
     overflow-y: scroll;
     height: 100vh;
+    padding: 10px !important;
 }

@@ -19,9 +19,11 @@ export default class EditableDeckList extends React.Component {
     render() {
         let value = this.getDeckAsText();
         return (
-            <Form>
-                <TextArea value={value}/>
-            </Form>
+            <div className="four wide column">
+                <Form className="deckForm">
+                    <TextArea value={value} className="deckTextArea"/>
+                </Form>
+            </div>
         );
     }
 }
