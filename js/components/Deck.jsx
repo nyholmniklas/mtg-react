@@ -4,7 +4,7 @@ import Cards from './Cards.jsx';
 export default class Deck extends React.Component {
     render() {
         return (
-            <div className="two wide column deck">
+            <div className="four wide column deck">
                 <Cards cards={this.props.cards} cardClickedCallback={this.props.cardClickedCallback}/>
             </div>
         );

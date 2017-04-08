@@ -1,11 +1,22 @@
 html, body {
-    min-height: 100%;
     margin: 0;
-    height: 100%;
     color: white;
 }
 
 .app {
-    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
     position: relative;
+    height: 100vh;
+}
+
+.searchResults {
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.deck {
+    overflow-y: scroll;
+    height: 100vh;
 }

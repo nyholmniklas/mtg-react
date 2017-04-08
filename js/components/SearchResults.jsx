@@ -18,7 +18,7 @@ export default class SearchResults extends React.Component {
 
     render() {
         return (
-            <div ref={(searchResults) => {this.searchResults = searchResults;}} className="eight wide column searchResults"
+            <div ref={(searchResults) => {this.searchResults = searchResults;}} className="nine wide column searchResults"
                  onScroll={this.onScroll}>
                 <Cards cards={this.props.cards} cardClickedCallback={this.props.cardClickedCallback}/>
             </div>

@@ -47,7 +47,7 @@ class OwlbrewApp extends React.Component {
 
     render() {
         return (
-            <div className="ui grid app">
+            <div className="ui grid equal heigh app">
                 <SearchBar searchCards={this.searchCards} deck={this.state.deck}
                            downloadDeckCallback={CardActions.downloadDeck}/>
                 <SearchResults ref="searchResults" cards={this.state.cards}

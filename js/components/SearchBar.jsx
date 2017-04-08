@@ -56,16 +56,27 @@ export default class SearchBar extends React.Component {
 
     render() {
         return (
-            <div className="two wide column searchBar">
-                Card name: <SearchField searchText={this.state.searchText}
+            <div className="three wide column searchBar">
+                Card name:
+                <br/>
+                <SearchField searchText={this.state.searchText}
                                         onUserInput={this.handleSearchTextInput}/>
-                Oracle rules: <SearchField searchText={this.state.searchOracleText}
+                <br/>
+                Oracle rules:
+                <br/>
+                <SearchField searchText={this.state.searchOracleText}
                                            onUserInput={this.handleOracleUserInput}/>
-                Subtype(exact search): <SearchField searchText={this.state.searchSubtypeText}
+                <br/>
+                Subtype(exact search):
+                <br/>
+                <SearchField searchText={this.state.searchSubtypeText}
                                                     onUserInput={this.handleSubtypeUserInput}/>
+                <br/>
                 <ManaColorSelector manaParams={this.state.manaParams}
                                    manaParamsInputCallback={this.handleManaParamsInput}/>
+                <br/>
                 Cards: {DeckUtils.getCardCount(this.props.deck)} / 60
+                <br/>
                 <ExportButton onClick={this.props.downloadDeckCallback}/>
             </div>
         );
