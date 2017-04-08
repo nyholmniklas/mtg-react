@@ -4,6 +4,7 @@ import SearchField from './SearchField.jsx';
 import ManaColorSelector from './ManaColorSelector.jsx';
 import DeckUtils from '../util/DeckUtils.js';
 import ExportButton from './ExportButton.jsx';
+import { Form } from 'semantic-ui-react';
 
 export default class SearchBar extends React.Component {
     constructor(props) {
@@ -56,20 +57,12 @@ export default class SearchBar extends React.Component {
 
     render() {
         return (
-            <div className="three wide column searchBar">
-                Card name:
-                <br/>
-                <SearchField searchText={this.state.searchText}
+            <Form className="three wide column searchBar">
+                <SearchField placeholder="Card name" searchText={this.state.searchText}
                                         onUserInput={this.handleSearchTextInput}/>
-                <br/>
-                Oracle rules:
-                <br/>
-                <SearchField searchText={this.state.searchOracleText}
+                <SearchField placeholder="Oracle text" searchText={this.state.searchOracleText}
                                            onUserInput={this.handleOracleUserInput}/>
-                <br/>
-                Subtype(exact search):
-                <br/>
-                <SearchField searchText={this.state.searchSubtypeText}
+                <SearchField placeholder="Subtype" searchText={this.state.searchSubtypeText}
                                                     onUserInput={this.handleSubtypeUserInput}/>
                 <br/>
                 <ManaColorSelector manaParams={this.state.manaParams}
@@ -78,7 +71,7 @@ export default class SearchBar extends React.Component {
                 Cards: {DeckUtils.getCardCount(this.props.deck)} / 60
                 <br/>
                 <ExportButton onClick={this.props.downloadDeckCallback}/>
-            </div>
+            </Form>
         );
     }
 }

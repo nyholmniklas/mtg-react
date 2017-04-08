@@ -1,4 +1,5 @@
 import React from 'react';
+import { Input } from 'semantic-ui-react';
 
 export default class SearchField extends React.Component {
     constructor(props) {
@@ -6,20 +7,16 @@ export default class SearchField extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange() {
+    handleChange(event, data) {
         this.props.onUserInput(
-            this.searchField.value
+            data.value
         );
     }
 
     render() {
         return (
-            <div className="ui input">
-                <form>
-                    <input type="text" ref={(input) => {this.searchField = input;}} onChange={this.handleChange}
-                           value={this.props.searchText}/>
-                </form>
-            </div>
+            <Input ref={(input) => {this.searchField = input;}} onChange={this.handleChange}
+                   placeholder={this.props.placeholder}/>
         );
     }
 }

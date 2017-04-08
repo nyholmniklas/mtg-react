@@ -1,9 +1,10 @@
 import React from 'react';
+import { Button } from 'semantic-ui-react';
 
 export default class ExportButton extends React.Component {
     render() {
         return (
-            <button onClick={this.props.onClick}>Export Deck</button>
+            <Button onClick={this.props.onClick}>Export Deck</Button>
         );
     }
 }
