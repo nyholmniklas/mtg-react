@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from 'semantic-ui-react';
+import { Input, Form } from 'semantic-ui-react';
 
 export default class SearchField extends React.Component {
     constructor(props) {
@@ -15,8 +15,10 @@ export default class SearchField extends React.Component {
 
     render() {
         return (
-            <Input ref={(input) => {this.searchField = input;}} onChange={this.handleChange}
-                   placeholder={this.props.placeholder}/>
+            <Form.Field>
+                <Input ref={(input) => {this.searchField = input;}} onChange={this.handleChange}
+                       placeholder={this.props.placeholder}/>
+            </Form.Field>
         );
     }
 }
