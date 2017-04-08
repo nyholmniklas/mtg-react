@@ -43,7 +43,7 @@ class OwlbrewApp extends React.Component {
                            downloadDeckCallback={CardActions.downloadDeck}/>
                 <SearchResults ref="searchResults" cards={this.state.cards}
                                cardClickedCallback={CardActions.addCardToDeck}/>
-                <Deck cards={this.state.deck.cards} cardClickedCallback={CardActions.removeCardfromDeck}/>
+                <Deck deck={this.state.deck}/>
             </div>
         );
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from './Card.jsx';
-import { Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react';
 
 export default class Cards extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ export default class Cards extends React.Component {
     render() {
         var cardClickedCallback = this.props.cardClickedCallback;
         return (
-            <Grid centered='true'>
+            <Grid centered>
                 {
                     this.props.cards.map(function (card) {
                         return (<Grid.Column key={card.id} className="cardColumn">
