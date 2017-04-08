@@ -56,7 +56,7 @@ export default class SearchBar extends React.Component {
 
     render() {
         return (
-            <div className="searchBar">
+            <div className="two wide column searchBar">
                 Card name: <SearchField searchText={this.state.searchText}
                                         onUserInput={this.handleSearchTextInput}/>
                 Oracle rules: <SearchField searchText={this.state.searchOracleText}

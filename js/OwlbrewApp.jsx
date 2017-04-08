@@ -47,13 +47,13 @@ class OwlbrewApp extends React.Component {
 
     render() {
         return (
-            <div className="app">
+            <div className="ui grid app">
+                <SearchBar searchCards={this.searchCards} deck={this.state.deck}
+                           downloadDeckCallback={CardActions.downloadDeck}/>
                 <SearchResults ref="searchResults" cards={this.state.cards}
                                cardClickedCallback={CardActions.addCardToDeck}
                                scroll={this.state.searchResultsScroll} onScroll={this.onSearchResultsScroll}/>
                 <Deck cards={this.state.deck.cards} cardClickedCallback={CardActions.removeCardfromDeck}/>
-                <SearchBar searchCards={this.searchCards} deck={this.state.deck}
-                           downloadDeckCallback={CardActions.downloadDeck}/>
             </div>
         );
     }

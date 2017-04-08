@@ -9,26 +9,3 @@ html, body {
     height: 100%;
     position: relative;
 }
-
-.searchResults {
-    width: 50%;
-    margin-bottom: 100px;
-    float: left;
-    position: fixed;
-    display: inline-flex;
-    background-color: darkgray;
-    overflow-y: scroll;
-    height: calc(100% - 100px);
-}
-
-.deck {
-    width: 50%;
-    margin-bottom: 100px;
-    float: left;
-    position: fixed;
-    left: 50%;
-    display: inline-flex;
-    background-color: black;
-    overflow-y: scroll;
-    height: calc(100% - 100px);
-}
