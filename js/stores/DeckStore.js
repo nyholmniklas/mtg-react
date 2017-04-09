@@ -1,25 +1,30 @@
 import McFly from 'mcfly';
 import DeckUtils from './../util/DeckUtils';
+import QueryUtils from './../util/QueryUtils';
 
 var _deck = {
     cards: []
 };
 
-function addCardToDeck(cardToAdd) {
-    // Check to see if we can find the card in the deck already and then increment id
-    for (var i = 0; i < _deck.cards.length; i++) {
-        var card = _deck.cards[i];
-        if (card.id === cardToAdd.id) {
-            card.ammount++;
-            return;
-        }
-    }
-    //If we can't then we set ammount of card to one and add it to deck
-    //But first we need to copy object by value so as to not add the reference to the original card
-    cardToAdd = JSON.parse(JSON.stringify(cardToAdd));
-    if (cardToAdd.ammount == null) cardToAdd.ammount = 1;
-    _deck.cards.push(cardToAdd);
-}
+var _deckListAsText = '';
+
+//function addCardToDeck(cardToAdd, ammount) {
+//    // Check to see if we can find the card in the deck already and then increment id
+//    for (var i = 0; i < _deck.cards.length; i++) {
+//        var card = _deck.cards[i];
+//        if (card.id === cardToAdd.id) {
+//            card.ammount++;
+//            return;
+//        }
+//    }
+//    //If we can't then we set ammount of card to one and add it to deck
+//    //But first we need to copy object by value so as to not add the reference to the original card
+//    cardToAdd = JSON.parse(JSON.stringify(cardToAdd));
+//    if (cardToAdd.ammount == null) {
+//        cardToAdd.ammount = ammount;
+//    }
+//    _deck.cards.push(cardToAdd);
+//}
 
 function removeCardFromDeck(cardToRemove) {
     for (var i = 0; i < _deck.cards.length; i++) {
@@ -32,6 +37,53 @@ function removeCardFromDeck(cardToRemove) {
             }
         }
     }
+}
+
+function setDeckListFromText(deckListAsText) {
+    let lines = deckListAsText.split('\n');
+    let promises = [];
+    let deck = {
+        cards: []
+    };
+    for (var line in lines) {
+        try {
+            let splitLine = lines[line].split(' ');
+            var ammount = 1;
+            try {
+                ammount = parseInt(splitLine[0]);
+            } catch(err) {
+                ammount = 1;
+            }
+            let cardName = lines[line].substring(lines[line].indexOf(' ') + 1);
+            let card = DeckUtils.getCardFromDeck(cardName, _deck);
+            if (card !== undefined) {
+                card.ammount = ammount;
+                deck.cards.push(card);
+            } else {
+                promises.push(new Promise(function (resolve) {
+                    let promise = QueryUtils.makeSingleCardRequest(cardName);
+                    promise.then(function (response, sets) {
+                        resolve([response, ammount], sets);
+                    });
+                }));
+            }
+        } catch (err) {
+            throw err;
+        }
+    }
+    Promise.all(promises).then((responses, sets) => {
+        sets = '';
+        for (var i in responses) {
+            let response = responses[i][0];
+            if (response !== undefined && response.readyState == 4 && response.status == 200) {
+                let card = QueryUtils.getCardFromResponse(response, sets);
+                card.ammount = responses[i][1];
+                deck.cards.push(card);
+            }
+        }
+        _deck = deck;
+        store.emitChange();
+    });
 }
 
 function downloadDeck() {
@@ -49,10 +101,13 @@ function downloadDeck() {
 const store = new McFly().createStore({
     getDeck: function () {
         return _deck;
-    }
+    },
+    getDeckListAsText: function () {
+        return _deckListAsText;
+    },
 }, function (payload) {
     if (payload.actionType === 'ADD_CARD_TO_DECK') {
-        addCardToDeck(payload.card);
+        //addCardToDeckListAsText(payload.card, 1);
         store.emitChange();
     }
     if (payload.actionType === 'REMOVE_CARD_FROM_DECK') {
@@ -61,6 +116,11 @@ const store = new McFly().createStore({
     }
     if (payload.actionType === 'DOWNLOAD_DECK') {
         downloadDeck();
+    }
+    if (payload.actionType === 'UPDATE_DECK_BASED_ON_TEXT') {
+        _deckListAsText = payload.deckListAsText;
+        store.emitChange();
+        setDeckListFromText(_deckListAsText);
     }
 });
 

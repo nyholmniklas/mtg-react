@@ -15,6 +15,7 @@ class OwlbrewApp extends React.Component {
         super(props);
         this.state = {
             deck: DeckStore.getDeck(),
+            deckListAsText: DeckStore.getDeckListAsText(),
             cards: CardStore.getCards(),
         };
         this.storeDidChange = this.storeDidChange.bind(this);
@@ -43,7 +44,7 @@ class OwlbrewApp extends React.Component {
                            downloadDeckCallback={CardActions.downloadDeck}/>
                 <SearchResults ref="searchResults" cards={this.state.cards}
                                cardClickedCallback={CardActions.addCardToDeck}/>
-                <Deck deck={this.state.deck}/>
+                <Deck deckListTextChanged={CardActions.updateDeckFromDeckListAsText}/>
             </div>
         );
     }

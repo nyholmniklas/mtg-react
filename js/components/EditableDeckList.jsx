@@ -1,27 +1,22 @@
 import React from 'react';
-import DeckUtils from './../util/DeckUtils';
 import { TextArea, Form } from 'semantic-ui-react';
 
 export default class EditableDeckList extends React.Component {
     constructor(props) {
         super(props);
-        this.getDeckAsText = this.getDeckAsText.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    getDeckAsText() {
-        let deck = this.props.deck;
-        if (deck === undefined) {
-            return '';
-        }
-        return DeckUtils.getDeckAsText(deck);
+    onChange(event, data) {
+        event.target.selectionEnd;
+        this.props.deckListTextChanged(data.value);
     }
 
     render() {
-        let value = this.getDeckAsText();
         return (
             <div className="four wide column">
                 <Form className="deckForm">
-                    <TextArea value={value} className="deckTextArea"/>
+                    <TextArea className="deckTextArea" onChange={this.onChange}/>
                 </Form>
             </div>
         );
@@ -29,5 +24,5 @@ export default class EditableDeckList extends React.Component {
 }
 
 EditableDeckList.propTypes = {
-    deck: React.PropTypes.object
+    deckListTextChanged: React.PropTypes.func.isRequired
 };

@@ -4,11 +4,11 @@ import EditableDeckList from './EditableDeckList.jsx';
 export default class Deck extends React.Component {
     render() {
         return (
-            <EditableDeckList deck={this.props.deck}/>
+            <EditableDeckList deckListTextChanged={this.props.deckListTextChanged}/>
         );
     }
 }
 
 Deck.propTypes = {
-    deck: React.PropTypes.object.isRequired
+    deckListTextChanged: React.PropTypes.func.isRequired
 };

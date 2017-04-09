@@ -13,6 +13,17 @@ export default {
             count += deck.cards[i].ammount;
         }
         return count;
+    },
+    getCardFromDeck: function (cardName, deck) {
+        for (var card in deck.cards) {
+            if (deck.cards[card].name === cardName) return deck.cards[card];
+        }
+    },
+    setCardAmmount: function (deck, cardName, ammount) {
+        for (var card in deck.cards) {
+            if (deck.cards[card].name === cardName) deck.cards[card].ammount = ammount;
+        }
+        return deck;
     }
 
 };

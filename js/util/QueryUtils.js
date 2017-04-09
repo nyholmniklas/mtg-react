@@ -1,4 +1,48 @@
 class QueryUtils {
+
+    static makeFuzzyRequest(searchText, searchOracleText = '', searchSubtypeText = '', manaParams = '', sets = '') {
+        return new Promise(
+            function (resolve, reject) {
+                // Do not even make request if search text is only param and it is shorter than three characters
+                if (searchText.length < 3 && searchOracleText === '' && searchSubtypeText === '' && manaParams === '' && sets === '') {
+                    resolve();
+                    return;
+                }
+                var xmlHttp = new XMLHttpRequest();
+
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve(xmlHttp, '');
+                    else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) reject();
+                };
+                let requestUrlParams = QueryUtils.buildQueryParamsForFuzzyRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
+                xmlHttp.open('GET', 'https://api.deckbrew.com/mtg/cards?' + requestUrlParams);
+                xmlHttp.send(null);
+            });
+    }
+
+    static makeSingleCardRequest(cardName) {
+        return new Promise(
+            function (resolve, reject) {
+                // Do not even make request if search text is only param and it is shorter than 2 characters
+                if (cardName.length < 2) {
+                    resolve();
+                    return;
+                }
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve(xmlHttp, '');
+                    else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) reject();
+                };
+                cardName = cardName.replace(' ', '-').toLowerCase();
+                xmlHttp.open('GET', 'https://api.deckbrew.com/mtg/cards/' + cardName);
+                try {
+                    xmlHttp.send(null);
+                } catch (err) {
+                    //EMPTY
+                }
+            });
+    }
+
     /**
      * Takes an HTTP response(which should contain cards as JSON) and returns the cards as an array.
      * We also try to guess the best image url for that card.
@@ -9,7 +53,16 @@ class QueryUtils {
         return QueryUtils._setCardImageUrls(cards);
     }
 
-    static buildQueryParams(searchText, searchOracleText, searchSubtypeText, manaParams, sets) {
+    /**
+     * Returns the card from the response as JSON and tries to guess the best image url for that card.
+     *
+     */
+    static getCardFromResponse(response) {
+        const card = JSON.parse(response.responseText);
+        return QueryUtils._setCardImageUrls([card])[0];
+    }
+
+    static buildQueryParamsForFuzzyRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets) {
         //Set query params
         let setQuery = '';
         for (var i = 0; i < sets.length; i++) {

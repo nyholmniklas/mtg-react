@@ -29,4 +29,10 @@ export default Flux.createActions({
             actionType: 'DOWNLOAD_DECK',
         };
     },
+    updateDeckFromDeckListAsText: function(deckListAsText) {
+        return {
+            actionType: 'UPDATE_DECK_BASED_ON_TEXT',
+            deckListAsText: deckListAsText,
+        };
+    }
 });
