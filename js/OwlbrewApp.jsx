@@ -18,6 +18,7 @@ class OwlbrewApp extends React.Component {
             deckListAsText: DeckStore.getDeckListAsText(),
             cards: CardStore.getCards(),
         };
+        this.deckListTextChanged = _.debounce(CardActions.updateDeckFromDeckListAsText, 200);
         this.storeDidChange = this.storeDidChange.bind(this);
         this.searchCards = this.searchCards.bind(this);
     }
@@ -44,7 +45,7 @@ class OwlbrewApp extends React.Component {
                            downloadDeckCallback={CardActions.downloadDeck}/>
                 <SearchResults ref="searchResults" cards={this.state.cards}
                                cardClickedCallback={CardActions.addCardToDeck}/>
-                <Deck deckListTextChanged={CardActions.updateDeckFromDeckListAsText}/>
+                <Deck deckListTextChanged={this.deckListTextChanged}/>
             </div>
         );
     }
