@@ -23,37 +23,24 @@ function removeCardFromDeck(cardToRemove) {
 }
 
 function setDeckListFromText() {
-    let lines = _deckListAsText.split('\n');
     let promises = [];
     let deck = {
         cards: []
     };
-    for (var line in lines) {
-        try {
-            let splitLine = lines[line].split(' ');
-            var ammount = 1;
-            try {
-                ammount = parseInt(splitLine[0]);
-            } catch (err) {
-                ammount = 1;
-            }
-            let cardName = lines[line].substring(lines[line].indexOf(' ') + 1);
-            let card = DeckUtils.getCardFromDeck(cardName, _deck);
-            if (card !== undefined) {
-                card.ammount = ammount;
-                deck.cards.push(card);
-            } else {
-                promises.push(new Promise(function (resolve) {
-                    let promise = QueryUtils.getCard(cardName);
-                    promise.then(function (response, sets) {
-                        resolve([response, ammount], sets);
-                    });
-                }));
-            }
-        } catch (err) {
-            throw err;
+    forValidCardSyntaxInDeckListAsText(_deckListAsText, (cardName, ammount) => {
+        let card = DeckUtils.getCardFromDeck(cardName, _deck);
+        if (card !== undefined) {
+            card.ammount = ammount;
+            deck.cards.push(card);
+        } else {
+            promises.push(new Promise(function (resolve) {
+                let promise = QueryUtils.getCard(cardName);
+                promise.then(function (response, sets) {
+                    resolve([response, ammount], sets);
+                });
+            }));
         }
-    }
+    });
     Promise.all(promises).then((responses) => {
         for (var i in responses) {
             let card = responses[i][0];
@@ -65,6 +52,25 @@ function setDeckListFromText() {
         _deck = deck;
         store.emitChange();
     });
+}
+
+function forValidCardSyntaxInDeckListAsText(deckListAsText, callback) {
+    let lines = deckListAsText.split('\n');
+    for (var line in lines) {
+        try {
+            let splitLine = lines[line].split(' ');
+            var ammount = 1;
+            try {
+                ammount = parseInt(splitLine[0]);
+            } catch (err) {
+                ammount = 1;
+            }
+            let cardName = lines[line].substring(lines[line].indexOf(' ') + 1);
+            callback(cardName, ammount);
+        } catch (err) {
+            throw err;
+        }
+    }
 }
 
 var _debouncedDeckUpdate = _.debounce(setDeckListFromText, 500);
@@ -81,6 +87,10 @@ function downloadDeck() {
     a.click();
 }
 
+function addCardToDeckListAsText(card) {
+
+}
+
 const store = new McFly().createStore({
     getDeck: function () {
         return _deck;
@@ -90,7 +100,7 @@ const store = new McFly().createStore({
     },
 }, function (payload) {
     if (payload.actionType === 'ADD_CARD_TO_DECK') {
-        //TODO
+        addCardToDeckListAsText(payload.card);
         store.emitChange();
     }
     if (payload.actionType === 'REMOVE_CARD_FROM_DECK') {

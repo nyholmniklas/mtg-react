@@ -53,7 +53,6 @@ class OwlbrewApp extends React.Component {
 
     componentWillMount() {
         this.mounted = false;
-
     }
 
     componentDidMount() {
