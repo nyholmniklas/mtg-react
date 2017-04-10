@@ -1,4 +1,5 @@
 import McFly from 'mcfly';
+import _ from 'underscore';
 import DeckUtils from '../libs/deckUtils';
 import QueryUtils from '../libs/deckBrewApi';
 
@@ -21,8 +22,8 @@ function removeCardFromDeck(cardToRemove) {
     }
 }
 
-function setDeckListFromText(deckListAsText) {
-    let lines = deckListAsText.split('\n');
+function setDeckListFromText() {
+    let lines = _deckListAsText.split('\n');
     let promises = [];
     let deck = {
         cards: []
@@ -33,7 +34,7 @@ function setDeckListFromText(deckListAsText) {
             var ammount = 1;
             try {
                 ammount = parseInt(splitLine[0]);
-            } catch(err) {
+            } catch (err) {
                 ammount = 1;
             }
             let cardName = lines[line].substring(lines[line].indexOf(' ') + 1);
@@ -65,6 +66,8 @@ function setDeckListFromText(deckListAsText) {
         store.emitChange();
     });
 }
+
+var _debouncedDeckUpdate = _.debounce(setDeckListFromText, 500);
 
 function downloadDeck() {
     var data = new Blob([DeckUtils.getDeckAsText(_deck)], {type: 'text/plain'});
@@ -100,7 +103,7 @@ const store = new McFly().createStore({
     if (payload.actionType === 'UPDATE_DECK_BASED_ON_TEXT') {
         _deckListAsText = payload.deckListAsText;
         store.emitChange();
-        setDeckListFromText(_deckListAsText);
+        _debouncedDeckUpdate();
     }
 });
 
