@@ -24,15 +24,18 @@ function removeCardFromDeck(cardToRemove) {
 
 function setDeckListFromText() {
     let promises = [];
-    let deck = {
+    let tempDeck = {
         cards: []
     };
-    forValidCardSyntaxInDeckListAsText(_deckListAsText, (cardName, ammount) => {
+    //For each line in _deckListAsText in valid syntax
+    DeckUtils.forValidCardSyntaxInDeckListAsText(_deckListAsText, (cardName, ammount) => {
+        //Check if card can be found from the current deck object, and if it can, add it to tempDeck with correct ammount...
         let card = DeckUtils.getCardFromDeck(cardName, _deck);
         if (card !== undefined) {
             card.ammount = ammount;
-            deck.cards.push(card);
+            tempDeck.cards.push(card);
         } else {
+            //... if we can't, add a new promise to promises to query api for the card based on name.
             promises.push(new Promise(function (resolve) {
                 let promise = QueryUtils.getCard(cardName);
                 promise.then(function (response, sets) {
@@ -46,31 +49,12 @@ function setDeckListFromText() {
             let card = responses[i][0];
             if (card !== undefined) {
                 card.ammount = responses[i][1];
-                deck.cards.push(card);
+                tempDeck.cards.push(card);
             }
         }
-        _deck = deck;
+        _deck = tempDeck;
         store.emitChange();
     });
-}
-
-function forValidCardSyntaxInDeckListAsText(deckListAsText, callback) {
-    let lines = deckListAsText.split('\n');
-    for (var line in lines) {
-        try {
-            let splitLine = lines[line].split(' ');
-            var ammount = 1;
-            try {
-                ammount = parseInt(splitLine[0]);
-            } catch (err) {
-                ammount = 1;
-            }
-            let cardName = lines[line].substring(lines[line].indexOf(' ') + 1);
-            callback(cardName, ammount);
-        } catch (err) {
-            throw err;
-        }
-    }
 }
 
 var _debouncedDeckUpdate = _.debounce(setDeckListFromText, 500);
