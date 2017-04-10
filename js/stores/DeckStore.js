@@ -43,7 +43,7 @@ function setDeckListFromText(deckListAsText) {
                 deck.cards.push(card);
             } else {
                 promises.push(new Promise(function (resolve) {
-                    let promise = QueryUtils.makeSingleCardRequest(cardName);
+                    let promise = QueryUtils.getCard(cardName);
                     promise.then(function (response, sets) {
                         resolve([response, ammount], sets);
                     });

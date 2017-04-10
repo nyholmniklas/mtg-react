@@ -1,6 +1,6 @@
-class QueryUtils {
+class DeckBrewApi {
 
-    static makeFuzzyRequest(searchText, searchOracleText = '', searchSubtypeText = '', manaParams = '', sets = '') {
+    static getCards(searchText, searchOracleText = '', searchSubtypeText = '', manaParams = '', sets = '') {
         return new Promise(
             function (resolve, reject) {
                 // Do not even make request if search text is only param and it is shorter than three characters
@@ -14,13 +14,13 @@ class QueryUtils {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve(xmlHttp, '');
                     else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) reject();
                 };
-                let requestUrlParams = QueryUtils.buildQueryParamsForFuzzyRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
+                let requestUrlParams = DeckBrewApi.buildQueryParamsForFuzzyRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
                 xmlHttp.open('GET', 'https://api.deckbrew.com/mtg/cards?' + requestUrlParams);
                 xmlHttp.send(null);
             });
     }
 
-    static makeSingleCardRequest(cardName) {
+    static getCard(cardName) {
         return new Promise(
             function (resolve) {
                 // Do not even make request if search text is only param and it is shorter than 2 characters
@@ -51,7 +51,7 @@ class QueryUtils {
      */
     static getCardsFromResponse(response) {
         const cards = JSON.parse(response.responseText);
-        return QueryUtils._setCardImageUrls(cards);
+        return DeckBrewApi._setCardImageUrls(cards);
     }
 
     /**
@@ -60,7 +60,7 @@ class QueryUtils {
      */
     static getCardFromResponse(response) {
         const card = JSON.parse(response.responseText);
-        return QueryUtils._setCardImageUrls([card])[0];
+        return DeckBrewApi._setCardImageUrls([card])[0];
     }
 
     static buildQueryParamsForFuzzyRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets) {
@@ -126,4 +126,4 @@ class QueryUtils {
 
 }
 
-export default QueryUtils;
+export default DeckBrewApi;

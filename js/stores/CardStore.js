@@ -5,7 +5,7 @@ var _cards = [];
 
 function updateCards(searchText, searchOracleText, searchSubtypeText, manaParams) {
     const sets = [];
-    let promise = QueryUtils.makeFuzzyRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
+    let promise = QueryUtils.getCards(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
     promise.then(function (response, sets) {
         handleResponse(response, sets);
     });
