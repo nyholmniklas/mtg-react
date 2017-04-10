@@ -8,6 +8,16 @@ export function getCardFromResponse(response) {
 }
 
 /**
+ * Takes an HTTP response(which should contain cards as JSON) and returns the cards as an array.
+ * We also try to guess the best image url for that card.
+ *
+ */
+export function getCardsFromResponse(response) {
+    const cards = JSON.parse(response.responseText);
+    return setCardImageUrls(cards);
+}
+
+/**
  * Takes an array of cards and and returns a filtered array of cards without duplicates of the
  * same card from different editions/sets. Additionally we try to pick the correct image for that card.
  * Note that if an image cannot be found, the card will be omitted altogether from the array this function returns.

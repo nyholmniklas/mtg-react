@@ -11,9 +11,9 @@ function updateCards(searchText, searchOracleText, searchSubtypeText, manaParams
     });
 }
 
-function handleResponse(response, sets = '') {
-    if (response.readyState == 4 && response.status == 200) {
-        _cards = (QueryUtils.getCardsFromResponse(response, sets));
+function handleResponse(cards) {
+    if (cards !== undefined) {
+        _cards = cards;
         store.emitChange();
     }
 }
