@@ -1,6 +1,6 @@
 import McFly from 'mcfly';
-import DeckUtils from './../util/DeckUtils';
-import QueryUtils from './../util/QueryUtils';
+import DeckUtils from '../libs/deckUtils';
+import QueryUtils from '../libs/deckBrewApi';
 
 var _deck = {
     cards: []

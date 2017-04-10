@@ -2,7 +2,7 @@ import React from 'react';
 import update from 'react-addons-update';
 import SearchField from './SearchField.jsx';
 import ManaColorSelector from './ManaColorSelector.jsx';
-import DeckUtils from '../util/DeckUtils.js';
+import DeckUtils from '../libs/deckUtils.js';
 import ExportButton from './ExportButton.jsx';
 import { Form } from 'semantic-ui-react';
 
@@ -68,7 +68,7 @@ export default class SearchBar extends React.Component {
                 <ManaColorSelector manaParams={this.state.manaParams}
                                    manaParamsInputCallback={this.handleManaParamsInput}/>
                 <br/>
-                Cards: {DeckUtils.getCardCount(this.props.deck)} / 60
+                Cards: {DeckUtils.getCardCount(this.props.deck)}
                 <br/>
                 <ExportButton onClick={this.props.downloadDeckCallback}/>
             </Form>

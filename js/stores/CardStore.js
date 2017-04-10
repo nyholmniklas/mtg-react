@@ -1,5 +1,5 @@
 import McFly from 'mcfly';
-import QueryUtils from './../util/QueryUtils.js';
+import QueryUtils from '../libs/deckBrewApi.js';
 
 var _cards = [];
 
