@@ -59,6 +59,7 @@ function setDeckListFromText() {
 
 var _debouncedDeckUpdate = _.debounce(setDeckListFromText, 500);
 
+//TODO: Don't manipulate DOM directly, there must be better way..
 function downloadDeck() {
     var data = new Blob([DeckUtils.getDeckAsText(_deck)], {type: 'text/plain'});
     var url = (window.webkitURL || window.URL).createObjectURL(data);
@@ -71,10 +72,6 @@ function downloadDeck() {
     a.click();
 }
 
-function addCardToDeckListAsText(card) {
-
-}
-
 const store = new McFly().createStore({
     getDeck: function () {
         return _deck;
@@ -84,8 +81,9 @@ const store = new McFly().createStore({
     },
 }, function (payload) {
     if (payload.actionType === 'ADD_CARD_TO_DECK') {
-        addCardToDeckListAsText(payload.card);
+        _deckListAsText = DeckUtils.addCardToDeckListAsText(_deckListAsText, payload.card);
         store.emitChange();
+        _debouncedDeckUpdate();
     }
     if (payload.actionType === 'REMOVE_CARD_FROM_DECK') {
         removeCardFromDeck(payload.card);

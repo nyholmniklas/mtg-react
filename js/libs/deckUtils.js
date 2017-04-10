@@ -49,6 +49,45 @@ export default {
                 throw err;
             }
         }
+    },
+    /**
+     * Takes a deck list as text and a card. Will return a deckListAsText with a copy of the given card added to it.
+     * Checks for existing copies.
+     *
+     * @param deckListAsText The deck list with as a string with each card on new line in form "1 Birds of Paradise"
+     * @param card The card as a fully populate object.
+     */
+    addCardToDeckListAsText: function (deckListAsText, card) {
+        let newDeckListAsText = '';
+        let foundCard = false;
+
+        let lines = deckListAsText.split('\n');
+        if (deckListAsText.trim() !== '') {
+            for (var i in lines) {
+                let line = lines[i];
+                try {
+                    let cardName = line.substring(lines[i].indexOf(' ') + 1);
+                    let splitLine = lines[i].split(' ');
+                    if (cardName === card.name) {
+                        let ammount = parseInt(splitLine[0]) + 1;
+                        line = ammount.toString().concat(' ').concat(card.name);
+                        foundCard = true;
+                    }
+                    if (i != 0) line = ('\n').concat(line);
+                    newDeckListAsText = newDeckListAsText.concat(line);
+                } catch (err) {
+                    throw err;
+                }
+            }
+        }
+        if (!foundCard) {
+            if (deckListAsText.trim() !== '') {
+                newDeckListAsText = newDeckListAsText + '\n1 '.concat(card.name);
+            } else {
+                newDeckListAsText = '1 '.concat(card.name);
+            }
+        }
+        return newDeckListAsText;
     }
 
 }
