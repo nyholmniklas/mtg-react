@@ -35,8 +35,8 @@ class OwlbrewApp extends React.Component {
         }));
     }
 
-    searchCards(searchText, searchOracleText, searchSubtypeText, manaParams) {
-        CardActions.updateCards(searchText, searchOracleText, searchSubtypeText, manaParams);
+    searchCards(searchText, searchOracleText, searchSubtypeText, manaParams, formatLegalityFilter) {
+        CardActions.updateCards(searchText, searchOracleText, searchSubtypeText, manaParams, formatLegalityFilter);
     }
 
     render() {
@@ -65,7 +65,7 @@ class OwlbrewApp extends React.Component {
             green: false
         };
         this.searchCards = _.debounce(this.searchCards, 200);
-        this.searchCards('', '', '', initManaParams);
+        //this.searchCards('', '', '', initManaParams);
     }
 }
 

@@ -16,7 +16,7 @@ export default class SearchField extends React.Component {
     render() {
         return (
             <Form.Field>
-                <Input ref={(input) => {this.searchField = input;}} onChange={this.handleChange}
+                <Input onChange={this.handleChange}
                        placeholder={this.props.placeholder}/>
             </Form.Field>
         );

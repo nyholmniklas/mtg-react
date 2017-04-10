@@ -4,6 +4,7 @@ import SearchField from './SearchField.jsx';
 import ManaColorSelector from './ManaColorSelector.jsx';
 import DeckUtils from '../libs/deckUtils.js';
 import ExportButton from './ExportButton.jsx';
+import LegalitySelector from './LegalitySelector.jsx';
 import { Form } from 'semantic-ui-react';
 
 export default class SearchBar extends React.Component {
@@ -19,12 +20,14 @@ export default class SearchBar extends React.Component {
                 black: false,
                 red: false,
                 green: false
-            }
+            },
+            formatLegalityFilter: 'standard'
         };
         this.handleSearchTextInput = this.handleSearchTextInput.bind(this);
         this.handleOracleUserInput = this.handleOracleUserInput.bind(this);
         this.handleSubtypeUserInput = this.handleSubtypeUserInput.bind(this);
         this.handleManaParamsInput = this.handleManaParamsInput.bind(this);
+        this.handleFormatLegalityChange = this.handleFormatLegalityChange.bind(this);
     }
 
     handleSearchTextInput(searchText) {
@@ -51,19 +54,26 @@ export default class SearchBar extends React.Component {
         }), this.searchCards);
     }
 
+    handleFormatLegalityChange(formatLegalityFilter) {
+        this.setState(update(this.state, {
+            formatLegalityFilter: {$set: formatLegalityFilter}
+        }), this.searchCards);
+    }
+
     searchCards() {
-        this.props.searchCards(this.state.searchText, this.state.searchOracleText, this.state.searchSubtypeText, this.state.manaParams);
+        this.props.searchCards(this.state.searchText, this.state.searchOracleText, this.state.searchSubtypeText, this.state.manaParams, this.state.formatLegalityFilter);
     }
 
     render() {
         return (
             <Form className="three wide column searchBar">
                 <SearchField placeholder="Card name" searchText={this.state.searchText}
-                                        onUserInput={this.handleSearchTextInput}/>
+                             onUserInput={this.handleSearchTextInput}/>
                 <SearchField placeholder="Oracle text" searchText={this.state.searchOracleText}
-                                           onUserInput={this.handleOracleUserInput}/>
+                             onUserInput={this.handleOracleUserInput}/>
                 <SearchField placeholder="Subtype" searchText={this.state.searchSubtypeText}
-                                                    onUserInput={this.handleSubtypeUserInput}/>
+                             onUserInput={this.handleSubtypeUserInput}/>
+                <LegalitySelector value={this.state.formatLegalityFilter} onUserInput={this.handleFormatLegalityChange}/>
                 <br/>
                 <ManaColorSelector manaParams={this.state.manaParams}
                                    manaParamsInputCallback={this.handleManaParamsInput}/>

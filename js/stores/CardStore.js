@@ -3,9 +3,9 @@ import QueryUtils from '../libs/deckBrewApi.js';
 
 var _cards = [];
 
-function updateCards(searchText, searchOracleText, searchSubtypeText, manaParams) {
+function updateCards(searchText, searchOracleText, searchSubtypeText, manaParams, formatLegalityFilter) {
     const sets = [];
-    let promise = QueryUtils.getCards(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
+    let promise = QueryUtils.getCards(searchText, searchOracleText, searchSubtypeText, manaParams, sets, formatLegalityFilter);
     promise.then(function (response, sets) {
         handleResponse(response, sets);
     });
@@ -24,7 +24,8 @@ const store = new McFly().createStore({
     }
 }, function (payload) {
     if (payload.actionType === 'UPDATE_CARDS') {
-        updateCards(payload.searchText, payload.searchOracleText, payload.searchSubtypeText, payload.manaParams);
+        updateCards(payload.searchText, payload.searchOracleText, payload.searchSubtypeText,
+            payload.manaParams, payload.formatLegalityFilter);
     }
 });
 

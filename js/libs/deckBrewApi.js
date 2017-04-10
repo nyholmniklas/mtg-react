@@ -3,7 +3,7 @@ import * as QueryBuilder from './queryBuilder.js';
 
 class DeckBrewApi {
 
-    static getCards(searchText, searchOracleText = '', searchSubtypeText = '', manaParams = '', sets = '') {
+    static getCards(searchText, searchOracleText = '', searchSubtypeText = '', manaParams = '', sets = '', formatLegalityFilter = '') {
         return new Promise(
             function (resolve, reject) {
                 // Do not even make request if search text is only param and it is shorter than three characters
@@ -17,7 +17,8 @@ class DeckBrewApi {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve(HttpResponse2Model.getCardsFromResponse(xmlHttp));
                     else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) reject();
                 };
-                let requestUrlParams = QueryBuilder.buildQueryParamsForFuzzyRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets);
+                let requestUrlParams = QueryBuilder.buildQueryParamsForFuzzyRequest(searchText, searchOracleText,
+                    searchSubtypeText, manaParams, sets, formatLegalityFilter);
                 xmlHttp.open('GET', 'https://api.deckbrew.com/mtg/cards?' + requestUrlParams);
                 xmlHttp.send(null);
             });
