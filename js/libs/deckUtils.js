@@ -32,7 +32,7 @@ export default {
      * @param deckListAsText The deck list with as a string with each card on new line in form "1 Birds of Paradise"
      * @param callback Will call this function with cardName and ammount: callback(cardName, ammount)
      */
-    forValidCardSyntaxInDeckListAsText: (deckListAsText, callback) => {
+    forValidCardSyntaxInDeckListAsText: function (deckListAsText, callback) {
         let lines = deckListAsText.split('\n');
         for (var line in lines) {
             try {
