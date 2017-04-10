@@ -1,3 +1,5 @@
+import * as HttpResponse2Model from './httpResponse2model.js';
+
 class DeckBrewApi {
 
     static getCards(searchText, searchOracleText = '', searchSubtypeText = '', manaParams = '', sets = '') {
@@ -20,6 +22,16 @@ class DeckBrewApi {
             });
     }
 
+    /**
+     * Takes an HTTP response(which should contain cards as JSON) and returns the cards as an array.
+     * We also try to guess the best image url for that card.
+     *
+     */
+    static getCardsFromResponse(response) {
+        const cards = JSON.parse(response.responseText);
+        return HttpResponse2Model.setCardImageUrls(cards);
+    }
+
     static getCard(cardName) {
         return new Promise(
             function (resolve) {
@@ -30,7 +42,7 @@ class DeckBrewApi {
                 }
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.onreadystatechange = function () {
-                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve(xmlHttp, '');
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve(HttpResponse2Model.getCardFromResponse(xmlHttp));
                     else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) {
                         resolve();
                     }
@@ -42,25 +54,6 @@ class DeckBrewApi {
                 };
                 xmlHttp.send(null);
             });
-    }
-
-    /**
-     * Takes an HTTP response(which should contain cards as JSON) and returns the cards as an array.
-     * We also try to guess the best image url for that card.
-     *
-     */
-    static getCardsFromResponse(response) {
-        const cards = JSON.parse(response.responseText);
-        return DeckBrewApi._setCardImageUrls(cards);
-    }
-
-    /**
-     * Returns the card from the response as JSON and tries to guess the best image url for that card.
-     *
-     */
-    static getCardFromResponse(response) {
-        const card = JSON.parse(response.responseText);
-        return DeckBrewApi._setCardImageUrls([card])[0];
     }
 
     static buildQueryParamsForFuzzyRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets) {
@@ -97,31 +90,6 @@ class DeckBrewApi {
         if (searchOracleText == null) searchOracleText = '';
         const requestUrlParams = 'name=' + searchText + '&oracle=' + searchOracleText + setQuery + subtypeQuery + manaQuery;
         return requestUrlParams;
-    }
-
-    /**
-     * Takes an array of cards and and returns a filtered array of cards without duplicates of the
-     * same card from different editions/sets. Additionally we try to pick the correct image for that card.
-     * Note that if an image cannot be found, the card will be omitted altogether from the array this function returns.
-     *
-     */
-    static _setCardImageUrls(cards) {
-        let filteredCards = [];
-        for (var i = 0; i < cards.length; i++) {
-            let card = cards[i];
-            let imageFound = false;
-            for (var k = 0; k < card.editions.length; k++) {
-                if (card.editions[k].image_url != 'https://image.deckbrew.com/mtg/multiverseid/0.jpg') {
-                    card.img_url = card.editions[k].image_url;
-                    imageFound = true;
-                    break;
-                }
-            }
-            if (imageFound) {
-                filteredCards.push(card);
-            }
-        }
-        return filteredCards;
     }
 
 }

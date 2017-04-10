@@ -53,12 +53,10 @@ function setDeckListFromText(deckListAsText) {
             throw err;
         }
     }
-    Promise.all(promises).then((responses, sets) => {
-        sets = '';
+    Promise.all(promises).then((responses) => {
         for (var i in responses) {
-            let response = responses[i][0];
-            if (response !== undefined && response.readyState == 4 && response.status == 200) {
-                let card = QueryUtils.getCardFromResponse(response, sets);
+            let card = responses[i][0];
+            if (card !== undefined) {
                 card.ammount = responses[i][1];
                 deck.cards.push(card);
             }
