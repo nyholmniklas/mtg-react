@@ -5,7 +5,7 @@ import { Statistic, Container } from 'semantic-ui-react';
 export default class SideBar extends React.Component {
     render() {
         return (
-            <Container>
+            <Container className="sideBar">
                 <Deck deckListAsText={this.props.deckListAsText}
                       deckListTextChanged={this.props.deckListTextChanged}/>
                 <Statistic>

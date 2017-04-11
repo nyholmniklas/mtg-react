@@ -1,3 +1,7 @@
+.deckForm {
+    height: 80vh;
+}
+
 .deckTextArea {
     padding: 10px !important;
     width: 100% !important;

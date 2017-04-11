@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reactMixin from 'react-mixin';
 import update from 'react-addons-update';
-import _ from 'underscore';
 import { Grid } from 'semantic-ui-react';
 
 import DeckUtils from './libs/deckUtils.js';
