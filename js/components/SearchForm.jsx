@@ -7,7 +7,7 @@ import ExportButton from './ExportButton.jsx';
 import LegalitySelector from './LegalitySelector.jsx';
 import { Form } from 'semantic-ui-react';
 
-export default class SearchBar extends React.Component {
+export default class SearchForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -86,7 +86,7 @@ export default class SearchBar extends React.Component {
     }
 }
 
-SearchBar.propTypes = {
+SearchForm.propTypes = {
     searchCards: React.PropTypes.func.isRequired,
     deck: React.PropTypes.object.isRequired,
     downloadDeckCallback: React.PropTypes.func.isRequired
