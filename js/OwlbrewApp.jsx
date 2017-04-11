@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import reactMixin from 'react-mixin';
 import update from 'react-addons-update';
 import _ from 'underscore';
+import { Grid } from 'semantic-ui-react';
+
 import CardStore from './stores/CardStore.js';
 import DeckStore from './stores/DeckStore.js';
 import CardActions from './Actions.js';
-import Deck from './components/Deck.jsx';
+
 import MainArea from './components/MainArea.jsx';
-import { Grid } from 'semantic-ui-react';
+import SideBar from './components/SideBar.jsx';
 
 class OwlbrewApp extends React.Component {
     constructor(props) {
@@ -44,14 +46,14 @@ class OwlbrewApp extends React.Component {
     render() {
         return (
             <Grid className='app'>
-                    <Grid.Column width={12}>
-                        <MainArea mainAreaContent={this.state.mainAreaContent} searchCards={this.searchCards}
-                                  cardSearchResults={this.state.cardSearchResults} deck={this.state.deck}/>
-                    </Grid.Column>
-                    <Grid.Column width={4}>
-                        <Deck deckListAsText={this.state.deckListAsText}
-                              deckListTextChanged={this.deckListTextChanged}/>
-                    </Grid.Column>
+                <Grid.Column width={12}>
+                    <MainArea mainAreaContent={this.state.mainAreaContent} searchCards={this.searchCards}
+                              cardSearchResults={this.state.cardSearchResults} deck={this.state.deck}/>
+                </Grid.Column>
+                <Grid.Column width={4}>
+                    <SideBar deckListAsText={this.state.deckListAsText}
+                             deckListTextChanged={this.deckListTextChanged}/>
+                </Grid.Column>
             </Grid>
         );
     }
