@@ -27,8 +27,9 @@ function setDeckListFromText() {
     let tempDeck = {
         cards: []
     };
+    let tempDeckListAsText = _deckListAsText;
     //For each line in _deckListAsText in valid syntax
-    DeckUtils.forValidCardSyntaxInDeckListAsText(_deckListAsText, (cardName, ammount) => {
+    DeckUtils.forValidCardSyntaxInDeckListAsText(tempDeckListAsText, (cardName, ammount) => {
         //Check if card can be found from the current deck object, and if it can, add it to tempDeck with correct ammount...
         let card = DeckUtils.getCardFromDeck(cardName, _deck);
         if (card !== undefined) {
@@ -38,8 +39,8 @@ function setDeckListFromText() {
             //... if we can't, add a new promise to promises to query api for the card based on name.
             promises.push(new Promise(function (resolve) {
                 let promise = QueryUtils.getCard(cardName);
-                promise.then(function (response, sets) {
-                    resolve([response, ammount], sets);
+                promise.then(function (response) {
+                    resolve([response, ammount]);
                 });
             }));
         }
@@ -52,12 +53,15 @@ function setDeckListFromText() {
                 tempDeck.cards.push(card);
             }
         }
-        _deck = tempDeck;
-        store.emitChange();
+        //check for race condition by comparing the text used to set the deck list with current decklist text
+        if (tempDeckListAsText === _deckListAsText){
+            _deck = tempDeck;
+            store.emitChange();
+        }
     });
 }
 
-var _debouncedDeckUpdate = _.debounce(setDeckListFromText, 500);
+var _debouncedDeckUpdate = _.debounce(setDeckListFromText, 1500);
 
 //TODO: Don't manipulate DOM directly, there must be better way..
 function downloadDeck() {
