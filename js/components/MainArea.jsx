@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from './../components/SearchBar.jsx';
+import SearchForm from './../components/SearchForm.jsx';
 import SearchResults from './../components/SearchResults.jsx';
 import CardActions from './../Actions.js';
 import { Grid } from 'semantic-ui-react';
@@ -12,7 +12,7 @@ export default class MainArea extends React.Component {
         return (
             <Grid className='mainArea'>
                     <Grid.Column width={4}>
-                        <SearchBar searchCards={this.props.searchCards} deck={this.props.deck}
+                        <SearchForm searchCards={this.props.searchCards} deck={this.props.deck}
                                    downloadDeckCallback={CardActions.downloadDeck} visible={searchVisible}/>
                     </Grid.Column>
                     <Grid.Column width={12}>
