@@ -28,7 +28,7 @@ export default class Card extends React.Component {
             //<div className="card" onClick={cardClicked}>
             //    {cardImages}
             //</div>
-            <Image src={card.img_url} onClick={cardClicked} className="card" fluid/>
+            <Image src={card.img_url} onClick={cardClicked} className="card-image" fluid/>
         );
     }
 }

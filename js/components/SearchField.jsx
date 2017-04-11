@@ -16,7 +16,8 @@ export default class SearchField extends React.Component {
     render() {
         return (
             <Form.Field>
-                <Input onChange={this.handleChange}
+                <label>{this.props.label}</label>
+                <Input value={this.props.value} onChange={this.handleChange}
                        placeholder={this.props.placeholder}/>
             </Form.Field>
         );
@@ -24,6 +25,8 @@ export default class SearchField extends React.Component {
 }
 
 SearchField.propTypes = {
-    searchText: React.PropTypes.string.isRequired,
+    value: React.PropTypes.string.isRequired,
+    label: React.PropTypes.string,
+    placeholder: React.PropTypes.string,
     onUserInput: React.PropTypes.func
 };

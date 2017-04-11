@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown , Form} from 'semantic-ui-react';
 import {formatOptions} from './../constants/formats.js';
 
 export default class LegalitySelector extends React.Component {
@@ -16,7 +16,11 @@ export default class LegalitySelector extends React.Component {
 
     render() {
         return (
-            <Dropdown fluid selection value={this.props.value} options={formatOptions} onChange={this.handleChange}/>
+            <Form.Field>
+                <label>Format</label>
+                <Dropdown fluid selection value={this.props.value} options={formatOptions}
+                          onChange={this.handleChange}/>
+            </Form.Field>
         );
     }
 }

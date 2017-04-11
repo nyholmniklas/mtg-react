@@ -67,20 +67,20 @@ export default class SearchForm extends React.Component {
     render() {
         return (
             <Form className="searchBar">
-                <SearchField placeholder="Card name" searchText={this.state.searchText}
+                <SearchField label="Card name" placeholder="eg. Lightning Bolt" value={this.state.searchText}
                              onUserInput={this.handleSearchTextInput}/>
-                <SearchField placeholder="Oracle text" searchText={this.state.searchOracleText}
+                <SearchField label="Oracle text" placeholder="eg. Draw a card" value={this.state.searchOracleText}
                              onUserInput={this.handleOracleUserInput}/>
-                <SearchField placeholder="Subtype" searchText={this.state.searchSubtypeText}
+                <SearchField label="Subtype" placeholder="eg. Goblin" value={this.state.searchSubtypeText}
                              onUserInput={this.handleSubtypeUserInput}/>
                 <LegalitySelector value={this.state.formatLegalityFilter} onUserInput={this.handleFormatLegalityChange}/>
                 <br/>
-                <ManaColorSelector manaParams={this.state.manaParams}
+                {/*<ManaColorSelector manaParams={this.state.manaParams}
                                    manaParamsInputCallback={this.handleManaParamsInput}/>
                 <br/>
                 Cards: {DeckUtils.getCardCount(this.props.deck)}
                 <br/>
-                <ExportButton onClick={this.props.downloadDeckCallback}/>
+                <ExportButton onClick={this.props.downloadDeckCallback}/>*/}
             </Form>
         );
     }
