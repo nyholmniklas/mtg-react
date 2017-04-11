@@ -1,19 +1,19 @@
 html, body {
-    color: white;
+    /*color: white;*/
 }
 
-.app {
-    position: relative;
+.app, .mainArea {
     height: 100vh;
 }
 
 .searchResults {
     overflow-y: scroll;
     height: 100vh;
+    background-color: red;
 }
 
 .deckForm {
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     height: 100vh;
-    padding: 10px !important;
+    padding: 10px;
 }

@@ -66,7 +66,7 @@ export default class SearchBar extends React.Component {
 
     render() {
         return (
-            <Form className="three wide column searchBar">
+            <Form className="searchBar">
                 <SearchField placeholder="Card name" searchText={this.state.searchText}
                              onUserInput={this.handleSearchTextInput}/>
                 <SearchField placeholder="Oracle text" searchText={this.state.searchOracleText}

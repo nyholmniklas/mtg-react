@@ -4,7 +4,7 @@ import Cards from './Cards.jsx';
 export default class SearchResults extends React.Component {
     render() {
         return (
-            <div className="nine wide column searchResults">
+            <div className="searchResults">
                 <Cards cards={this.props.cards} cardClickedCallback={this.props.cardClickedCallback}/>
             </div>
         );

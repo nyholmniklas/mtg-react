@@ -7,16 +7,18 @@ import CardStore from './stores/CardStore.js';
 import DeckStore from './stores/DeckStore.js';
 import CardActions from './Actions.js';
 import Deck from './components/Deck.jsx';
-import SearchBar from './components/SearchBar.jsx';
-import SearchResults from './components/SearchResults.jsx';
+import MainArea from './components/MainArea.jsx';
+import { Grid } from 'semantic-ui-react';
 
 class OwlbrewApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            //Can be 'search' or 'stats'
+            mainAreaContent: 'search',
             deck: DeckStore.getDeck(),
             deckListAsText: DeckStore.getDeckListAsText(),
-            cards: CardStore.getCards(),
+            cardSearchResults: CardStore.getCards(),
         };
         this.deckListTextChanged = CardActions.updateDeckFromDeckListAsText;
         this.storeDidChange = this.storeDidChange.bind(this);
@@ -31,7 +33,7 @@ class OwlbrewApp extends React.Component {
         this.setState(update(this.state, {
             deck: {$set: DeckStore.getDeck()},
             deckListAsText: {$set: DeckStore.getDeckListAsText()},
-            cards: {$set: CardStore.getCards()}
+            cardSearchResults: {$set: CardStore.getCards()}
         }));
     }
 
@@ -41,13 +43,16 @@ class OwlbrewApp extends React.Component {
 
     render() {
         return (
-            <div className="ui grid equal heigh app">
-                <SearchBar searchCards={this.searchCards} deck={this.state.deck}
-                           downloadDeckCallback={CardActions.downloadDeck}/>
-                <SearchResults ref="searchResults" cards={this.state.cards}
-                               cardClickedCallback={CardActions.addCardToDeck}/>
-                <Deck deckListAsText={this.state.deckListAsText} deckListTextChanged={this.deckListTextChanged}/>
-            </div>
+            <Grid className='app'>
+                    <Grid.Column width={12}>
+                        <MainArea mainAreaContent={this.state.mainAreaContent} searchCards={this.searchCards}
+                                  cardSearchResults={this.state.cardSearchResults} deck={this.state.deck}/>
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                        <Deck deckListAsText={this.state.deckListAsText}
+                              deckListTextChanged={this.deckListTextChanged}/>
+                    </Grid.Column>
+            </Grid>
         );
     }
 
@@ -57,13 +62,13 @@ class OwlbrewApp extends React.Component {
 
     componentDidMount() {
         this.mounted = true;
-        const initManaParams = {
-            white: false,
-            blue: false,
-            black: false,
-            red: false,
-            green: false
-        };
+        //const initManaParams = {
+        //    white: false,
+        //    blue: false,
+        //    black: false,
+        //    red: false,
+        //    green: false
+        //};
         this.searchCards = _.debounce(this.searchCards, 200);
         //this.searchCards('', '', '', initManaParams);
     }

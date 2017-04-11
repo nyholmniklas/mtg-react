@@ -14,11 +14,9 @@ export default class EditableDeckList extends React.Component {
 
     render() {
         return (
-            <div className="four wide column">
-                <Form className="deckForm">
-                    <TextArea value={this.props.deckListAsText} className="deckTextArea" onChange={this.onChange}/>
-                </Form>
-            </div>
+            <Form className="deckForm">
+                <TextArea value={this.props.deckListAsText} className="deckTextArea" onChange={this.onChange}/>
+            </Form>
         );
     }
 }
