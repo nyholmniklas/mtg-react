@@ -9,11 +9,9 @@ html, body {
 .searchResults {
     overflow-y: scroll;
     height: 100vh;
-    background-color: red;
 }
 
 .deckForm {
-    /*overflow-y: scroll;*/
     height: 100vh;
     padding: 10px;
 }

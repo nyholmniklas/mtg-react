@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image } from 'semantic-ui-react'
 
 export default class Card extends React.Component {
     getCardImages(card) {
@@ -24,9 +25,10 @@ export default class Card extends React.Component {
         if (card.ammount == null) card.ammount = 1;
         var cardImages = this.getCardImages(card);
         return (
-            <div className="card" onClick={cardClicked}>
-                {cardImages}
-            </div>
+            //<div className="card" onClick={cardClicked}>
+            //    {cardImages}
+            //</div>
+            <Image src={card.img_url} onClick={cardClicked} className="card" fluid/>
         );
     }
 }

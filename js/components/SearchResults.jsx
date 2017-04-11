@@ -1,12 +1,13 @@
 import React from 'react';
 import Cards from './Cards.jsx';
+import { Container } from 'semantic-ui-react';
 
 export default class SearchResults extends React.Component {
     render() {
         return (
-            <div className="searchResults">
+            <Container className="searchResults">
                 <Cards cards={this.props.cards} cardClickedCallback={this.props.cardClickedCallback}/>
-            </div>
+            </Container>
         );
     }
 }
