@@ -3,7 +3,13 @@ import * as QueryBuilder from './queryBuilder.js';
 
 class DeckBrewApi {
 
-    static getCards(searchText, searchOracleText = '', searchSubtypeText = '', manaParams = '', sets = '', formatLegalityFilter = '') {
+    static getCards(searchParams) {
+        let searchText = searchParams.searchText;
+        let searchOracleText = searchParams.searchOracleText;
+        let searchSubtypeText = searchParams.searchSubtypeText;
+        let manaParams = searchParams.manaParams;
+        let sets = [];
+        let formatLegalityFilter = searchParams.formatLegalityFilter;
         return new Promise(
             function (resolve, reject) {
                 // Do not even make request if search text is only param and it is shorter than three characters
@@ -14,7 +20,7 @@ class DeckBrewApi {
                 var xmlHttp = new XMLHttpRequest();
 
                 xmlHttp.onreadystatechange = function () {
-                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve(HttpResponse2Model.getCardsFromResponse(xmlHttp));
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve([HttpResponse2Model.getCardsFromResponse(xmlHttp), searchParams]);
                     else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) reject();
                 };
                 let requestUrlParams = QueryBuilder.buildQueryParamsForFuzzyRequest(searchText, searchOracleText,

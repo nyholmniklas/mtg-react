@@ -1,28 +1,13 @@
 import React from 'react';
 import update from 'react-addons-update';
 import SearchField from './SearchField.jsx';
-import ManaColorSelector from './ManaColorSelector.jsx';
-import DeckUtils from '../libs/deckUtils.js';
-import ExportButton from './ExportButton.jsx';
 import LegalitySelector from './LegalitySelector.jsx';
 import { Form } from 'semantic-ui-react';
 
 export default class SearchForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            searchText: '',
-            searchOracleText: '',
-            searchSubtypeText: '',
-            manaParams: {
-                white: false,
-                blue: false,
-                black: false,
-                red: false,
-                green: false
-            },
-            formatLegalityFilter: 'standard'
-        };
+        this.state = this.props.searchParams;
         this.handleSearchTextInput = this.handleSearchTextInput.bind(this);
         this.handleOracleUserInput = this.handleOracleUserInput.bind(this);
         this.handleSubtypeUserInput = this.handleSubtypeUserInput.bind(this);
@@ -61,26 +46,34 @@ export default class SearchForm extends React.Component {
     }
 
     searchCards() {
-        this.props.searchCards(this.state.searchText, this.state.searchOracleText, this.state.searchSubtypeText, this.state.manaParams, this.state.formatLegalityFilter);
+        let searchParams = {
+            searchText: this.state.searchText,
+            searchOracleText: this.state.searchOracleText,
+            searchSubtypeText: this.state.searchSubtypeText,
+            manaParams: this.state.manaParams,
+            formatLegalityFilter: this.state.formatLegalityFilter
+        };
+        this.props.searchCards(searchParams);
     }
 
     render() {
         return (
             <Form className="searchBar">
-                <SearchField label="Card name" placeholder="eg. Lightning Bolt" value={this.state.searchText}
+                <SearchField label="Card name" placeholder="eg. Lightning Bolt" value={this.props.searchParams.searchText}
                              onUserInput={this.handleSearchTextInput}/>
-                <SearchField label="Oracle text" placeholder="eg. Draw a card" value={this.state.searchOracleText}
+                <SearchField label="Oracle text" placeholder="eg. Draw a card" value={this.props.searchParams.searchOracleText}
                              onUserInput={this.handleOracleUserInput}/>
-                <SearchField label="Subtype" placeholder="eg. Goblin" value={this.state.searchSubtypeText}
+                <SearchField label="Subtype" placeholder="eg. Goblin" value={this.props.searchParams.searchSubtypeText}
                              onUserInput={this.handleSubtypeUserInput}/>
-                <LegalitySelector value={this.state.formatLegalityFilter} onUserInput={this.handleFormatLegalityChange}/>
+                <LegalitySelector value={this.props.searchParams.formatLegalityFilter}
+                                  onUserInput={this.handleFormatLegalityChange}/>
                 <br/>
                 {/*<ManaColorSelector manaParams={this.state.manaParams}
-                                   manaParamsInputCallback={this.handleManaParamsInput}/>
-                <br/>
-                Cards: {DeckUtils.getCardCount(this.props.deck)}
-                <br/>
-                <ExportButton onClick={this.props.downloadDeckCallback}/>*/}
+                 manaParamsInputCallback={this.handleManaParamsInput}/>
+                 <br/>
+                 Cards: {DeckUtils.getCardCount(this.props.deck)}
+                 <br/>
+                 <ExportButton onClick={this.props.downloadDeckCallback}/>*/}
             </Form>
         );
     }
@@ -89,5 +82,6 @@ export default class SearchForm extends React.Component {
 SearchForm.propTypes = {
     searchCards: React.PropTypes.func.isRequired,
     deck: React.PropTypes.object.isRequired,
-    downloadDeckCallback: React.PropTypes.func.isRequired
+    downloadDeckCallback: React.PropTypes.func.isRequired,
+    searchParams: React.PropTypes.object.isRequired
 };

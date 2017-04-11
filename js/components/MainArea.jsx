@@ -11,14 +11,14 @@ export default class MainArea extends React.Component {
 
         return (
             <Grid className='mainArea'>
-                    <Grid.Column width={4}>
-                        <SearchForm searchCards={this.props.searchCards} deck={this.props.deck}
-                                   downloadDeckCallback={CardActions.downloadDeck} visible={searchVisible}/>
-                    </Grid.Column>
-                    <Grid.Column width={12}>
-                        <SearchResults ref="searchResults" cards={this.props.cardSearchResults}
-                                       cardClickedCallback={CardActions.addCardToDeck} visible={statsVisible}/>
-                    </Grid.Column>
+                <Grid.Column width={4}>
+                    <SearchForm searchCards={this.props.searchCards} searchParams={this.props.searchParams} deck={this.props.deck}
+                                downloadDeckCallback={CardActions.downloadDeck} visible={searchVisible}/>
+                </Grid.Column>
+                <Grid.Column width={12}>
+                    <SearchResults ref="searchResults" cards={this.props.cardSearchResults}
+                                   cardClickedCallback={CardActions.addCardToDeck} visible={statsVisible}/>
+                </Grid.Column>
             </Grid >
         );
     }
@@ -28,5 +28,6 @@ MainArea.propTypes = {
     mainAreaContent: React.PropTypes.string.isRequired,
     searchCards: React.PropTypes.func.isRequired,
     deck: React.PropTypes.object.isRequired,
-    cardSearchResults: React.PropTypes.array.isRequired
+    cardSearchResults: React.PropTypes.array.isRequired,
+    searchParams: React.PropTypes.object.isRequired
 };

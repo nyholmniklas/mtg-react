@@ -21,6 +21,7 @@ class OwlbrewApp extends React.Component {
             deck: DeckStore.getDeck(),
             deckListAsText: DeckStore.getDeckListAsText(),
             cardSearchResults: CardStore.getCards(),
+            searchParams: CardStore.getSearchParams()
         };
         this.deckListTextChanged = CardActions.updateDeckFromDeckListAsText;
         this.storeDidChange = this.storeDidChange.bind(this);
@@ -35,19 +36,21 @@ class OwlbrewApp extends React.Component {
         this.setState(update(this.state, {
             deck: {$set: DeckStore.getDeck()},
             deckListAsText: {$set: DeckStore.getDeckListAsText()},
-            cardSearchResults: {$set: CardStore.getCards()}
+            cardSearchResults: {$set: CardStore.getCards()},
+            searchParams: {$set: CardStore.getSearchParams()}
         }));
     }
 
-    searchCards(searchText, searchOracleText, searchSubtypeText, manaParams, formatLegalityFilter) {
-        CardActions.updateCards(searchText, searchOracleText, searchSubtypeText, manaParams, formatLegalityFilter);
+    searchCards(searchParams) {
+        CardActions.searchCards(searchParams);
     }
 
     render() {
         return (
             <Grid className='app'>
                 <Grid.Column width={12}>
-                    <MainArea mainAreaContent={this.state.mainAreaContent} searchCards={this.searchCards}
+                    <MainArea mainAreaContent={this.state.mainAreaContent} searchParams={this.state.searchParams}
+                              searchCards={this.searchCards}
                               cardSearchResults={this.state.cardSearchResults} deck={this.state.deck}/>
                 </Grid.Column>
                 <Grid.Column width={4}>
@@ -64,15 +67,6 @@ class OwlbrewApp extends React.Component {
 
     componentDidMount() {
         this.mounted = true;
-        //const initManaParams = {
-        //    white: false,
-        //    blue: false,
-        //    black: false,
-        //    red: false,
-        //    green: false
-        //};
-        this.searchCards = _.debounce(this.searchCards, 200);
-        //this.searchCards('', '', '', initManaParams);
     }
 }
 

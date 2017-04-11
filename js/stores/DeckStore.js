@@ -63,7 +63,6 @@ var _debouncedDeckUpdate = _.debounce(setDeckListFromText, 500);
 function downloadDeck() {
     var data = new Blob([DeckUtils.getDeckAsText(_deck)], {type: 'text/plain'});
     var url = (window.webkitURL || window.URL).createObjectURL(data);
-    //TODO check if element already exists and replace it
     var a = document.createElement('a');
     document.body.appendChild(a);
     a.style = 'display: none';

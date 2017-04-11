@@ -3,14 +3,10 @@ import McFly from 'mcfly';
 var Flux = new McFly();
 
 export default Flux.createActions({
-    updateCards: function (searchText, searchOracleText, searchSubtypeText, manaParams, formatLegalityFilter) {
+    searchCards: function (searchParams) {
         return {
-            actionType: 'UPDATE_CARDS',
-            searchText: searchText,
-            searchOracleText: searchOracleText,
-            searchSubtypeText: searchSubtypeText,
-            manaParams: manaParams,
-            formatLegalityFilter: formatLegalityFilter,
+            actionType: 'SEARCH_CARDS',
+            searchParams: searchParams
         };
     },
     addCardToDeck: function (card) {
