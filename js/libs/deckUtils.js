@@ -14,10 +14,15 @@ export default {
         }
         return count;
     },
-    getLandCount: function (deck) {
+    /**
+     * @param deck
+     * @param type The type you want to count. For example 'lands' will return the number of lands in the deck.
+     * @returns {number} The number of cards in the deck which match the type given to the function.
+     */
+    getTypeCount: function (deck, type) {
         var count = 0;
         for (var i = 0; i < deck.cards.length; i++) {
-            if (deck.cards[i].types.includes('land'))count += deck.cards[i].ammount;
+            if (deck.cards[i].types.includes(type))count += deck.cards[i].ammount;
         }
         return count;
     },

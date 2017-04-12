@@ -2,6 +2,7 @@ import React from 'react';
 import Deck from './Deck.jsx';
 import { Statistic, Container } from 'semantic-ui-react';
 import DeckUtils from './../libs/deckUtils.js';
+import CardType from './../constants/cardTypes.js';
 
 export default class SideBar extends React.Component {
     render() {
@@ -15,12 +16,12 @@ export default class SideBar extends React.Component {
                         <Statistic.Label>Cards</Statistic.Label>
                     </Statistic>
                     <Statistic>
-                        <Statistic.Value>{DeckUtils.getLandCount(this.props.deck)}</Statistic.Value>
+                        <Statistic.Value>{DeckUtils.getTypeCount(this.props.deck, CardType.Land)}</Statistic.Value>
                         <Statistic.Label>Lands</Statistic.Label>
                     </Statistic>
                     <Statistic>
-                        <Statistic.Value>{DeckUtils.getLandCount(this.props.deck)}</Statistic.Value>
-                        <Statistic.Label>Lands</Statistic.Label>
+                        <Statistic.Value>{DeckUtils.getTypeCount(this.props.deck, CardType.Creature)}</Statistic.Value>
+                        <Statistic.Label>Creatures</Statistic.Label>
                     </Statistic>
                 </Statistic.Group>
             </Container>
