@@ -1,6 +1,6 @@
 import React from 'react';
 import Deck from './Deck.jsx';
-import { Statistic, Container } from 'semantic-ui-react';
+import { Statistic, Container} from 'semantic-ui-react';
 import DeckUtils from './../libs/deckUtils.js';
 import CardType from './../constants/cardTypes.js';
 
@@ -10,6 +10,7 @@ export default class SideBar extends React.Component {
             <Container className="sideBar">
                 <Deck deckListAsText={this.props.deckListAsText}
                       deckListTextChanged={this.props.deckListTextChanged}/>
+                <br/>
                 <Statistic.Group widths='3'>
                     <Statistic>
                         <Statistic.Value>{DeckUtils.getCardCount(this.props.deck)}</Statistic.Value>

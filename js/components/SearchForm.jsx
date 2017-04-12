@@ -2,7 +2,7 @@ import React from 'react';
 import update from 'react-addons-update';
 import SearchField from './SearchField.jsx';
 import LegalitySelector from './LegalitySelector.jsx';
-import { Form } from 'semantic-ui-react';
+import { Form, Divider, Header, Icon, Container } from 'semantic-ui-react';
 
 export default class SearchForm extends React.Component {
     constructor(props) {
@@ -58,23 +58,34 @@ export default class SearchForm extends React.Component {
 
     render() {
         return (
-            <Form className="searchBar">
-                <SearchField label="Card name" placeholder="eg. Lightning Bolt" value={this.props.searchParams.searchText}
-                             onUserInput={this.handleSearchTextInput}/>
-                <SearchField label="Oracle text" placeholder="eg. Draw a card" value={this.props.searchParams.searchOracleText}
-                             onUserInput={this.handleOracleUserInput}/>
-                <SearchField label="Subtype" placeholder="eg. Goblin" value={this.props.searchParams.searchSubtypeText}
-                             onUserInput={this.handleSubtypeUserInput}/>
-                <LegalitySelector value={this.props.searchParams.formatLegalityFilter}
-                                  onUserInput={this.handleFormatLegalityChange}/>
-                <br/>
-                {/*<ManaColorSelector manaParams={this.state.manaParams}
-                 manaParamsInputCallback={this.handleManaParamsInput}/>
-                 <br/>
-                 Cards: {DeckUtils.getCardCount(this.props.deck)}
-                 <br/>
-                 <ExportButton onClick={this.props.downloadDeckCallback}/>*/}
-            </Form>
+            <Container className="searchBar">
+                <Header size="huge" centered>
+                    <Icon name="lab"/>
+                    owlbrew.io
+                </Header>
+                <Divider/>
+                <Form>
+
+                    <SearchField label="Card name" placeholder="eg. Lightning Bolt"
+                                 value={this.props.searchParams.searchText}
+                                 onUserInput={this.handleSearchTextInput}/>
+                    <SearchField label="Oracle text" placeholder="eg. Draw a card"
+                                 value={this.props.searchParams.searchOracleText}
+                                 onUserInput={this.handleOracleUserInput}/>
+                    <SearchField label="Subtype" placeholder="eg. Goblin"
+                                 value={this.props.searchParams.searchSubtypeText}
+                                 onUserInput={this.handleSubtypeUserInput}/>
+                    <LegalitySelector value={this.props.searchParams.formatLegalityFilter}
+                                      onUserInput={this.handleFormatLegalityChange}/>
+                    <br/>
+                    {/*<ManaColorSelector manaParams={this.state.manaParams}
+                     manaParamsInputCallback={this.handleManaParamsInput}/>
+                     <br/>
+                     Cards: {DeckUtils.getCardCount(this.props.deck)}
+                     <br/>
+                     <ExportButton onClick={this.props.downloadDeckCallback}/>*/}
+                </Form>
+            </Container>
         );
     }
 }

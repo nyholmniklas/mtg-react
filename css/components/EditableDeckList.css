@@ -1,5 +1,6 @@
 .deckForm {
-    height: 80vh;
+    height: 82vh;
+    /*max-height: 100px;*/
 }
 
 .deckTextArea {
