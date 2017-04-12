@@ -4,8 +4,6 @@ import reactMixin from 'react-mixin';
 import update from 'react-addons-update';
 import { Grid } from 'semantic-ui-react';
 
-import DeckUtils from './libs/deckUtils.js';
-
 import CardStore from './stores/CardStore.js';
 import DeckStore from './stores/DeckStore.js';
 import CardActions from './Actions.js';
@@ -56,7 +54,7 @@ class OwlbrewApp extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={4}>
                     <SideBar deckListAsText={this.state.deckListAsText}
-                             deckListTextChanged={this.deckListTextChanged} cardCount={DeckUtils.getCardCount(this.state.deck)}/>
+                             deckListTextChanged={this.deckListTextChanged} deck={this.state.deck}/>
                 </Grid.Column>
             </Grid>
         );

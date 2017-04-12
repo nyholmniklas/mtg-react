@@ -14,6 +14,13 @@ export default {
         }
         return count;
     },
+    getLandCount: function (deck) {
+        var count = 0;
+        for (var i = 0; i < deck.cards.length; i++) {
+            if (deck.cards[i].types.includes('land'))count += deck.cards[i].ammount;
+        }
+        return count;
+    },
     getCardFromDeck: function (cardName, deck) {
         for (var card in deck.cards) {
             if (deck.cards[card].name === cardName) return deck.cards[card];
@@ -88,7 +95,6 @@ export default {
             }
         }
         return newDeckListAsText;
-    }
-
+    },
 }
 ;

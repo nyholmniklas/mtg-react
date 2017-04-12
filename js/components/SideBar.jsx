@@ -1,6 +1,7 @@
 import React from 'react';
 import Deck from './Deck.jsx';
 import { Statistic, Container } from 'semantic-ui-react';
+import DeckUtils from './../libs/deckUtils.js';
 
 export default class SideBar extends React.Component {
     render() {
@@ -8,10 +9,20 @@ export default class SideBar extends React.Component {
             <Container className="sideBar">
                 <Deck deckListAsText={this.props.deckListAsText}
                       deckListTextChanged={this.props.deckListTextChanged}/>
-                <Statistic>
-                    <Statistic.Value>{this.props.cardCount}</Statistic.Value>
-                    <Statistic.Label>Cards</Statistic.Label>
-                </Statistic>
+                <Statistic.Group widths='3'>
+                    <Statistic>
+                        <Statistic.Value>{DeckUtils.getCardCount(this.props.deck)}</Statistic.Value>
+                        <Statistic.Label>Cards</Statistic.Label>
+                    </Statistic>
+                    <Statistic>
+                        <Statistic.Value>{DeckUtils.getLandCount(this.props.deck)}</Statistic.Value>
+                        <Statistic.Label>Lands</Statistic.Label>
+                    </Statistic>
+                    <Statistic>
+                        <Statistic.Value>{DeckUtils.getLandCount(this.props.deck)}</Statistic.Value>
+                        <Statistic.Label>Lands</Statistic.Label>
+                    </Statistic>
+                </Statistic.Group>
             </Container>
         );
     }
@@ -20,5 +31,5 @@ export default class SideBar extends React.Component {
 SideBar.propTypes = {
     deckListAsText: React.PropTypes.string.isRequired,
     deckListTextChanged: React.PropTypes.func.isRequired,
-    cardCount: React.PropTypes.number
+    deck: React.PropTypes.object
 };
