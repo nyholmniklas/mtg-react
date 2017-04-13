@@ -10,18 +10,12 @@ import CardActions from '~/Actions.js';
 
 import MainArea from '~/components/MainArea.jsx';
 import SideBar from '~/components/SideBar.jsx';
+import {initialState} from '~/OwlbrewInitState.js';
 
 class OwlbrewApp extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            //Can be 'search' or 'stats'
-            mainAreaContent: 'search',
-            deck: DeckStore.getDeck(),
-            deckListAsText: DeckStore.getDeckListAsText(),
-            cardSearchResults: CardStore.getCards(),
-            searchParams: CardStore.getSearchParams()
-        };
+        this.state = initialState;
         this.deckListTextChanged = CardActions.updateDeckFromDeckListAsText;
         this.storeDidChange = this.storeDidChange.bind(this);
         this.searchCards = this.searchCards.bind(this);

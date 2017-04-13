@@ -1,5 +1,5 @@
 import React from 'react';
-import { Statistic, Container, Grid, Menu, Icon} from 'semantic-ui-react';
+import { Statistic, Container, Grid, Menu } from 'semantic-ui-react';
 
 import DeckUtils from '~/libs/deckUtils.js';
 import CardType from '~/constants/cardTypes.js';
