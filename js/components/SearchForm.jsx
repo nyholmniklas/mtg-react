@@ -4,6 +4,7 @@ import update from 'react-addons-update';
 
 import SearchField from '~/components/SearchField.jsx';
 import LegalitySelector from '~/components/LegalitySelector.jsx';
+import ManaColorSelector from '~/components/ManaColorSelector.jsx';
 
 export default class SearchForm extends React.Component {
 
@@ -74,8 +75,9 @@ export default class SearchForm extends React.Component {
                 <LegalitySelector value={this.props.searchParams.formatLegalityFilter}
                                   onUserInput={this.handleFormatLegalityChange}/>
                 <br/>
-                {/*<ManaColorSelector manaParams={this.state.manaParams}
-                 manaParamsInputCallback={this.handleManaParamsInput}/>
+                <ManaColorSelector manaParams={this.state.manaParams}
+                                   manaParamsInputCallback={this.handleManaParamsInput}/>
+                {/*
                  <br/>
                  Cards: {DeckUtils.getCardCount(this.props.deck)}
                  <br/>
