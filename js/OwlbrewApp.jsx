@@ -25,6 +25,7 @@ class OwlbrewApp extends React.Component {
         this.deckListTextChanged = CardActions.updateDeckFromDeckListAsText;
         this.storeDidChange = this.storeDidChange.bind(this);
         this.searchCards = this.searchCards.bind(this);
+        this.setMainAreaContent = this.setMainAreaContent.bind(this);
     }
 
     isMounted() {
@@ -44,6 +45,12 @@ class OwlbrewApp extends React.Component {
         CardActions.searchCards(searchParams);
     }
 
+    setMainAreaContent(content) {
+        this.setState(update(this.state, {
+            mainAreaContent: {$set: content}
+        }));
+    }
+
     render() {
         return (
             <Grid className='app'>
@@ -54,7 +61,7 @@ class OwlbrewApp extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={4}>
                     <SideBar deckListAsText={this.state.deckListAsText}
-                             deckListTextChanged={this.deckListTextChanged} deck={this.state.deck}/>
+                             deckListTextChanged={this.deckListTextChanged} deck={this.state.deck} mainAreaContent={this.state.mainAreaContent} setMainAreaContent={this.setMainAreaContent}/>
                 </Grid.Column>
             </Grid>
         );

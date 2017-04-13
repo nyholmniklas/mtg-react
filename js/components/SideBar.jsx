@@ -1,5 +1,5 @@
 import React from 'react';
-import { Statistic, Container} from 'semantic-ui-react';
+import { Statistic, Container, Grid, Menu, Icon} from 'semantic-ui-react';
 
 import DeckUtils from '~/libs/deckUtils.js';
 import CardType from '~/constants/cardTypes.js';
@@ -7,9 +7,29 @@ import CardType from '~/constants/cardTypes.js';
 import Deck from '~/components/Deck.jsx';
 
 export default class SideBar extends React.Component {
+    constructor(props){
+        super(props);
+        this.handleMenuChange = this.handleMenuChange.bind(this);
+    }
+
+    handleMenuChange(e, { name }) {
+        this.props.setMainAreaContent(name);
+    }
+
     render() {
         return (
             <Container className="sideBar">
+                <Grid.Column width={4}>
+                    <Menu fluid vertical tabular='right'>
+                        <Menu.Item name='search' active={this.props.mainAreaContent === 'search'}
+                                   onClick={this.handleMenuChange}/>
+                        <Menu.Item name='stats' active={this.props.mainAreaContent === 'stats'}
+                                   onClick={this.handleMenuChange}/>
+                        <Menu.Item name='visual-deck' active={this.props.mainAreaContent === 'visual-deck'}
+                                   onClick={this.handleMenuChange}/>
+                    </Menu>
+                </Grid.Column>
+                <br/>
                 <Deck deckListAsText={this.props.deckListAsText}
                       deckListTextChanged={this.props.deckListTextChanged}/>
                 <br/>
@@ -35,5 +55,7 @@ export default class SideBar extends React.Component {
 SideBar.propTypes = {
     deckListAsText: React.PropTypes.string.isRequired,
     deckListTextChanged: React.PropTypes.func.isRequired,
-    deck: React.PropTypes.object
+    deck: React.PropTypes.object.isRequired,
+    mainAreaContent: React.PropTypes.string.isRequired,
+    setMainAreaContent: React.PropTypes.func.isRequired
 };

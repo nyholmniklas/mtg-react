@@ -4,6 +4,7 @@
   "description": "Demo of React + Webpack + Docker",
   "author": "Niklas Nyholm <nyholmniklas@gmail.com>",
   "scripts": {
+    "deploy": "webpack -p --config ./webpack.production.config.js",
     "server": "webpack-dev-server",
     "test": "eslint js/ webpack.*.js --cache && webpack --config ./webpack.config.js"
   },

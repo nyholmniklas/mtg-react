@@ -11,7 +11,7 @@ export default class Cards extends React.Component {
     render() {
         var cardClickedCallback = this.props.cardClickedCallback;
         return (
-            <Grid centered container>
+            <Grid centered className="searchResults">
                 {
                     this.props.cards.map(function (card) {
                         return (<Grid.Column width={4} key={card.id} className="cardColumn">
