@@ -78,9 +78,6 @@ export default class SearchForm extends React.Component {
                 <ManaColorSelector manaParams={this.state.manaParams}
                                    manaParamsInputCallback={this.handleManaParamsInput}/>
                 {/*
-                 <br/>
-                 Cards: {DeckUtils.getCardCount(this.props.deck)}
-                 <br/>
                  <ExportButton onClick={this.props.downloadDeckCallback}/>*/}
             </Form>
         );
