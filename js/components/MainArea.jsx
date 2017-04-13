@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchForm from './../components/SearchForm.jsx';
+import SearchForm from '~/components/SearchBar.jsx';
 import SearchResults from './../components/SearchResults.jsx';
 import CardActions from './../Actions.js';
 import { Grid } from 'semantic-ui-react';

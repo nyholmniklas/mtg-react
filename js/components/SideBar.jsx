@@ -1,7 +1,7 @@
 import React from 'react';
 import Deck from './Deck.jsx';
 import { Statistic, Container} from 'semantic-ui-react';
-import DeckUtils from './../libs/deckUtils.js';
+import DeckUtils from '~/libs/deckUtils.js';
 import CardType from './../constants/cardTypes.js';
 
 export default class SideBar extends React.Component {
