@@ -2,9 +2,9 @@ import React from 'react';
 import { Form } from 'semantic-ui-react';
 import update from 'react-addons-update';
 
-import SearchField from '~/components/SearchField.jsx';
-import LegalitySelector from '~/components/LegalitySelector.jsx';
-import ManaColorSelector from '~/components/ManaColorSelector.jsx';
+import SearchField from '~/components/SearchForm/SearchField.jsx';
+import LegalitySelector from '~/components/SearchForm/LegalitySelector.jsx';
+import ManaColorSelector from '~/components/SearchForm/ManaColorSelector.jsx';
 
 export default class SearchForm extends React.Component {
 

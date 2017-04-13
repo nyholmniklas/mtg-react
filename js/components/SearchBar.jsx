@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Divider, Header, Icon, Container } from 'semantic-ui-react';
 
-import SearchForm from '~/components/SearchForm.jsx';
+import SearchForm from '~/components/SearchForm/SearchForm.jsx';
 
 
 
