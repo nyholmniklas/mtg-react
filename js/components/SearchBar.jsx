@@ -4,7 +4,7 @@ import SearchField from './SearchField.jsx';
 import LegalitySelector from './LegalitySelector.jsx';
 import { Form, Divider, Header, Icon, Container } from 'semantic-ui-react';
 
-export default class SearchForm extends React.Component {
+export default class SearchBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.props.searchParams;
@@ -90,7 +90,7 @@ export default class SearchForm extends React.Component {
     }
 }
 
-SearchForm.propTypes = {
+SearchBar.propTypes = {
     searchCards: React.PropTypes.func.isRequired,
     deck: React.PropTypes.object.isRequired,
     downloadDeckCallback: React.PropTypes.func.isRequired,

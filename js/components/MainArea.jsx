@@ -11,11 +11,11 @@ export default class MainArea extends React.Component {
 
         return (
             <Grid className='mainArea'>
-                <Grid.Column width={4}>
+                <Grid.Column width={3}>
                     <SearchForm searchCards={this.props.searchCards} searchParams={this.props.searchParams} deck={this.props.deck}
                                 downloadDeckCallback={CardActions.downloadDeck} visible={searchVisible}/>
                 </Grid.Column>
-                <Grid.Column width={12}>
+                <Grid.Column width={13}>
                     <SearchResults ref="searchResults" cards={this.props.cardSearchResults}
                                    cardClickedCallback={CardActions.addCardToDeck} visible={statsVisible}/>
                 </Grid.Column>
