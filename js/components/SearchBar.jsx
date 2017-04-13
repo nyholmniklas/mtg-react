@@ -12,7 +12,7 @@ export default class SearchBar extends React.Component {
     render() {
         return (
             <Container className="searchBar">
-                <Header size="huge" centered>
+                <Header size="huge">
                     <Icon name="lab"/>
                     owlbrew.io
                 </Header>
