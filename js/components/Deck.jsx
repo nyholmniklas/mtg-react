@@ -1,5 +1,5 @@
 import React from 'react';
-import EditableDeckList from './EditableDeckList.jsx';
+import EditableDeckList from '~/components/EditableDeckList.jsx';
 
 export default class Deck extends React.Component {
     render() {

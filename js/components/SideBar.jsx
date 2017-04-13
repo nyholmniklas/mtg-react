@@ -1,8 +1,10 @@
 import React from 'react';
-import Deck from './Deck.jsx';
 import { Statistic, Container} from 'semantic-ui-react';
+
 import DeckUtils from '~/libs/deckUtils.js';
-import CardType from './../constants/cardTypes.js';
+import CardType from '~/constants/cardTypes.js';
+
+import Deck from '~/components/Deck.jsx';
 
 export default class SideBar extends React.Component {
     render() {

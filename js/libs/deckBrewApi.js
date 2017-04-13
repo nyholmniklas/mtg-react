@@ -1,5 +1,5 @@
-import * as HttpResponse2Model from './httpResponse2model.js';
-import * as QueryBuilder from './queryBuilder.js';
+import * as HttpResponse2Model from '~/libs/httpResponse2model.js';
+import * as QueryBuilder from '~/libs/queryBuilder.js';
 
 class DeckBrewApi {
 

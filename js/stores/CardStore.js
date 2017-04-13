@@ -1,7 +1,7 @@
 import McFly from 'mcfly';
 import _ from 'underscore';
 
-import QueryUtils from '../libs/deckBrewApi.js';
+import QueryUtils from '~/libs/deckBrewApi.js';
 
 var _cards = [];
 var _searchParams = {

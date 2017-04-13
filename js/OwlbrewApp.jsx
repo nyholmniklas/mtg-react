@@ -4,12 +4,12 @@ import reactMixin from 'react-mixin';
 import update from 'react-addons-update';
 import { Grid } from 'semantic-ui-react';
 
-import CardStore from './stores/CardStore.js';
-import DeckStore from './stores/DeckStore.js';
-import CardActions from './Actions.js';
+import CardStore from '~/stores/CardStore.js';
+import DeckStore from '~/stores/DeckStore.js';
+import CardActions from '~/Actions.js';
 
-import MainArea from './components/MainArea.jsx';
-import SideBar from './components/SideBar.jsx';
+import MainArea from '~/components/MainArea.jsx';
+import SideBar from '~/components/SideBar.jsx';
 
 class OwlbrewApp extends React.Component {
     constructor(props) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dropdown , Form} from 'semantic-ui-react';
-import {formatOptions} from './../constants/formats.js';
+
+import {formatOptions} from '~/constants/formats.js';
 
 export default class LegalitySelector extends React.Component {
     constructor(props) {

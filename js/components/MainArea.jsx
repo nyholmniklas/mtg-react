@@ -1,8 +1,9 @@
 import React from 'react';
-import SearchForm from '~/components/SearchBar.jsx';
-import SearchResults from './../components/SearchResults.jsx';
-import CardActions from './../Actions.js';
 import { Grid } from 'semantic-ui-react';
+
+import SearchForm from '~/components/SearchBar.jsx';
+import SearchResults from '~/components/SearchResults.jsx';
+import CardActions from '~/Actions.js';
 
 export default class MainArea extends React.Component {
     render() {

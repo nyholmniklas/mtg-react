@@ -1,6 +1,7 @@
 import React from 'react';
-import Card from './Card.jsx';
 import { Grid } from 'semantic-ui-react';
+
+import Card from '~/components/Card.jsx';
 
 export default class Cards extends React.Component {
     constructor(props) {

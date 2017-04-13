@@ -1,8 +1,9 @@
 import React from 'react';
 import update from 'react-addons-update';
-import SearchField from './SearchField.jsx';
-import LegalitySelector from './LegalitySelector.jsx';
 import { Form, Divider, Header, Icon, Container } from 'semantic-ui-react';
+
+import SearchField from '~/components/SearchField.jsx';
+import LegalitySelector from '~/components/LegalitySelector.jsx';
 
 export default class SearchBar extends React.Component {
     constructor(props) {

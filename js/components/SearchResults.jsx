@@ -1,6 +1,7 @@
 import React from 'react';
-import Cards from './Cards.jsx';
 import { Container } from 'semantic-ui-react';
+
+import Cards from '~/components/Cards.jsx';
 
 export default class SearchResults extends React.Component {
     render() {
