@@ -1,5 +1,6 @@
+#!/usr/bin/env bash
 npm install -g gulp
-cd public
+cd ./public
 npm install semantic-ui
-cd semantic
+cd ./public/semantic
 gulp build
