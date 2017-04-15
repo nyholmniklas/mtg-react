@@ -10,7 +10,8 @@ module.exports = {
     devtool: '#eval-source-map',
     output: {
         path: __dirname,
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/public/'
     },
     module: {
         loaders: [

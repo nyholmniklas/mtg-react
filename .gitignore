@@ -3,4 +3,4 @@ bundle.js
 npm-debug.log
 .idea/
 .eslintcache
-semantic/
+public/semantic/
