@@ -1,15 +1,15 @@
 {
   "name": "owlbrew",
   "version": "0.0.1",
-  "description": "Demo of React + Webpack + Docker",
+  "description": "MTG deck builder built with React",
   "author": "Niklas Nyholm <nyholmniklas@gmail.com>",
   "scripts": {
     "deploy": "webpack -p --config ./webpack.production.config.js",
     "server": "webpack-dev-server",
     "test": "eslint js/ webpack.*.js --cache && webpack --config ./webpack.config.js",
-    "heroku-prebuild": "chmod +x ./setup-semantic.sh && ./setup-semantic.sh",
+    "postinstall": "npm build && npm chmod +x ./setup-semantic.sh && ./setup-semantic.sh",
     "build": "webpack --config ./webpack.production.config.js --progress --colors",
-    "start": "npm run build && node ./js/server.js"
+    "start": "node ./js/server.js"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",
