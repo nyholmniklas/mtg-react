@@ -1,7 +1,7 @@
 {
   "name": "owlbrew",
   "version": "0.0.1",
-  "description": "MTG deck builder built with React",
+  "description": "MTG deck builder built with React.",
   "author": "Niklas Nyholm <nyholmniklas@gmail.com>",
   "scripts": {
     "deploy": "webpack -p --config ./webpack.production.config.js",
