@@ -7,7 +7,7 @@
     "deploy": "webpack -p --config ./webpack.production.config.js",
     "server": "webpack-dev-server",
     "test": "eslint js/ webpack.*.js --cache && webpack --config ./webpack.config.js",
-    "deploy": "webpack -p --config ./webpack.production.config.js",
+    "build": "webpack -p --config ./webpack.production.config.js",
     "start": "node ./js/server.js"
   },
   "devDependencies": {
