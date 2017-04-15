@@ -12,9 +12,7 @@ import MainArea from '~/components/MainArea.jsx';
 import SideBar from '~/components/SideBar.jsx';
 import {initialState} from '~/OwlbrewInitState.js';
 
-import 'semantic-ui';
-import 'semantic-ui-react';
-import 'semantic-ui-css';
+import 'semantic-ui-css/semantic.min.css';
 
 class OwlbrewApp extends React.Component {
     constructor(props) {
