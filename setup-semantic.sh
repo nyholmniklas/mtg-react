@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-npm install semantic-ui
 ls
 cd public
+npm install semantic-ui
 ls
 cd semantic
 ls
