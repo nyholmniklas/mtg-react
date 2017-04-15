@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-cd /app
-cd public
+cd ~/public
 npm install semantic-ui
-npm install
-cd semantic
-npm install inquirer@3.0.6 -g
+cd ~/public/
+cd ~/public/semantic
+npm install inquirer@3.0.6
 npm install -g gulp
 gulp build
