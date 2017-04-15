@@ -7,7 +7,8 @@
     "deploy": "webpack -p --config ./webpack.production.config.js",
     "server": "webpack-dev-server",
     "test": "eslint js/ webpack.*.js --cache && webpack --config ./webpack.config.js",
-    "build": "npm install -g gulp && cd public && npm install semantic-ui && cd semantic/ && gulp build && cd.. && cd.. && webpack --config ./webpack.production.config.js --progress --colors",
+    "build:semantic": "./setup-semantic.sh",
+    "build": "webpack --config ./webpack.production.config.js --progress --colors",
     "start": "npm run build && node ./js/server.js"
   },
   "devDependencies": {
