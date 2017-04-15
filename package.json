@@ -8,7 +8,7 @@
     "server": "webpack-dev-server",
     "test": "eslint js/ webpack.*.js --cache && webpack --config ./webpack.config.js",
     "build": "NODE_ENV=production && webpack --config ./webpack.production.config.js --progress --colors",
-    "start": "node ./js/server.js"
+    "start": "node ./js/OwlbrewApp.jsx"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",
