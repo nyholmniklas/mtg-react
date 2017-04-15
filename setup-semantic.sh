@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 npm install -g gulp
-cd ./app/public
+cd ~/public
 npm install semantic-ui
 for entry in "$search_dir"/*
 do
   echo "$entry"
 done
-cd ./app/public/semantic
+cd ~/public/semantic
 gulp build
