@@ -12,13 +12,6 @@ import MainArea from '~/components/MainArea.jsx';
 import SideBar from '~/components/SideBar.jsx';
 import {initialState} from '~/OwlbrewInitState.js';
 
-const Server = require('./server.js');
-const port = (process.env.PORT || 8080);
-const app = Server.app();
-
-app.listen(port);
-console.log(`Listening at http://localhost:${port}`);
-
 class OwlbrewApp extends React.Component {
     constructor(props) {
         super(props);
