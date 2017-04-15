@@ -6,7 +6,8 @@
   "scripts": {
     "deploy": "webpack -p --config ./webpack.production.config.js",
     "server": "webpack-dev-server",
-    "test": "eslint js/ webpack.*.js --cache && webpack --config ./webpack.config.js"
+    "test": "eslint js/ webpack.*.js --cache && webpack --config ./webpack.config.js",
+    "start": "node ./src/server.js"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
