@@ -2,5 +2,5 @@
 npm install -g gulp
 cd ./public
 npm install semantic-ui
-cd ./public/semantic
+cd ./semantic
 gulp build
