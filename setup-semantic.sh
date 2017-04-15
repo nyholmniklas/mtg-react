@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 npm install -g gulp
-cd "$(dirname "$0")"
+cd app
 cd public
 npm install semantic-ui
 for entry in "$search_dir"/*
