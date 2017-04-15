@@ -5,12 +5,18 @@ module.exports = {
     plugins: [
         new webpack.LoaderOptionsPlugin({
             debug: false
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
         })
     ],
-    devtool: '#eval-source-map',
+    devtool: 'source-map',
     output: {
-        path: __dirname + '/dist',
-        filename: 'bundle.js'
+        path: __dirname,
+        filename: 'bundle.js',
+        publicPath: '/public/'
     },
     module: {
         loaders: [
