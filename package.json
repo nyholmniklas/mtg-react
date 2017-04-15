@@ -7,8 +7,8 @@
     "deploy": "webpack -p --config ./webpack.production.config.js",
     "server": "webpack-dev-server",
     "test": "eslint js/ webpack.*.js --cache && webpack --config ./webpack.config.js",
-    "build:semantic": "./setup-semantic.sh",
-    "build": "webpack --config ./webpack.production.config.js --progress --colors",
+    "semantic": "./setup-semantic.sh",
+    "build": "npm run semantic && webpack --config ./webpack.production.config.js --progress --colors",
     "start": "npm run build && node ./js/server.js"
   },
   "devDependencies": {
