@@ -7,7 +7,7 @@
     "deploy": "webpack -p --config ./webpack.production.config.js",
     "server": "webpack-dev-server",
     "test": "eslint js/ webpack.*.js --cache && webpack --config ./webpack.config.js",
-    "heroku-postbuild": "npm run build && chmod +x ./setup-semantic.sh && ./setup-semantic.sh",
+    "postinstall": "npm run build && chmod +x ./setup-semantic.sh && ./setup-semantic.sh",
     "build": "webpack --config ./webpack.production.config.js --progress --colors",
     "start": "node ./js/server.js"
   },
