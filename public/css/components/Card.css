@@ -1,3 +1,7 @@
-.card-image {
+.card-images {
     cursor: pointer;
+}
+
+.card-image {
+    max-width: none !important;
 }

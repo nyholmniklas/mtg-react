@@ -12,7 +12,7 @@ export default class Cards extends React.Component {
     render() {
         var cardClickedCallback = this.props.cardClickedCallback;
         return (
-            <Grid centered className="searchResults">
+            <Grid centered className="card-grid">
                 {
                     this.props.cards.map(function (card) {
                         return (<Grid.Column width={4} key={card.id} className="cardColumn">
