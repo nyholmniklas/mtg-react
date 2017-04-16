@@ -15,7 +15,7 @@ export default class Cards extends React.Component {
             <Grid centered className="card-grid">
                 {
                     this.props.cards.map(function (card) {
-                        return (<Grid.Column width={4} key={card.id} className="cardColumn">
+                        return (<Grid.Column width={4} key={card.orderNumber} className="cardColumn">
                             <Card card={card} cardClickedCallback={cardClickedCallback}/>
                         </Grid.Column>);
                     })}

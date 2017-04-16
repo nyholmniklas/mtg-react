@@ -34,8 +34,11 @@ function setDeckListFromText() {
         //Check if card can be found from the current deck object, and if it can, add it to tempDeck with correct ammount...
         let card = DeckUtils.getCardFromDeck(cardName, _deck);
         if (card !== undefined) {
-            card.ammount = ammount;
-            tempDeck.cards.push(card);
+            promises.push(new Promise(function (resolve) {
+                card.ammount = ammount;
+                //tempDeck.cards.push(card);
+                resolve([card, card.ammount]);
+            }));
         } else {
             //... if we can't, add a new promise to promises to query api for the card based on name.
             promises.push(new Promise(function (resolve) {
@@ -51,11 +54,12 @@ function setDeckListFromText() {
             let card = responses[i][0];
             if (card !== undefined) {
                 card.ammount = responses[i][1];
+                card.orderNumber = i;
                 tempDeck.cards.push(card);
             }
         }
         //check for race condition by comparing the text used to set the deck list with current decklist text
-        if (tempDeckListAsText === _deckListAsText){
+        if (tempDeckListAsText === _deckListAsText) {
             _deck = tempDeck;
             store.emitChange();
         }

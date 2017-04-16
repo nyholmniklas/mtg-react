@@ -27,6 +27,9 @@ var search = _.debounce(searchCards, 500);
 
 function handleResponse(response) {
     let cards = response[0];
+    for (let card in cards) {
+        cards[card].orderNumber = card;
+    }
     let searchParams = response[1];
     //check for race condition by comparing the search params given of the api search with the ones currently in store
     if (cards !== undefined && _.isEqual(searchParams, _searchParams)) {
