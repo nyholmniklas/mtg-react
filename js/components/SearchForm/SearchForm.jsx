@@ -4,7 +4,7 @@ import update from 'react-addons-update';
 
 import SearchField from '~/components/SearchForm/SearchField.jsx';
 import LegalitySelector from '~/components/SearchForm/LegalitySelector.jsx';
-import ManaColorSelector from '~/components/SearchForm/ManaColorSelector.jsx';
+//import ManaColorSelector from '~/components/SearchForm/ManaColorSelector.jsx';
 
 export default class SearchForm extends React.Component {
 
@@ -75,9 +75,9 @@ export default class SearchForm extends React.Component {
                 <LegalitySelector value={this.props.searchParams.formatLegalityFilter}
                                   onUserInput={this.handleFormatLegalityChange}/>
                 <br/>
-                <ManaColorSelector manaParams={this.state.manaParams}
+                {/*<ManaColorSelector manaParams={this.state.manaParams}
                                    manaParamsInputCallback={this.handleManaParamsInput}/>
-                {/*
+
                  <ExportButton onClick={this.props.downloadDeckCallback}/>*/}
             </Form>
         );

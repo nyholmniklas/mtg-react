@@ -2,11 +2,16 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './js/OwlbrewApp.jsx',
+    entry: [
+        'webpack-hot-middleware/client',
+        './js/OwlbrewApp.jsx'
+    ],
     plugins: [
         new webpack.LoaderOptionsPlugin({
             debug: true
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin()
     ],
     devtool: '#eval-source-map',
     output: {

@@ -27,23 +27,11 @@ npm install -g gulp
 Setup
 -------
 
-#### Build Semantic UI
-
-```
-cd semantic/
-gulp build
-```
-
-#### Run eslint and build
-
-```
-npm run test
-```
-
-#### Run dev server
+#### Install deps and run server
 
 ```
 npm install
+npm run dev-build
 npm run server
 ```
 

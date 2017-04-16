@@ -8,7 +8,7 @@ import CardActions from '~/Actions.js';
 export default class MainArea extends React.Component {
     render() {
         let searchVisible = (this.props.mainAreaContent === 'search');
-        let statsVisible = (this.props.mainAreaContent === 'stats');
+        //let statsVisible = (this.props.mainAreaContent === 'stats');
         let visualDeckVisible = (this.props.mainAreaContent === 'visual-deck');
 
         return (
