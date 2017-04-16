@@ -1,10 +1,15 @@
-export function buildQueryParamsForFuzzyRequest(searchText, searchOracleText, searchSubtypeText, manaParams, sets, formatLegalityFilter) {
+export function buildQueryParamsForFuzzyRequest(searchText, searchOracleText, searchTypeText, searchSubtypeText, manaParams, sets, formatLegalityFilter) {
     //Set query params
     let setQuery = '';
     for (var i = 0; i < sets.length; i++) {
         setQuery = setQuery + '&set=' + sets[i];
     }
     setQuery = '';
+    //Type query params
+    let typeQuery = '';
+    if (searchTypeText != null && searchTypeText != '') {
+        typeQuery = '&type=' + searchTypeText;
+    }
     //Subtype query params
     let subtypeQuery = '';
     if (searchSubtypeText != null && searchSubtypeText != '') {
@@ -33,6 +38,6 @@ export function buildQueryParamsForFuzzyRequest(searchText, searchOracleText, se
     let formatFilter = '';
     if (formatLegalityFilter !== '') formatFilter = '&format=' + formatLegalityFilter;
     const requestUrlParams = 'name=' + searchText + '&oracle=' + searchOracleText
-        + setQuery + subtypeQuery + manaQuery + formatFilter;
+        + typeQuery + setQuery + subtypeQuery + manaQuery + formatFilter;
     return requestUrlParams;
 }

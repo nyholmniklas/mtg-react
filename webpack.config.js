@@ -7,9 +7,6 @@ module.exports = {
         './js/OwlbrewApp.jsx'
     ],
     plugins: [
-        new webpack.LoaderOptionsPlugin({
-            debug: true
-        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
     ],

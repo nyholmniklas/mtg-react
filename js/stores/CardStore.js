@@ -7,6 +7,7 @@ var _cards = [];
 var _searchParams = {
     searchText: '',
     searchOracleText: '',
+    searchTypeText: '',
     searchSubtypeText: '',
     manaParams: {
         white: false,

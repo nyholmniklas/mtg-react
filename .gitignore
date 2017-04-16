@@ -4,3 +4,6 @@ npm-debug.log
 .idea/
 .eslintcache
 public/semantic/
+/semantic/
+semantic/
+src/

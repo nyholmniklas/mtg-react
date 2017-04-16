@@ -14,6 +14,7 @@ export default class SearchForm extends React.Component {
         this.state = this.props.searchParams;
         this.handleSearchTextInput = this.handleSearchTextInput.bind(this);
         this.handleOracleUserInput = this.handleOracleUserInput.bind(this);
+        this.handleTypeUserInput = this.handleTypeUserInput.bind(this);
         this.handleSubtypeUserInput = this.handleSubtypeUserInput.bind(this);
         this.handleManaParamsInput = this.handleManaParamsInput.bind(this);
         this.handleFormatLegalityChange = this.handleFormatLegalityChange.bind(this);
@@ -28,6 +29,12 @@ export default class SearchForm extends React.Component {
     handleOracleUserInput(oracleSearchText) {
         this.setState(update(this.state, {
             searchOracleText: {$set: oracleSearchText}
+        }), this.searchCards);
+    }
+
+    handleTypeUserInput(typeSearchText) {
+        this.setState(update(this.state, {
+            searchTypeText: {$set: typeSearchText}
         }), this.searchCards);
     }
 
@@ -53,6 +60,7 @@ export default class SearchForm extends React.Component {
         let searchParams = {
             searchText: this.state.searchText,
             searchOracleText: this.state.searchOracleText,
+            searchTypeText: this.state.searchTypeText,
             searchSubtypeText: this.state.searchSubtypeText,
             manaParams: this.state.manaParams,
             formatLegalityFilter: this.state.formatLegalityFilter
@@ -70,6 +78,9 @@ export default class SearchForm extends React.Component {
                 <SearchField label="Oracle text" placeholder="eg. Draw a card"
                              value={this.props.searchParams.searchOracleText}
                              onUserInput={this.handleOracleUserInput}/>
+                <SearchField label="Type" placeholder="eg. Creature"
+                             value={this.props.searchParams.searchTypeText}
+                             onUserInput={this.handleTypeUserInput}/>
                 <SearchField label="Subtype" placeholder="eg. Goblin"
                              value={this.props.searchParams.searchSubtypeText}
                              onUserInput={this.handleSubtypeUserInput}/>
@@ -77,7 +88,7 @@ export default class SearchForm extends React.Component {
                                   onUserInput={this.handleFormatLegalityChange}/>
                 <br/>
                 {/*<ManaColorSelector manaParams={this.state.manaParams}
-                                   manaParamsInputCallback={this.handleManaParamsInput}/>
+                 manaParamsInputCallback={this.handleManaParamsInput}/>
 
                  <ExportButton onClick={this.props.downloadDeckCallback}/>*/}
             </Form>
