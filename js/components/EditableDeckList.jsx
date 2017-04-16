@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TextArea, Form } from 'semantic-ui-react';
 
 /**
@@ -44,6 +45,6 @@ export default class EditableDeckList extends React.Component {
 }
 
 EditableDeckList.propTypes = {
-    deckListAsText: React.PropTypes.string.isRequired,
-    deckListTextChanged: React.PropTypes.func.isRequired
+    deckListAsText: PropTypes.string.isRequired,
+    deckListTextChanged: PropTypes.func.isRequired
 };

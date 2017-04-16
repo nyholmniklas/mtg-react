@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Statistic, Container, Grid, Menu } from 'semantic-ui-react';
 
 import DeckUtils from '~/libs/deckUtils.js';
@@ -53,9 +54,9 @@ export default class SideBar extends React.Component {
 }
 
 SideBar.propTypes = {
-    deckListAsText: React.PropTypes.string.isRequired,
-    deckListTextChanged: React.PropTypes.func.isRequired,
-    deck: React.PropTypes.object.isRequired,
-    mainAreaContent: React.PropTypes.string.isRequired,
-    setMainAreaContent: React.PropTypes.func.isRequired
+    deckListAsText: PropTypes.string.isRequired,
+    deckListTextChanged: PropTypes.func.isRequired,
+    deck: PropTypes.object.isRequired,
+    mainAreaContent: PropTypes.string.isRequired,
+    setMainAreaContent: PropTypes.func.isRequired
 };

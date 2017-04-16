@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import EditableDeckList from '~/components/EditableDeckList.jsx';
 
 export default class Deck extends React.Component {
@@ -10,6 +11,6 @@ export default class Deck extends React.Component {
 }
 
 Deck.propTypes = {
-    deckListAsText: React.PropTypes.string,
-    deckListTextChanged: React.PropTypes.func.isRequired
+    deckListAsText: PropTypes.string,
+    deckListTextChanged: PropTypes.func.isRequired
 };

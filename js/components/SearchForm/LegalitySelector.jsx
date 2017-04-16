@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Dropdown , Form} from 'semantic-ui-react';
 
 import {formatOptions} from '~/constants/formats.js';
@@ -27,6 +28,6 @@ export default class LegalitySelector extends React.Component {
 }
 
 LegalitySelector.propTypes = {
-    onUserInput: React.PropTypes.func.isRequired,
-    value: React.PropTypes.string
+    onUserInput: PropTypes.func.isRequired,
+    value: PropTypes.string
 };

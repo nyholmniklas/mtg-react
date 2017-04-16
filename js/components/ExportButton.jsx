@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 
 export default class ExportButton extends React.Component {
@@ -10,5 +11,5 @@ export default class ExportButton extends React.Component {
 }
 
 ExportButton.propTypes = {
-    onClick: React.PropTypes.func
+    onClick: PropTypes.func
 };

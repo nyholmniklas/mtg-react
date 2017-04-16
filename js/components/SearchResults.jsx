@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container } from 'semantic-ui-react';
 
 import Cards from '~/components/Cards.jsx';
@@ -14,6 +15,6 @@ export default class SearchResults extends React.Component {
 }
 
 SearchResults.propTypes = {
-    cards: React.PropTypes.array.isRequired,
-    cardClickedCallback: React.PropTypes.func
+    cards: PropTypes.array.isRequired,
+    cardClickedCallback: PropTypes.func
 };

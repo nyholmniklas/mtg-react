@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Input, Form } from 'semantic-ui-react';
 
 export default class SearchField extends React.Component {
@@ -25,8 +26,8 @@ export default class SearchField extends React.Component {
 }
 
 SearchField.propTypes = {
-    value: React.PropTypes.string.isRequired,
-    label: React.PropTypes.string,
-    placeholder: React.PropTypes.string,
-    onUserInput: React.PropTypes.func
+    value: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    placeholder: PropTypes.string,
+    onUserInput: PropTypes.func
 };

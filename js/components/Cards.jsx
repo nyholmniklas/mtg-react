@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react';
 
 import Card from '~/components/Card.jsx';
@@ -24,6 +25,6 @@ export default class Cards extends React.Component {
 }
 
 Cards.propTypes = {
-    cards: React.PropTypes.array.isRequired,
-    cardClickedCallback: React.PropTypes.func.isRequired
+    cards: PropTypes.array.isRequired,
+    cardClickedCallback: PropTypes.func.isRequired
 };

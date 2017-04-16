@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form } from 'semantic-ui-react';
 import update from 'react-addons-update';
 
@@ -85,6 +86,6 @@ export default class SearchForm extends React.Component {
 }
 
 SearchForm.propTypes = {
-    searchCards: React.PropTypes.func.isRequired,
-    searchParams: React.PropTypes.object.isRequired
+    searchCards: PropTypes.func.isRequired,
+    searchParams: PropTypes.object.isRequired
 };

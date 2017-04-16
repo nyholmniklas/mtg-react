@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Divider, Header, Icon, Container } from 'semantic-ui-react';
 
@@ -24,8 +25,8 @@ export default class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
-    deck: React.PropTypes.object.isRequired,
-    downloadDeckCallback: React.PropTypes.func.isRequired,
-    searchCards: React.PropTypes.func.isRequired,
-    searchParams: React.PropTypes.object.isRequired
+    deck: PropTypes.object.isRequired,
+    downloadDeckCallback: PropTypes.func.isRequired,
+    searchCards: PropTypes.func.isRequired,
+    searchParams: PropTypes.object.isRequired
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Image } from 'semantic-ui-react';
 
 export default class Card extends React.Component {
@@ -15,6 +16,6 @@ export default class Card extends React.Component {
 }
 
 Card.propTypes = {
-    card: React.PropTypes.object.isRequired,
-    cardClickedCallback: React.PropTypes.func
+    card: PropTypes.object.isRequired,
+    cardClickedCallback: PropTypes.func
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react';
 
 import SearchForm from '~/components/SearchBar.jsx';
@@ -40,9 +41,9 @@ export default class MainArea extends React.Component {
 }
 
 MainArea.propTypes = {
-    mainAreaContent: React.PropTypes.string.isRequired,
-    searchCards: React.PropTypes.func.isRequired,
-    deck: React.PropTypes.object.isRequired,
-    cardSearchResults: React.PropTypes.array.isRequired,
-    searchParams: React.PropTypes.object.isRequired
+    mainAreaContent: PropTypes.string.isRequired,
+    searchCards: PropTypes.func.isRequired,
+    deck: PropTypes.object.isRequired,
+    cardSearchResults: PropTypes.array.isRequired,
+    searchParams: PropTypes.object.isRequired
 };
