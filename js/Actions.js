@@ -12,24 +12,24 @@ export default Flux.createActions({
     addCardToDeck: function (card) {
         return {
             actionType: 'ADD_CARD_TO_DECK',
-            card: card,
+            card: card
         };
     },
     removeCardfromDeck: function (card) {
         return {
             actionType: 'REMOVE_CARD_FROM_DECK',
-            card: card,
+            card: card
         };
     },
     downloadDeck: function () {
         return {
-            actionType: 'DOWNLOAD_DECK',
+            actionType: 'DOWNLOAD_DECK'
         };
     },
     updateDeckFromDeckListAsText: function (deckListAsText) {
         return {
             actionType: 'UPDATE_DECK_BASED_ON_TEXT',
-            deckListAsText: deckListAsText,
+            deckListAsText: deckListAsText
         };
     }
 });

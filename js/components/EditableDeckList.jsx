@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextArea, Form } from 'semantic-ui-react';
+import { TextArea, Form, Container } from 'semantic-ui-react';
 
 /**
  * Stateful input. This component is a mess mostly because of a problem
@@ -37,9 +37,11 @@ export default class EditableDeckList extends React.Component {
 
     render() {
         return (
-            <Form className="deckForm">
-                <TextArea value={this.state.value} className="deckTextArea" onChange={this.onChange}/>
-            </Form>
+            <Container className="deckFormContainer">
+                <Form className="deckForm">
+                    <TextArea value={this.state.value} className="deckTextArea" onChange={this.onChange}/>
+                </Form>
+            </Container>
         );
     }
 }

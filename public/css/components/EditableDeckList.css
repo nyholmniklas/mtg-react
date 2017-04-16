@@ -1,12 +1,29 @@
+.deckFormContainer {
+    flex: 1;
+    display: flex !important;
+    box-sizing: border-box; /* For IE and modern versions of Chrome */
+    -moz-box-sizing: border-box; /* For Firefox                          */
+    -webkit-box-sizing: border-box;
+    flex-direction: column;
+
+}
+
 .deckForm {
-    height: 70vh;
+    height: 100%;
+    display: flex !important;
+    box-sizing: border-box; /* For IE and modern versions of Chrome */
+    -moz-box-sizing: border-box; /* For Firefox                          */
+    -webkit-box-sizing: border-box;
+    flex-direction: column;
+
 }
 
 .deckTextArea {
+    flex: 1;
     padding: 10px !important;
     width: 100% !important;
     height: 100% !important;
-    max-height: none !important;
+    max-height: 100% !important;
     box-sizing: border-box; /* For IE and modern versions of Chrome */
     -moz-box-sizing: border-box; /* For Firefox                          */
     -webkit-box-sizing: border-box;

@@ -1,4 +1,12 @@
 .sideBar {
     padding-top: 10px;
     padding-right: 10px;
+    height: 100%;
+    /*height: 100%;*/
+    display: flex !important;
+    /*max-height: 100%;*/
+    box-sizing: border-box; /* For IE and modern versions of Chrome */
+    -moz-box-sizing: border-box; /* For Firefox                          */
+    -webkit-box-sizing: border-box;
+    flex-direction: column;
 }
