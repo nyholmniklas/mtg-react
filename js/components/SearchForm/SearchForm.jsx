@@ -72,16 +72,16 @@ export default class SearchForm extends React.Component {
         return (
             <Form>
 
-                <SearchField label="Card name" placeholder="eg. Lightning Bolt"
+                <SearchField id="search-card-name" label="Card name" placeholder="eg. Lightning Bolt"
                              value={this.props.searchParams.searchText}
                              onUserInput={this.handleSearchTextInput}/>
-                <SearchField label="Oracle text" placeholder="eg. Draw a card"
+                <SearchField id="oracle-card-name" label="Oracle text" placeholder="eg. Draw a card"
                              value={this.props.searchParams.searchOracleText}
                              onUserInput={this.handleOracleUserInput}/>
-                <SearchField label="Type" placeholder="eg. Creature"
+                <SearchField id="type-card-name" label="Type" placeholder="eg. Creature"
                              value={this.props.searchParams.searchTypeText}
                              onUserInput={this.handleTypeUserInput}/>
-                <SearchField label="Subtype" placeholder="eg. Goblin"
+                <SearchField id="subtype-card-name" label="Subtype" placeholder="eg. Goblin"
                              value={this.props.searchParams.searchSubtypeText}
                              onUserInput={this.handleSubtypeUserInput}/>
                 <LegalitySelector value={this.props.searchParams.formatLegalityFilter}

@@ -5,21 +5,33 @@ import { Input, Form } from 'semantic-ui-react';
 export default class SearchField extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            value: this.props.value
+        };
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(event, data) {
-        this.props.onUserInput(
-            data.value
-        );
+        this.setState({
+            value: data.value
+        });
+        this.props.onUserInput(data.value);
+    }
+
+    componentWillUpdate(nextProps) {
+        if (this.props.id !== document.activeElement.id && this.state.value !== nextProps.value) {
+            this.setState({value: nextProps.value});
+        }
     }
 
     render() {
         return (
             <Form.Field>
                 <label>{this.props.label}</label>
-                <Input value={this.props.value} onChange={this.handleChange}
-                       placeholder={this.props.placeholder}/>
+                <Input value={this.state.value} onChange={this.handleChange}
+                       placeholder={this.props.placeholder}>
+                    <input id={this.props.id}/>
+                </Input>
             </Form.Field>
         );
     }

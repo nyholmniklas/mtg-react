@@ -10,7 +10,7 @@ export default class EditableDeckList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            value: this.props.value
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -22,7 +22,7 @@ export default class EditableDeckList extends React.Component {
         this.props.deckListTextChanged(data.value);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillUpdate(nextProps) {
         if (this.props.id !== document.activeElement.id && this.state.value !== nextProps.deckListAsText) {
             this.setState({value: nextProps.deckListAsText});
         }
