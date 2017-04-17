@@ -69,14 +69,12 @@ function setDeckListFromText(callback = undefined) {
     });
 }
 
-function sortDeck(){
+function sortDeck() {
     let callback = () => {
         _deckListAsText = DeckUtils.getDeckAsSortedDeckListText(_deck, _deckListAsText);
     };
     setDeckListFromText(callback);
 }
-
-var _debouncedDeckUpdate = _.debounce(setDeckListFromText, 1500);
 
 //TODO: Don't manipulate DOM directly, there must be better way..
 function downloadDeck() {
@@ -96,12 +94,12 @@ const store = new McFly().createStore({
     },
     getDeckListAsText: function () {
         return _deckListAsText;
-    },
+    }
 }, function (payload) {
     if (payload.actionType === 'ADD_CARD_TO_DECK') {
         _deckListAsText = DeckUtils.addCardToDeckListAsText(_deckListAsText, payload.card);
+        setDeckListFromText();
         store.emitChange();
-        _debouncedDeckUpdate();
     }
     if (payload.actionType === 'REMOVE_CARD_FROM_DECK') {
         removeCardFromDeck(payload.card);
@@ -113,12 +111,10 @@ const store = new McFly().createStore({
     if (payload.actionType === 'UPDATE_DECK_BASED_ON_TEXT') {
         _deckListAsText = payload.deckListAsText;
         store.emitChange();
-        _debouncedDeckUpdate();
+        setDeckListFromText();
     }
     if (payload.actionType === 'SORT_DECK') {
         sortDeck();
-        store.emitChange();
-        _debouncedDeckUpdate();
     }
 });
 
