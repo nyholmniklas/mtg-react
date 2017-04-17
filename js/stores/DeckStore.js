@@ -1,5 +1,4 @@
 import McFly from 'mcfly';
-import _ from 'underscore';
 
 import DeckUtils from '~/libs/deckUtils';
 import QueryUtils from '~/libs/deckBrewApi';
