@@ -14,7 +14,7 @@ export default class EditableDeckList extends React.Component {
             value: this.props.value
         };
         this.onChange = this.onChange.bind(this);
-        this.updateStore = _.debounce(this.props.deckListTextChanged, 1000).bind(this);
+        this.updateStore = _.debounce(this.props.deckListTextChanged, 500);
     }
 
     onChange(event, data) {

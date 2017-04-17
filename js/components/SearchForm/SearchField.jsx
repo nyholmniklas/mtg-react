@@ -18,6 +18,10 @@ export default class SearchField extends React.Component {
         this.props.onUserInput(data.value);
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.value !== nextState.value;
+    }
+
     componentWillUpdate(nextProps) {
         if (this.props.id !== document.activeElement.id && this.state.value !== nextProps.value) {
             this.setState({value: nextProps.value});

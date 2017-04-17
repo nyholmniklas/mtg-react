@@ -28,7 +28,7 @@ export default {
     },
     getCardFromDeck: function (cardName, deck) {
         for (var card in deck.cards) {
-            if (deck.cards[card].name === cardName) return deck.cards[card];
+            if (deck.cards[card].name.toUpperCase() === cardName.toUpperCase()) return deck.cards[card];
         }
     },
     setCardAmmount: function (deck, cardName, ammount) {

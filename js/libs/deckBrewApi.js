@@ -22,7 +22,7 @@ class DeckBrewApi {
 
                 xmlHttp.onreadystatechange = function () {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve([HttpResponse2Model.getCardsFromResponse(xmlHttp), searchParams]);
-                    else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) reject();
+                    else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) resolve();
                 };
                 let requestUrlParams = QueryBuilder.buildQueryParamsForFuzzyRequest(searchText, searchOracleText,
                     searchTypeText, searchSubtypeText, manaParams, sets, formatLegalityFilter);

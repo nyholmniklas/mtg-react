@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'underscore';
 import { Form } from 'semantic-ui-react';
 import update from 'react-addons-update';
 
@@ -18,42 +19,44 @@ export default class SearchForm extends React.Component {
         this.handleSubtypeUserInput = this.handleSubtypeUserInput.bind(this);
         this.handleManaParamsInput = this.handleManaParamsInput.bind(this);
         this.handleFormatLegalityChange = this.handleFormatLegalityChange.bind(this);
+        this.searchCards =     this.searchCards.bind(this);
+        this.triggerSearch = _.debounce(this.searchCards, 500).bind(this);
     }
 
     handleSearchTextInput(searchText) {
         this.setState(update(this.state, {
             searchText: {$set: searchText}
-        }), this.searchCards);
+        }), this.triggerSearch);
     }
 
     handleOracleUserInput(oracleSearchText) {
         this.setState(update(this.state, {
             searchOracleText: {$set: oracleSearchText}
-        }), this.searchCards);
+        }), this.triggerSearch);
     }
 
     handleTypeUserInput(typeSearchText) {
         this.setState(update(this.state, {
             searchTypeText: {$set: typeSearchText}
-        }), this.searchCards);
+        }), this.triggerSearch);
     }
 
     handleSubtypeUserInput(subtypeSearchText) {
         this.setState(update(this.state, {
             searchSubtypeText: {$set: subtypeSearchText}
-        }), this.searchCards);
+        }), this.triggerSearch);
     }
 
     handleManaParamsInput(manaParams) {
         this.setState(update(this.state, {
             manaParams: {$set: manaParams}
-        }), this.searchCards);
+        }), this.triggerSearch);
     }
 
     handleFormatLegalityChange(formatLegalityFilter) {
         this.setState(update(this.state, {
             formatLegalityFilter: {$set: formatLegalityFilter}
-        }), this.searchCards);
+        }), this.triggerSearch);
     }
 
     searchCards() {
