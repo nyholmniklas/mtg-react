@@ -30,7 +30,7 @@ export default class MainArea extends React.Component {
                 {visualDeckVisible ?
                     <Grid.Column width={16}>
                         <Cards ref="searchResults" cards={this.props.deck.cards}
-                                       cardClickedCallback={CardActions.addCardToDeck}/>
+                                       cardClickedCallback={() => {}}/>
                     </Grid.Column>
                     : null}
 
