@@ -31,5 +31,10 @@ export default Flux.createActions({
             actionType: 'UPDATE_DECK_BASED_ON_TEXT',
             deckListAsText: deckListAsText
         };
+    },
+    sortDeck: function() {
+        return {
+            actionType: 'SORT_DECK'
+        };
     }
 });

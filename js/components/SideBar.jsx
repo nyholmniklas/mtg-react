@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Statistic, Container, Grid, Menu } from 'semantic-ui-react';
+import { Statistic, Container, Grid, Menu, Button } from 'semantic-ui-react';
 
 import DeckUtils from '~/libs/deckUtils.js';
 import CardType from '~/constants/cardTypes.js';
@@ -34,6 +34,8 @@ export default class SideBar extends React.Component {
                 <Deck deckListAsText={this.props.deckListAsText}
                       deckListTextChanged={this.props.deckListTextChanged}/>
                 <br/>
+                <Button onClick={this.props.sortDeck}>Sort</Button>
+                <br/>
                 <Statistic.Group widths='3'>
                     <Statistic>
                         <Statistic.Value>{DeckUtils.getCardCount(this.props.deck)}</Statistic.Value>
@@ -58,5 +60,6 @@ SideBar.propTypes = {
     deckListTextChanged: PropTypes.func.isRequired,
     deck: PropTypes.object.isRequired,
     mainAreaContent: PropTypes.string.isRequired,
-    setMainAreaContent: PropTypes.func.isRequired
+    setMainAreaContent: PropTypes.func.isRequired,
+    sortDeck: PropTypes.func.isRequired
 };

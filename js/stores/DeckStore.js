@@ -66,6 +66,10 @@ function setDeckListFromText() {
     });
 }
 
+function sortDeck(){
+    _deckListAsText = DeckUtils.getDeckAsSortedDeckListText(_deck, _deckListAsText);
+}
+
 var _debouncedDeckUpdate = _.debounce(setDeckListFromText, 1500);
 
 //TODO: Don't manipulate DOM directly, there must be better way..
@@ -102,6 +106,11 @@ const store = new McFly().createStore({
     }
     if (payload.actionType === 'UPDATE_DECK_BASED_ON_TEXT') {
         _deckListAsText = payload.deckListAsText;
+        store.emitChange();
+        _debouncedDeckUpdate();
+    }
+    if (payload.actionType === 'SORT_DECK') {
+        sortDeck();
         store.emitChange();
         _debouncedDeckUpdate();
     }

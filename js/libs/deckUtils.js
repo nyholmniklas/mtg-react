@@ -101,5 +101,54 @@ export default {
         }
         return newDeckListAsText;
     },
-}
-;
+    getDeckAsSortedDeckListText: function (deck, deckListAsText) {
+        let lines = deckListAsText.split('\n');
+        let creatureSpells = [];
+        let nonCreatureSpells = [];
+        let lands = [];
+
+        let unknownCardLines = [];
+
+        if (deckListAsText.trim() !== '') {
+            for (var i in lines) {
+                let line = lines[i];
+                let cardName = line.substring(lines[i].indexOf(' ') + 1);
+                //let splitLine = lines[i].split(' ');
+                let card = this.getCardFromDeck(cardName, deck);
+                if (card !== undefined) {
+                    if (card.types.includes('creature')) {
+                        creatureSpells.push(card);
+                    } else if (card.types.includes('land')) {
+                        lands.push(card);
+                    } else {
+                        nonCreatureSpells.push(card);
+                    }
+                } else if (!line.startsWith('//') && !(!line || /^\s*$/.test(line))) {
+                    unknownCardLines.push(line);
+                }
+            }
+        }
+
+        let newDeckListAsText = '';
+        newDeckListAsText += '//Creatures\n';
+        for (let creature in creatureSpells) {
+            newDeckListAsText += creatureSpells[creature].ammount + ' ' + creatureSpells[creature].name + '\n';
+        }
+        newDeckListAsText += '\n';
+        newDeckListAsText += '//Non-creature Spells\n';
+        for (let card in nonCreatureSpells) {
+            newDeckListAsText += nonCreatureSpells[card].ammount + ' ' + nonCreatureSpells[card].name + '\n';
+        }
+        newDeckListAsText += '\n';
+        newDeckListAsText += '//Lands\n';
+        for (let land in lands) {
+            newDeckListAsText += lands[land].ammount + ' ' + lands[land].name + '\n';
+        }
+        newDeckListAsText += '\n';
+        newDeckListAsText += '//Wut?\n';
+        for (let line in unknownCardLines) {
+            newDeckListAsText += unknownCardLines[line];
+        }
+        return newDeckListAsText;
+    },
+};

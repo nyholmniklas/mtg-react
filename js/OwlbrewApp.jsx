@@ -55,7 +55,9 @@ class OwlbrewApp extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={4}>
                     <SideBar deckListAsText={this.state.deckListAsText}
-                             deckListTextChanged={this.deckListTextChanged} deck={this.state.deck} mainAreaContent={this.state.mainAreaContent} setMainAreaContent={this.setMainAreaContent}/>
+                             deckListTextChanged={this.deckListTextChanged} deck={this.state.deck}
+                             mainAreaContent={this.state.mainAreaContent} setMainAreaContent={this.setMainAreaContent}
+                             sortDeck={CardActions.sortDeck}/>
                 </Grid.Column>
             </Grid>
         );
