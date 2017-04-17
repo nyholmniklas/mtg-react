@@ -23,7 +23,7 @@ function removeCardFromDeck(cardToRemove) {
     }
 }
 
-function setDeckListFromText() {
+function setDeckListFromText(callback = undefined) {
     let promises = [];
     let tempDeck = {
         cards: []
@@ -61,13 +61,19 @@ function setDeckListFromText() {
         //check for race condition by comparing the text used to set the deck list with current decklist text
         if (tempDeckListAsText === _deckListAsText) {
             _deck = tempDeck;
+            if (callback !== undefined) {
+                callback();
+            }
             store.emitChange();
         }
     });
 }
 
 function sortDeck(){
-    _deckListAsText = DeckUtils.getDeckAsSortedDeckListText(_deck, _deckListAsText);
+    let callback = () => {
+        _deckListAsText = DeckUtils.getDeckAsSortedDeckListText(_deck, _deckListAsText);
+    };
+    setDeckListFromText(callback);
 }
 
 var _debouncedDeckUpdate = _.debounce(setDeckListFromText, 1500);

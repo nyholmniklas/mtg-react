@@ -147,7 +147,7 @@ export default {
         newDeckListAsText += '\n';
         newDeckListAsText += '//Wut?\n';
         for (let line in unknownCardLines) {
-            newDeckListAsText += unknownCardLines[line];
+            newDeckListAsText += unknownCardLines[line] + '\n';
         }
         return newDeckListAsText;
     },

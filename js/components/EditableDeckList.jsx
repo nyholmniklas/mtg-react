@@ -16,7 +16,6 @@ export default class EditableDeckList extends React.Component {
     }
 
     onChange(event, data) {
-        window.clearTimeout(this._timer);
         this.setState({
             value: data.value
         });
@@ -24,22 +23,17 @@ export default class EditableDeckList extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this._timer) {
-            window.clearTimeout(this._timer);
-            this._timer = null;
+        if (this.props.id !== document.activeElement.id && this.state.value !== nextProps.deckListAsText) {
+            this.setState({value: nextProps.deckListAsText});
         }
-        this._timer = window.setTimeout(function () {
-            if (this.state.value !== nextProps.deckListAsText) {
-                this.setState({value: nextProps.deckListAsText});
-            }
-        }.bind(this), 100);
     }
 
     render() {
         return (
             <Container className="deckFormContainer">
                 <Form className="deckForm">
-                    <TextArea value={this.state.value} className="deckTextArea" onChange={this.onChange}/>
+                    <TextArea id={this.props.id} value={this.state.value} className="deckTextArea"
+                              onChange={this.onChange}/>
                 </Form>
             </Container>
         );
@@ -47,6 +41,7 @@ export default class EditableDeckList extends React.Component {
 }
 
 EditableDeckList.propTypes = {
+    id: PropTypes.string.isRequired,
     deckListAsText: PropTypes.string.isRequired,
     deckListTextChanged: PropTypes.func.isRequired
 };
