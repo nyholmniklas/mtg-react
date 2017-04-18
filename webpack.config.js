@@ -1,20 +1,17 @@
-var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: [
-        'webpack-hot-middleware/client',
-        './js/OwlbrewApp.jsx'
-    ],
+    entry: './js/OwlbrewApp.jsx',
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.LoaderOptionsPlugin({
+            debug: true
+        })
     ],
     devtool: '#eval-source-map',
     output: {
-        path: path.join(__dirname, 'public'),
+        path: __dirname,
         filename: 'bundle.js',
-        publicPath: '/public/'
+        publicPath: '/public'
     },
     module: {
         loaders: [

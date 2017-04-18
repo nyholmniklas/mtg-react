@@ -16,7 +16,7 @@ var _searchParams = {
         red: false,
         green: false
     },
-    formatLegalityFilter: 'standard'
+    formatLegalityFilter: ''
 };
 
 function searchCards() {

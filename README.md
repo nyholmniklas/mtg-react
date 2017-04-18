@@ -3,18 +3,20 @@ Owlbrew
 
 [![Build Status](https://travis-ci.org/nyholmniklas/owlbrew.github.io.svg?branch=master)](https://travis-ci.org/nyholmniklas/owlbrew.github.io)
 
+About
+-------
+Owlbrew is a Magic: the Gathering deck editor, built with React and Semantic UI.
+
+Owlbrew uses the [Deckbrew API](https://deckbrew.com/api/) for data, and could not have been possible without it.
+
+Owlbrew is not produced, endorsed, supported, or affiliated with Wizards of the Coast.
+The textual and visual information presented through Owlbrew about Magic: The Gathering is copyrighted by Wizards of the Coast.
+
 Prerequisites
 -------
 
-#### Install Node
+- Node JS
 
-```
-git clone git://github.com/nodejs/node.git
-cd node
-./configure
-make
-sudo make install
-```
 
 #### Install Gulp
 
@@ -27,12 +29,24 @@ npm install -g gulp
 Setup
 -------
 
-#### Install deps and run server
+#### Install dependencies
 
 ```
 npm install
-npm run dev-build
-npm run server
 ```
 
-You can now navigate to http://localhost:8080
+
+#### Build Semantic UI
+
+```
+cd semantic/
+gulp build
+```
+
+#### Build and run server
+```
+npm run build-dev
+npm run dev-server
+```
+
+You can now navigate to http://localhost:8080/public

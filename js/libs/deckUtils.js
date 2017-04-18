@@ -128,26 +128,33 @@ export default {
                 }
             }
         }
-
         let newDeckListAsText = '';
-        newDeckListAsText += '//Creatures\n';
-        for (let creature in creatureSpells) {
-            newDeckListAsText += creatureSpells[creature].ammount + ' ' + creatureSpells[creature].name + '\n';
+        if (creatureSpells.length > 0) {
+            newDeckListAsText += '//Creatures\n';
+            for (let creature in creatureSpells) {
+                newDeckListAsText += creatureSpells[creature].ammount + ' ' + creatureSpells[creature].name + '\n';
+            }
+            newDeckListAsText += '\n';
         }
-        newDeckListAsText += '\n';
-        newDeckListAsText += '//Non-creature Spells\n';
-        for (let card in nonCreatureSpells) {
-            newDeckListAsText += nonCreatureSpells[card].ammount + ' ' + nonCreatureSpells[card].name + '\n';
+        if (nonCreatureSpells.length > 0) {
+            newDeckListAsText += '//Non-creature Spells\n';
+            for (let card in nonCreatureSpells) {
+                newDeckListAsText += nonCreatureSpells[card].ammount + ' ' + nonCreatureSpells[card].name + '\n';
+            }
         }
-        newDeckListAsText += '\n';
-        newDeckListAsText += '//Lands\n';
-        for (let land in lands) {
-            newDeckListAsText += lands[land].ammount + ' ' + lands[land].name + '\n';
+        if (lands.length > 0) {
+            newDeckListAsText += '//Lands\n';
+            for (let land in lands) {
+                newDeckListAsText += lands[land].ammount + ' ' + lands[land].name + '\n';
+            }
+            newDeckListAsText += '\n';
         }
-        newDeckListAsText += '\n';
-        newDeckListAsText += '//Wut?\n';
-        for (let line in unknownCardLines) {
-            newDeckListAsText += unknownCardLines[line] + '\n';
+        if (unknownCardLines.length > 0) {
+            newDeckListAsText += '//???:\n';
+            for (let line in unknownCardLines) {
+                newDeckListAsText += unknownCardLines[line] + '\n';
+            }
+            newDeckListAsText += '\n';
         }
         return newDeckListAsText;
     },
