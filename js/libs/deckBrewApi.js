@@ -26,7 +26,7 @@ class DeckBrewApi {
                 };
                 let requestUrlParams = QueryBuilder.buildQueryParamsForFuzzyRequest(searchText, searchOracleText,
                     searchTypeText, searchSubtypeText, manaParams, sets, formatLegalityFilter);
-                xmlHttp.open('GET', 'http://api.deckbrew.com/mtg/cards?' + requestUrlParams);
+                xmlHttp.open('GET', 'https://api.deckbrew.com/mtg/cards?' + requestUrlParams);
                 xmlHttp.send(null);
             });
     }
@@ -47,7 +47,7 @@ class DeckBrewApi {
                     }
                 };
                 cardName = cardName.replace(',', '-').replace(/\s/g, '-').replace('\'', '').replace('--', '-').toLowerCase();
-                xmlHttp.open('GET', 'http://api.deckbrew.com/mtg/cards/' + cardName);
+                xmlHttp.open('GET', 'https://api.deckbrew.com/mtg/cards/' + cardName);
                 xmlHttp.onerror = function () {
                     console.log('error' + xmlHttp.status);
                 };
