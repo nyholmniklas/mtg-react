@@ -23,7 +23,7 @@ function searchCards() {
     QueryUtils.getCards(_searchParams).then(handleResponse);
 }
 
-var search = _.debounce(searchCards, 500);
+//var search = _.debounce(searchCards, 500);
 
 function handleResponse(response) {
     let cards = response[0];
@@ -49,7 +49,7 @@ const store = new McFly().createStore({
     if (payload.actionType === 'SEARCH_CARDS') {
         _searchParams = payload.searchParams;
         store.emitChange();
-        search();
+        searchCards();
     }
 });
 

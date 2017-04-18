@@ -12,7 +12,7 @@ class DeckBrewApi {
         let sets = [];
         let formatLegalityFilter = searchParams.formatLegalityFilter;
         return new Promise(
-            function (resolve, reject) {
+            function (resolve) {
                 // Do not even make request if search text is only param and it is shorter than three characters
                 if (searchText.length < 3 && searchOracleText === '' && searchTypeText === '' && searchSubtypeText === '' && manaParams === '' && sets === '') {
                     resolve();
