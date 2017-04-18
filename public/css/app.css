@@ -7,8 +7,18 @@ html, body {
     height: 100vh;
 }
 
+.mainArea {
+    padding-top: 10px !important;
+}
+
 .card-grid {
     overflow-y: scroll;
     height: 100vh;
-    padding-top: 10px !important;
+}
+
+.noSearchResultsDialog {
+    margin-top: 20vh !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 30em;
 }

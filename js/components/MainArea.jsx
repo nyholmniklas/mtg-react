@@ -5,6 +5,7 @@ import { Grid } from 'semantic-ui-react';
 import SearchForm from '~/components/SearchBar.jsx';
 import Cards from '~/components/Cards.jsx';
 import CardActions from '~/Actions.js';
+import SearchResults from '~/components/SearchResults.jsx';
 
 export default class MainArea extends React.Component {
     render() {
@@ -23,7 +24,7 @@ export default class MainArea extends React.Component {
                     : null}
                 {searchVisible ?
                     <Grid.Column width={13}>
-                        <Cards ref="searchResults" cards={this.props.cardSearchResults}
+                        <SearchResults cards={this.props.cardSearchResults}
                                        cardClickedCallback={CardActions.addCardToDeck}/>
                     </Grid.Column>
                     : null}
