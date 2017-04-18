@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react';
 
 import SearchForm from '~/components/SearchBar.jsx';
-import Cards from '~/components/Cards.jsx';
 import CardActions from '~/Actions.js';
 import SearchResults from '~/components/SearchResults.jsx';
 import VisualDeck from '~/components/VisualDeck.jsx';
