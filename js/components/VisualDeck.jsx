@@ -14,11 +14,11 @@ export default class SearchResults extends React.Component {
                            cardClickedCallback={this.props.cardClickedCallback}/>
                     :
                     <Message compact icon className="noCardsDialog">
-                        <Icon  name='chevron left'/>
+                        <Icon name='chevron right'/>
                         <Message.Content>
-                            <Message.Header>Welcome to Owlbrew!</Message.Header>
+                            <Message.Header>You have no cards in your deck...</Message.Header>
 
-                            <p>Start exploring cards by using the search form.</p>
+                            <p>Add cards to your decklist in the editor to see them in the visual deck view.</p>
                         </Message.Content>
                     </Message>
                 }

@@ -6,6 +6,7 @@ import SearchForm from '~/components/SearchBar.jsx';
 import Cards from '~/components/Cards.jsx';
 import CardActions from '~/Actions.js';
 import SearchResults from '~/components/SearchResults.jsx';
+import VisualDeck from '~/components/VisualDeck.jsx';
 
 export default class MainArea extends React.Component {
     render() {
@@ -29,10 +30,8 @@ export default class MainArea extends React.Component {
                     </Grid.Column>
                     : null}
                 {visualDeckVisible ?
-                    <Grid.Column width={16}>
-                        <Cards ref="searchResults" cards={this.props.deck.cards}
+                        <VisualDeck cards={this.props.deck.cards}
                                        cardClickedCallback={() => {}}/>
-                    </Grid.Column>
                     : null}
 
 
