@@ -12,6 +12,15 @@ import MainArea from '~/components/MainArea.jsx';
 import SideBar from '~/components/SideBar.jsx';
 import {initialState} from '~/OwlbrewInitState.js';
 
+
+import './../public/css/app.css'; // eslint-disable-line no-unused-vars
+import './../public/css/clean-scrollbar.css'; // eslint-disable-line no-unused-vars
+import './../public/css/components/Card.css'; // eslint-disable-line no-unused-vars
+import './../public/css/components/Cards.css'; // eslint-disable-line no-unused-vars
+import './../public/css/components/EditableDeckList.css'; // eslint-disable-line no-unused-vars
+import './../public/css/components/SearchBar.css'; // eslint-disable-line no-unused-vars
+import './../public/css/components/SideBar.css'; // eslint-disable-line no-unused-vars
+
 class OwlbrewApp extends React.Component {
     constructor(props) {
         super(props);

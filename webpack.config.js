@@ -15,10 +15,13 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /\.css$/, loaders: ['style', 'css']},
             {test: /\.(js|jsx)$/, loader: 'babel-loader', exclude: /node_modules/}
         ],
         rules: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
             {
                 enforce: 'pre',
                 test: /\.(js|jsx)$/,
