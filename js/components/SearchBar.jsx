@@ -26,7 +26,6 @@ export default class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
     deck: PropTypes.object.isRequired,
-    downloadDeckCallback: PropTypes.func.isRequired,
     searchCards: PropTypes.func.isRequired,
     searchParams: PropTypes.object.isRequired
 };

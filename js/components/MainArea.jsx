@@ -18,8 +18,7 @@ export default class MainArea extends React.Component {
                 {searchVisible ?
                     <Grid.Column width={3}>
                         <SearchForm searchCards={this.props.searchCards} searchParams={this.props.searchParams}
-                                    deck={this.props.deck}
-                                    downloadDeckCallback={CardActions.downloadDeck}/>
+                                    deck={this.props.deck}/>
                     </Grid.Column>
                     : null}
                 {searchVisible ?

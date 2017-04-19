@@ -76,9 +76,8 @@ function sortDeck() {
     setDeckListFromText(true, callback);
 }
 
-//TODO: Don't manipulate DOM directly, there must be better way..
 function downloadDeck() {
-    var data = new Blob([DeckUtils.getDeckAsText(_deck)], {type: 'text/plain'});
+    var data = new Blob(_deckListAsText, {type: 'text/plain'});
     var url = (window.webkitURL || window.URL).createObjectURL(data);
     var a = document.createElement('a');
     document.body.appendChild(a);

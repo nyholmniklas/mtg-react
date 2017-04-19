@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Statistic, Container, Grid, Menu, Button } from 'semantic-ui-react';
+import { Statistic, Container, Grid, Menu, } from 'semantic-ui-react';
 
 import DeckUtils from '~/libs/deckUtils.js';
 import CardType from '~/constants/cardTypes.js';
 
 import Deck from '~/components/Deck.jsx';
+import DeckToolbar from '~/components/DeckToolbar.jsx';
 
 export default class SideBar extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.handleMenuChange = this.handleMenuChange.bind(this);
     }
@@ -25,7 +26,7 @@ export default class SideBar extends React.Component {
                         <Menu.Item name='search' active={this.props.mainAreaContent === 'search'}
                                    onClick={this.handleMenuChange}/>
                         {/*<Menu.Item name='stats' active={this.props.mainAreaContent === 'stats'}
-                                   onClick={this.handleMenuChange}/>*/}
+                         onClick={this.handleMenuChange}/>*/}
                         <Menu.Item name='visual-deck' active={this.props.mainAreaContent === 'visual-deck'}
                                    onClick={this.handleMenuChange}/>
                     </Menu>
@@ -34,7 +35,7 @@ export default class SideBar extends React.Component {
                 <Deck deckListAsText={this.props.deckListAsText}
                       deckListTextChanged={this.props.deckListTextChanged}/>
                 <br/>
-                <Button content='Sort' icon='sort' onClick={this.props.sortDeck}/>
+                <DeckToolbar sortDeck={this.props.sortDeck} downloadDeck={this.props.downloadDeck}/>
                 <br/>
                 <Statistic.Group widths='3'>
                     <Statistic>
@@ -61,5 +62,6 @@ SideBar.propTypes = {
     deck: PropTypes.object.isRequired,
     mainAreaContent: PropTypes.string.isRequired,
     setMainAreaContent: PropTypes.func.isRequired,
-    sortDeck: PropTypes.func.isRequired
+    sortDeck: PropTypes.func.isRequired,
+    downloadDeck: PropTypes.func.isRequired
 };
