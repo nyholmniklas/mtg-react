@@ -8,7 +8,7 @@ export default class SearchResults extends React.Component {
     render() {
         let showResults = this.props.cards !== undefined && this.props.cards.length > 0;
         return (
-            <Container>
+            <div>
                 {showResults ?
                     <Cards cards={this.props.cards}
                            cardClickedCallback={this.props.cardClickedCallback}/>
@@ -22,7 +22,7 @@ export default class SearchResults extends React.Component {
                         </Message.Content>
                     </Message>
                 }
-            </Container>
+            </div>
         );
     }
 }
