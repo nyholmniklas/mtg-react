@@ -1,3 +1,5 @@
+import _ from 'underscore';
+
 export default {
     getDeckAsText: function (deck) {
         var output = '';
@@ -28,7 +30,7 @@ export default {
     },
     getCardFromDeck: function (cardName, deck) {
         for (var card in deck.cards) {
-            if (deck.cards[card].name.toUpperCase() === cardName.toUpperCase()) return deck.cards[card];
+            if (deck.cards[card].name.toUpperCase().trim() === cardName.toUpperCase().trim()) return deck.cards[card];
         }
     },
     setCardAmmount: function (deck, cardName, ammount) {
@@ -48,27 +50,53 @@ export default {
         let lines = deckListAsText.split('\n');
         for (var line in lines) {
             try {
-                if (!lines[line].startsWith('//') && lines[line] !== '') {
-                    var cardName = '';
-                    var ammount = 1;
-                    try {
-                        let splitLine = lines[line].split(' ');
-                        ammount = parseInt(splitLine[0]);
-                        if (isNaN(ammount)) ammount = 1;
-                    } catch (err) {
-                        ammount = 1;
-                    }
-                    try {
-                        cardName = lines[line].substring(lines[line].indexOf(' ') + 1);
-                        cardName = cardName.trim();
-                    } catch (err){
-                        cardName = lines[line];
-                    }
-                    callback(cardName, ammount);
+                let ammountAndName = this.getCardAmmountAndNameFromLine(lines[line]);
+                if (ammountAndName.length > 0) {
+                    callback(ammountAndName[1], ammountAndName[0]);
                 }
             } catch (err) {
                 throw err;
             }
+        }
+    },
+    /**
+     * Takes a line from the decklist editor as a string and tries to parse the ammount and name of the card.
+     * The following will work:
+     * - '4 Lightning Bolt'
+     * - 'Lightning Bolt'
+     * - 'lightning bolt'
+     * - '  lightning bolt '
+     *
+     * Lines that start with // will be ignored as comments and return and empty array.
+     *
+     * @param line A string in the form '4 Lightning Bolt' or "//These are creatures"
+     * @returns {{value, index, criteria}|Array} The ammount and name of the card in an array as [4, 'Lightning Bolt'].
+     */
+    getCardAmmountAndNameFromLine: function (line) {
+        if (!line.startsWith('//') && line !== '') {
+            var cardName = '';
+            var ammount = 1;
+            try {
+                let splitLine = line.split(' ');
+                ammount = parseInt(splitLine[0]);
+                if (isNaN(ammount)) {
+                    ammount = 1;
+                    cardName = line;
+                }
+            } catch (err) {
+                ammount = 1;
+            }
+            if (cardName === '') {
+                try {
+                    cardName = line.substring(line.indexOf(' ') + 1);
+                    cardName = cardName.trim();
+                } catch (err) {
+                    cardName = line;
+                }
+            }
+            return [ammount, cardName];
+        } else {
+            return [];
         }
     },
     /**
@@ -109,7 +137,8 @@ export default {
             }
         }
         return newDeckListAsText;
-    },
+    }
+    ,
     getDeckAsSortedDeckListText: function (deck, deckListAsText) {
         let lines = deckListAsText.split('\n');
         let creatureSpells = [];
@@ -137,6 +166,10 @@ export default {
                 }
             }
         }
+
+        creatureSpells = this.getSortedByManaCost(creatureSpells);
+        nonCreatureSpells = this.getSortedByManaCost(nonCreatureSpells);
+
         let newDeckListAsText = '';
         if (creatureSpells.length > 0) {
             newDeckListAsText += '//Creatures\n';
@@ -166,5 +199,10 @@ export default {
             newDeckListAsText += '\n';
         }
         return newDeckListAsText;
-    },
+    }
+    ,
+    getSortedByManaCost(cards)
+    {
+        return _.sortBy(cards, 'cmc');
+    }
 };

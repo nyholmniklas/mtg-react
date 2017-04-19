@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Message, Icon } from 'semantic-ui-react';
+import { Message, Icon } from 'semantic-ui-react';
 
 import Cards from '~/components/Cards.jsx';
 

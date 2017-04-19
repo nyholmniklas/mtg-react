@@ -22,7 +22,7 @@ function removeCardFromDeck(cardToRemove) {
     }
 }
 
-function setDeckListFromText(callback = undefined) {
+function setDeckListFromText(force = false, callback = undefined) {
     let promises = [];
     let tempDeck = {
         cards: []
@@ -58,7 +58,7 @@ function setDeckListFromText(callback = undefined) {
             }
         }
         //check for race condition by comparing the text used to set the deck list with current decklist text
-        if (tempDeckListAsText === _deckListAsText) {
+        if (force || tempDeckListAsText === _deckListAsText) {
             _deck = tempDeck;
             if (callback !== undefined) {
                 callback();
@@ -71,8 +71,9 @@ function setDeckListFromText(callback = undefined) {
 function sortDeck() {
     let callback = () => {
         _deckListAsText = DeckUtils.getDeckAsSortedDeckListText(_deck, _deckListAsText);
+        setDeckListFromText(true);
     };
-    setDeckListFromText(callback);
+    setDeckListFromText(true, callback);
 }
 
 //TODO: Don't manipulate DOM directly, there must be better way..
