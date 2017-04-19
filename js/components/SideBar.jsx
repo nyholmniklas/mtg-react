@@ -34,7 +34,7 @@ export default class SideBar extends React.Component {
                 <Deck deckListAsText={this.props.deckListAsText}
                       deckListTextChanged={this.props.deckListTextChanged}/>
                 <br/>
-                <Button onClick={this.props.sortDeck}>Sort</Button>
+                <Button content='Sort' icon='sort' onClick={this.props.sortDeck}/>
                 <br/>
                 <Statistic.Group widths='3'>
                     <Statistic>
