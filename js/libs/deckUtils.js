@@ -48,15 +48,24 @@ export default {
         let lines = deckListAsText.split('\n');
         for (var line in lines) {
             try {
-                let splitLine = lines[line].split(' ');
-                var ammount = 1;
-                try {
-                    ammount = parseInt(splitLine[0]);
-                } catch (err) {
-                    ammount = 1;
+                if (!lines[line].startsWith('//') && lines[line] !== '') {
+                    var cardName = '';
+                    var ammount = 1;
+                    try {
+                        let splitLine = lines[line].split(' ');
+                        ammount = parseInt(splitLine[0]);
+                        if (isNaN(ammount)) ammount = 1;
+                    } catch (err) {
+                        ammount = 1;
+                    }
+                    try {
+                        cardName = lines[line].substring(lines[line].indexOf(' ') + 1);
+                        cardName = cardName.trim();
+                    } catch (err){
+                        cardName = lines[line];
+                    }
+                    callback(cardName, ammount);
                 }
-                let cardName = lines[line].substring(lines[line].indexOf(' ') + 1);
-                callback(cardName, ammount);
             } catch (err) {
                 throw err;
             }

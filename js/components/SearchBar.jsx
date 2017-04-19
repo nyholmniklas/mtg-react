@@ -14,7 +14,7 @@ export default class SearchBar extends React.Component {
         return (
             <Container className="searchBar">
                 <Header size="huge">
-                    <Icon name="lab"/>
+                    <Icon size='small' name="lab"/>
                     owlbrew.io
                 </Header>
                 <Divider/>
