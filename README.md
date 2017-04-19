@@ -37,14 +37,6 @@ Setup
 npm install
 ```
 
-
-#### Build Semantic UI
-
-```
-cd semantic/
-gulp build
-```
-
 #### Build and run server
 ```
 npm run build-dev
