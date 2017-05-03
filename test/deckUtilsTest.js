@@ -1,4 +1,5 @@
-var assert = require('assert');
+import assert from 'assert';
+import DeckUtils from '~/libs/deckUtils.js';
 
 describe('Array', function () {
     describe('#indexOf()', function () {
