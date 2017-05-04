@@ -5,12 +5,13 @@ import { Grid } from 'semantic-ui-react';
 import SearchForm from '~/components/SearchBar.jsx';
 import CardActions from '~/Actions.js';
 import SearchResults from '~/components/SearchResults.jsx';
+import Stats from '~/components/Stats.jsx';
 import VisualDeck from '~/components/VisualDeck.jsx';
 
 export default class MainArea extends React.Component {
     render() {
         let searchVisible = (this.props.mainAreaContent === 'search');
-        //let statsVisible = (this.props.mainAreaContent === 'stats');
+        let statsVisible = (this.props.mainAreaContent === 'stats');
         let visualDeckVisible = (this.props.mainAreaContent === 'visual-deck');
 
         return (
@@ -31,6 +32,11 @@ export default class MainArea extends React.Component {
                     <Grid.Column width={16}>
                         <VisualDeck cards={this.props.deck.cards}
                                     cardClickedCallback={() => {}}/>
+                    </Grid.Column>
+                    : null}
+                {statsVisible ?
+                    <Grid.Column width={16}>
+                        <Stats deck={this.props.deck}/>
                     </Grid.Column>
                     : null}
 

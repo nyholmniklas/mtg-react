@@ -25,8 +25,8 @@ export default class SideBar extends React.Component {
                     <Menu fluid vertical tabular='right'>
                         <Menu.Item name='search' active={this.props.mainAreaContent === 'search'}
                                    onClick={this.handleMenuChange}/>
-                        {/*<Menu.Item name='stats' active={this.props.mainAreaContent === 'stats'}
-                         onClick={this.handleMenuChange}/>*/}
+                        <Menu.Item name='stats' active={this.props.mainAreaContent === 'stats'}
+                         onClick={this.handleMenuChange}/>
                         <Menu.Item name='visual-deck' active={this.props.mainAreaContent === 'visual-deck'}
                                    onClick={this.handleMenuChange}/>
                     </Menu>
