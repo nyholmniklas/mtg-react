@@ -44,7 +44,7 @@ class DeckBrewApi {
                 xmlHttp.onreadystatechange = function () {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve(HttpResponse2Model.getCardFromResponse(xmlHttp));
                     else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) {
-                        resolve();
+                        resolve({});
                     }
                 };
                 cardName = cardName.replace(',', '-').replace(/\s/g, '-').replace('\'', '').replace('--', '-').toLowerCase();
