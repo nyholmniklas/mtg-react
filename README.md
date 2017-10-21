@@ -1,7 +1,7 @@
 Owlbrew
 ===========
 
-[![Build Status](https://travis-ci.org/nyholmniklas/owlbrew.svg?branch=master)](https://travis-ci.org/nyholmniklas/owlbrew.github.io)
+[![Build Status](https://travis-ci.org/nyholmniklas/owlbrew.svg?branch=master)](https://travis-ci.org/nyholmniklas/owlbrew)
 
 About
 -------
