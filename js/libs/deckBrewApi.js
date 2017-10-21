@@ -24,9 +24,10 @@ class DeckBrewApi {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve([HttpResponse2Model.getCardsFromResponse(xmlHttp), searchParams]);
                     else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) resolve();
                 };
-                let requestUrlParams = QueryBuilder.buildQueryParamsForFuzzyRequest(searchText, searchOracleText,
-                    searchTypeText, searchSubtypeText, manaParams, sets, formatLegalityFilter);
-                xmlHttp.open('GET', 'https://api.deckbrew.com/mtg/cards?' + requestUrlParams);
+                // let requestUrlParams = QueryBuilder.buildQueryParamsForFuzzyRequest(searchText, searchOracleText,
+                //     searchTypeText, searchSubtypeText, manaParams, sets, formatLegalityFilter);
+                let requestUrlParams = searchText;
+                xmlHttp.open('GET', 'https://api.scryfall.com/cards/search?q=' + requestUrlParams);
                 xmlHttp.send(null);
             });
     }
@@ -47,7 +48,7 @@ class DeckBrewApi {
                     }
                 };
                 cardName = cardName.replace(',', '-').replace(/\s/g, '-').replace('\'', '').replace('--', '-').toLowerCase();
-                xmlHttp.open('GET', 'https://api.deckbrew.com/mtg/cards/' + cardName);
+                xmlHttp.open('GET', 'https://api.scryfall.com/cards/named?exact=' + cardName);
                 xmlHttp.onerror = function () {
                     console.log('error' + xmlHttp.status);
                 };
