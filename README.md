@@ -9,7 +9,7 @@ Owlbrew is a Magic: the Gathering deck editor, built with React and Semantic UI.
 
 The app is available at [www.owlbrew.io](http://www.owlbrew.io/)
 
-Owlbrew uses the [Deckbrew API](https://deckbrew.com/api/) for data, and could not have been possible without it.
+Owlbrew uses the [Scryfall API](https://scryfall.com/docs/api) for data.
 
 Owlbrew is not produced, endorsed, supported, or affiliated with Wizards of the Coast.
 The textual and visual information presented through Owlbrew about Magic: The Gathering is copyrighted by Wizards of the Coast.
