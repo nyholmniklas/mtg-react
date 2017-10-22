@@ -3,22 +3,16 @@ import * as QueryBuilder from '~/libs/queryBuilder.js';
 
 class DeckBrewApi {
     static getCards(searchParams) {
-        let searchText = searchParams.searchText;
-        let searchOracleText = searchParams.searchOracleText;
-        let searchTypeText = searchParams.searchTypeText;
-        let searchSubtypeText = searchParams.searchSubtypeText;
-        let manaParams = searchParams.manaParams;
-        let sets = [];
-        let formatLegalityFilter = searchParams.formatLegalityFilter;
+
         return new Promise(function(resolve) {
             // Do not even make request if search text is only param and it is shorter than three characters
             if (
-                searchText.length < 3 &&
-                searchOracleText === '' &&
-                searchTypeText === '' &&
-                searchSubtypeText === '' &&
-                manaParams === '' &&
-                sets === ''
+                searchParams.searchText.length < 3 &&
+                searchParams.searchOracleText === '' &&
+                searchParams.searchTypeText === '' &&
+                searchParams.searchSubtypeText === '' &&
+                searchParams.manaParams === '' &&
+                searchParams.sets === ''
             ) {
                 resolve();
                 return;
@@ -34,15 +28,7 @@ class DeckBrewApi {
                 else if (xmlHttp.readyState == 4 && xmlHttp.status != 200)
                     resolve();
             };
-            let requestUrlParams = QueryBuilder.buildQueryParamsForFuzzyRequest(
-                searchText,
-                searchOracleText,
-                searchTypeText,
-                searchSubtypeText,
-                manaParams,
-                sets,
-                formatLegalityFilter
-            );
+            let requestUrlParams = QueryBuilder.buildQueryParamsForFuzzyRequest(searchParams);
             xmlHttp.open(
                 'GET',
                 'https://api.scryfall.com/cards/search?q=' + requestUrlParams
