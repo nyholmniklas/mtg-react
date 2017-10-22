@@ -63,11 +63,23 @@ export function buildQueryParamsForFuzzyRequest(
     //     subtypeQuery +
     //     manaQuery +
     //     formatFilter;
-    const requestUrlParams = setFormat(searchText, formatLegalityFilter);
+    const compose = (f, g) => x => f(g(x));
+    let requestUrlParams = searchText;
+    // let queryBuilderFunction = compose(setFormat, setOracle);
+    // requestUrlParams = queryBuilderFunction(searchText);
+    requestUrlParams = setFormat(formatLegalityFilter)(requestUrlParams);
+    requestUrlParams = setOracle(searchOracleText)(requestUrlParams);
     return requestUrlParams;
 }
 
-let setFormat = (query, format) => {
-    if (format) query = query + '+f=' + format;
-    return query;
+let addParam = (key, value) => {
+    let queryFunction = query => {
+        if (value) query = query + '+' + key + '=' + value;
+        return query;
+    };
+    return queryFunction;
 };
+
+let setFormat = format => addParam('f', format);
+
+let setOracle = oracleText => addParam('o', oracleText);
