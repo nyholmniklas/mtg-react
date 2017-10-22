@@ -3,7 +3,7 @@
  *
  */
 export function getCardFromResponse(response) {
-    return JSON.parse(response.responseText).data;
+    return JSON.parse(response.responseText);
 }
 
 /**

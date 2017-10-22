@@ -24,7 +24,7 @@ export default {
     getTypeCount: function (deck, type) {
         var count = 0;
         for (var i = 0; i < deck.cards.length; i++) {
-            if (deck.cards[i].types.includes(type))count += deck.cards[i].ammount;
+            if (deck.cards[i].type_line.includes(type))count += deck.cards[i].ammount;
         }
         return count;
     },
@@ -154,9 +154,9 @@ export default {
                 //let splitLine = lines[i].split(' ');
                 let card = this.getCardFromDeck(cardName, deck);
                 if (card !== undefined) {
-                    if (card.types.includes('creature')) {
+                    if (card.type_line.includes('creature')) {
                         creatureSpells.push(card);
-                    } else if (card.types.includes('land')) {
+                    } else if (card.type_line.includes('land')) {
                         lands.push(card);
                     } else {
                         nonCreatureSpells.push(card);
