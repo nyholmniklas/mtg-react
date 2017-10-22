@@ -70,6 +70,7 @@ export function buildQueryParamsForFuzzyRequest(
     params = setFormat(formatLegalityFilter)(params);
     params = setOracle(searchOracleText)(params);
     params = setType(searchTypeText)(params);
+    params = setType(searchSubtypeText)(params);
     return params;
 }
 
