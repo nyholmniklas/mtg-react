@@ -14,7 +14,7 @@ export default class Card extends React.Component {
                 //position: 'absolute',
                 //'margin-top': offsetFromTop
             };
-            var cardImage = <Image key={i} src={card.img_url} style={style} className="card-image"/>;
+            var cardImage = <Image key={i} src={card.image_uri} style={style} className="card-image"/>;
             cardImages.push(cardImage);
         }
         return cardImages;
