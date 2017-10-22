@@ -1,7 +1,7 @@
 import _ from 'underscore';
 
 export default {
-    getDeckAsText: function (deck) {
+    getDeckAsText: function(deck) {
         var output = '';
         for (var i = 0; i < deck.cards.length; i++) {
             var card = deck.cards[i];
@@ -9,7 +9,7 @@ export default {
         }
         return output;
     },
-    getCardCount: function (deck) {
+    getCardCount: function(deck) {
         var count = 0;
         for (var i = 0; i < deck.cards.length; i++) {
             count += deck.cards[i].ammount;
@@ -21,21 +21,28 @@ export default {
      * @param type The type you want to count. For example 'lands' will return the number of lands in the deck.
      * @returns {number} The number of cards in the deck which match the type given to the function.
      */
-    getTypeCount: function (deck, type) {
+    getTypeCount: function(deck, type) {
         var count = 0;
         for (var i = 0; i < deck.cards.length; i++) {
-            if (deck.cards[i].type_line.includes(type))count += deck.cards[i].ammount;
+            let type_line = deck.cards[i].type_line;
+            if (type_line && type_line.includes(type))
+                count += deck.cards[i].ammount;
         }
         return count;
     },
-    getCardFromDeck: function (cardName, deck) {
+    getCardFromDeck: function(cardName, deck) {
         for (var card in deck.cards) {
-            if (deck.cards[card].name.toUpperCase().trim() === cardName.toUpperCase().trim()) return deck.cards[card];
+            if (
+                deck.cards[card].name.toUpperCase().trim() ===
+                cardName.toUpperCase().trim()
+            )
+                return deck.cards[card];
         }
     },
-    setCardAmmount: function (deck, cardName, ammount) {
+    setCardAmmount: function(deck, cardName, ammount) {
         for (var card in deck.cards) {
-            if (deck.cards[card].name === cardName) deck.cards[card].ammount = ammount;
+            if (deck.cards[card].name === cardName)
+                deck.cards[card].ammount = ammount;
         }
         return deck;
     },
@@ -46,11 +53,13 @@ export default {
      * @param deckListAsText The deck list with as a string with each card on new line in form "1 Birds of Paradise"
      * @param callback Will call this function with cardName and ammount: callback(cardName, ammount)
      */
-    forValidCardSyntaxInDeckListAsText: function (deckListAsText, callback) {
+    forValidCardSyntaxInDeckListAsText: function(deckListAsText, callback) {
         let lines = deckListAsText.split('\n');
         for (var line in lines) {
             try {
-                let ammountAndName = this.getCardAmmountAndNameFromLine(lines[line]);
+                let ammountAndName = this.getCardAmmountAndNameFromLine(
+                    lines[line]
+                );
                 if (ammountAndName.length > 0) {
                     callback(ammountAndName[1], ammountAndName[0]);
                 }
@@ -72,7 +81,7 @@ export default {
      * @param line A string in the form '4 Lightning Bolt' or "//These are creatures"
      * @returns {{value, index, criteria}|Array} The ammount and name of the card in an array as [4, 'Lightning Bolt'].
      */
-    getCardAmmountAndNameFromLine: function (line) {
+    getCardAmmountAndNameFromLine: function(line) {
         if (!line.startsWith('//') && line !== '') {
             var cardName = '';
             var ammount = 1;
@@ -106,7 +115,7 @@ export default {
      * @param deckListAsText The deck list with as a string with each card on new line in form "1 Birds of Paradise"
      * @param card The card as a fully populate object.
      */
-    addCardToDeckListAsText: function (deckListAsText, card) {
+    addCardToDeckListAsText: function(deckListAsText, card) {
         let newDeckListAsText = '';
         let foundCard = false;
 
@@ -119,10 +128,13 @@ export default {
                     let splitLine = lines[i].split(' ');
                     if (cardName === card.name) {
                         let ammount = parseInt(splitLine[0]) + 1;
-                        line = ammount.toString().concat(' ').concat(card.name);
+                        line = ammount
+                            .toString()
+                            .concat(' ')
+                            .concat(card.name);
                         foundCard = true;
                     }
-                    if (i != 0) line = ('\n').concat(line);
+                    if (i != 0) line = '\n'.concat(line);
                     newDeckListAsText = newDeckListAsText.concat(line);
                 } catch (err) {
                     throw err;
@@ -131,15 +143,15 @@ export default {
         }
         if (!foundCard) {
             if (deckListAsText.trim() !== '') {
-                newDeckListAsText = newDeckListAsText + '\n1 '.concat(card.name);
+                newDeckListAsText =
+                    newDeckListAsText + '\n1 '.concat(card.name);
             } else {
                 newDeckListAsText = '1 '.concat(card.name);
             }
         }
         return newDeckListAsText;
-    }
-    ,
-    getDeckAsSortedDeckListText: function (deck, deckListAsText) {
+    },
+    getDeckAsSortedDeckListText: function(deck, deckListAsText) {
         let lines = deckListAsText.split('\n');
         let creatureSpells = [];
         let nonCreatureSpells = [];
@@ -154,14 +166,17 @@ export default {
                 //let splitLine = lines[i].split(' ');
                 let card = this.getCardFromDeck(cardName, deck);
                 if (card !== undefined) {
-                    if (card.type_line.includes('creature')) {
+                    if (card.type_line.includes('Creature')) {
                         creatureSpells.push(card);
-                    } else if (card.type_line.includes('land')) {
+                    } else if (card.type_line.includes('Land')) {
                         lands.push(card);
                     } else {
                         nonCreatureSpells.push(card);
                     }
-                } else if (!line.startsWith('//') && !(!line || /^\s*$/.test(line))) {
+                } else if (
+                    !line.startsWith('//') &&
+                    !(!line || /^\s*$/.test(line))
+                ) {
                     unknownCardLines.push(line);
                 }
             }
@@ -174,20 +189,29 @@ export default {
         if (creatureSpells.length > 0) {
             newDeckListAsText += '//Creatures\n';
             for (let creature in creatureSpells) {
-                newDeckListAsText += creatureSpells[creature].ammount + ' ' + creatureSpells[creature].name + '\n';
+                newDeckListAsText +=
+                    creatureSpells[creature].ammount +
+                    ' ' +
+                    creatureSpells[creature].name +
+                    '\n';
             }
             newDeckListAsText += '\n';
         }
         if (nonCreatureSpells.length > 0) {
             newDeckListAsText += '//Non-creature Spells\n';
             for (let card in nonCreatureSpells) {
-                newDeckListAsText += nonCreatureSpells[card].ammount + ' ' + nonCreatureSpells[card].name + '\n';
+                newDeckListAsText +=
+                    nonCreatureSpells[card].ammount +
+                    ' ' +
+                    nonCreatureSpells[card].name +
+                    '\n';
             }
         }
         if (lands.length > 0) {
             newDeckListAsText += '//Lands\n';
             for (let land in lands) {
-                newDeckListAsText += lands[land].ammount + ' ' + lands[land].name + '\n';
+                newDeckListAsText +=
+                    lands[land].ammount + ' ' + lands[land].name + '\n';
             }
             newDeckListAsText += '\n';
         }
@@ -199,10 +223,8 @@ export default {
             newDeckListAsText += '\n';
         }
         return newDeckListAsText;
-    }
-    ,
-    getSortedByManaCost(cards)
-    {
+    },
+    getSortedByManaCost(cards) {
         return _.sortBy(cards, 'cmc');
     }
 };
