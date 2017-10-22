@@ -64,12 +64,13 @@ export function buildQueryParamsForFuzzyRequest(
     //     manaQuery +
     //     formatFilter;
     const compose = (f, g) => x => f(g(x));
-    let requestUrlParams = searchText;
+    let params = searchText;
     // let queryBuilderFunction = compose(setFormat, setOracle);
     // requestUrlParams = queryBuilderFunction(searchText);
-    requestUrlParams = setFormat(formatLegalityFilter)(requestUrlParams);
-    requestUrlParams = setOracle(searchOracleText)(requestUrlParams);
-    return requestUrlParams;
+    params = setFormat(formatLegalityFilter)(params);
+    params = setOracle(searchOracleText)(params);
+    params = setType(searchTypeText)(params);
+    return params;
 }
 
 let addParam = (key, value) => {
@@ -83,3 +84,5 @@ let addParam = (key, value) => {
 let setFormat = format => addParam('f', format);
 
 let setOracle = oracleText => addParam('o', oracleText);
+
+let setType = type => addParam('t', type);
