@@ -15,7 +15,6 @@ export default class SearchForm extends React.Component {
         this.handleSearchTextInput = this.handleSearchTextInput.bind(this);
         this.handleOracleUserInput = this.handleOracleUserInput.bind(this);
         this.handleTypeUserInput = this.handleTypeUserInput.bind(this);
-        this.handleSubtypeUserInput = this.handleSubtypeUserInput.bind(this);
         this.handleManaParamsInput = this.handleManaParamsInput.bind(this);
         this.handleFormatLegalityChange = this.handleFormatLegalityChange.bind(
             this
@@ -51,15 +50,6 @@ export default class SearchForm extends React.Component {
         );
     }
 
-    handleSubtypeUserInput(subtypeSearchText) {
-        this.setState(
-            update(this.state, {
-                searchSubtypeText: { $set: subtypeSearchText }
-            }),
-            this.triggerSearch
-        );
-    }
-
     handleManaParamsInput(manaParams) {
         this.setState(
             update(this.state, {
@@ -83,7 +73,6 @@ export default class SearchForm extends React.Component {
             searchText: this.state.searchText,
             searchOracleText: this.state.searchOracleText,
             searchTypeText: this.state.searchTypeText,
-            searchSubtypeText: this.state.searchSubtypeText,
             manaParams: this.state.manaParams,
             formatLegalityFilter: this.state.formatLegalityFilter
         };
@@ -113,13 +102,6 @@ export default class SearchForm extends React.Component {
                     placeholder="eg. Creature"
                     value={this.props.searchParams.searchTypeText}
                     onUserInput={this.handleTypeUserInput}
-                />
-                <SearchField
-                    id="subtype-card-name"
-                    label="Subtype"
-                    placeholder="eg. Goblin"
-                    value={this.props.searchParams.searchSubtypeText}
-                    onUserInput={this.handleSubtypeUserInput}
                 />
                 <LegalitySelector
                     value={this.props.searchParams.formatLegalityFilter}

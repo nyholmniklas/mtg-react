@@ -8,7 +8,6 @@ var _searchParams = {
     searchText: '',
     searchOracleText: '',
     searchTypeText: '',
-    searchSubtypeText: '',
     manaParams: {
         white: false,
         blue: false,
@@ -22,8 +21,6 @@ var _searchParams = {
 function searchCards() {
     QueryUtils.getCards(_searchParams).then(handleResponse);
 }
-
-//var search = _.debounce(searchCards, 500);
 
 function handleResponse(response) {
     let cards = (_cards = []);

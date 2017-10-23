@@ -9,7 +9,6 @@ class DeckBrewApi {
                 searchParams.searchText.length < 3 &&
                 searchParams.searchOracleText === '' &&
                 searchParams.searchTypeText === '' &&
-                searchParams.searchSubtypeText === '' &&
                 searchParams.manaParams === '' &&
                 searchParams.sets === ''
             ) {
