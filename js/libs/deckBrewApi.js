@@ -3,7 +3,6 @@ import * as QueryBuilder from '~/libs/queryBuilder.js';
 
 class DeckBrewApi {
     static getCards(searchParams) {
-
         return new Promise(function(resolve) {
             // Do not even make request if search text is only param and it is shorter than three characters
             if (
@@ -28,7 +27,9 @@ class DeckBrewApi {
                 else if (xmlHttp.readyState == 4 && xmlHttp.status != 200)
                     resolve();
             };
-            let requestUrlParams = QueryBuilder.buildQueryParamsForFuzzyRequest(searchParams);
+            let requestUrlParams = QueryBuilder.buildQueryParamsForFuzzyRequest(
+                searchParams
+            );
             xmlHttp.open(
                 'GET',
                 'https://api.scryfall.com/cards/search?q=' + requestUrlParams

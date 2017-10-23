@@ -23,8 +23,11 @@ export default class SearchField extends React.Component {
     }
 
     componentWillUpdate(nextProps) {
-        if (this.props.id !== document.activeElement.id && this.state.value !== nextProps.value) {
-            this.setState({value: nextProps.value});
+        if (
+            this.props.id !== document.activeElement.id &&
+            this.state.value !== nextProps.value
+        ) {
+            this.setState({ value: nextProps.value });
         }
     }
 
@@ -32,9 +35,12 @@ export default class SearchField extends React.Component {
         return (
             <Form.Field>
                 <label>{this.props.label}</label>
-                <Input value={this.state.value} onChange={this.handleChange}
-                       placeholder={this.props.placeholder}>
-                    <input id={this.props.id}/>
+                <Input
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    placeholder={this.props.placeholder}
+                >
+                    <input id={this.props.id} />
                 </Input>
             </Form.Field>
         );

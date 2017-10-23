@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown , Form} from 'semantic-ui-react';
+import { Dropdown, Form } from 'semantic-ui-react';
 
-import {formatOptions} from '~/constants/formats.js';
+import { formatOptions } from '~/constants/formats.js';
 
 export default class LegalitySelector extends React.Component {
     constructor(props) {
@@ -11,17 +11,20 @@ export default class LegalitySelector extends React.Component {
     }
 
     handleChange(event, data) {
-        this.props.onUserInput(
-            data.value
-        );
+        this.props.onUserInput(data.value);
     }
 
     render() {
         return (
             <Form.Field>
                 <label>Format</label>
-                <Dropdown fluid selection value={this.props.value} options={formatOptions}
-                          onChange={this.handleChange}/>
+                <Dropdown
+                    fluid
+                    selection
+                    value={this.props.value}
+                    options={formatOptions}
+                    onChange={this.handleChange}
+                />
             </Form.Field>
         );
     }

@@ -6,22 +6,30 @@ import Cards from '~/components/Cards.jsx';
 
 export default class SearchResults extends React.Component {
     render() {
-        let showResults = this.props.cards !== undefined && this.props.cards.length > 0;
+        let showResults =
+            this.props.cards !== undefined && this.props.cards.length > 0;
         return (
             <div>
-                {showResults ?
-                    <Cards cards={this.props.cards}
-                           cardClickedCallback={this.props.cardClickedCallback}/>
-                    :
+                {showResults ? (
+                    <Cards
+                        cards={this.props.cards}
+                        cardClickedCallback={this.props.cardClickedCallback}
+                    />
+                ) : (
                     <Message compact icon className="noCardsDialog">
-                        <Icon name='chevron right'/>
+                        <Icon name="chevron right" />
                         <Message.Content>
-                            <Message.Header>You have no cards in your deck...</Message.Header>
+                            <Message.Header>
+                                You have no cards in your deck...
+                            </Message.Header>
 
-                            <p>Add cards to your decklist in the editor to see them in the visual deck view.</p>
+                            <p>
+                                Add cards to your decklist in the editor to see
+                                them in the visual deck view.
+                            </p>
                         </Message.Content>
                     </Message>
-                }
+                )}
             </div>
         );
     }

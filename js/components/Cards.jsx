@@ -13,12 +13,20 @@ export default class Cards extends React.Component {
         var cardClickedCallback = this.props.cardClickedCallback;
         return (
             <Grid centered className="card-grid">
-                {
-                    this.props.cards.map(function (card) {
-                        return (<Grid.Column width={4} key={card.orderNumber} className="cardColumn">
-                            <Card card={card} cardClickedCallback={cardClickedCallback}/>
-                        </Grid.Column>);
-                    })}
+                {this.props.cards.map(function(card) {
+                    return (
+                        <Grid.Column
+                            width={4}
+                            key={card.orderNumber}
+                            className="cardColumn"
+                        >
+                            <Card
+                                card={card}
+                                cardClickedCallback={cardClickedCallback}
+                            />
+                        </Grid.Column>
+                    );
+                })}
             </Grid>
         );
     }

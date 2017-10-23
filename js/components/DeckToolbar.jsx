@@ -7,8 +7,18 @@ export default class DeckToolbar extends React.Component {
     render() {
         return (
             <Button.Group labeled fluid>
-                <Button compact icon='sort' content='Sort' onClick={this.props.sortDeck}/>
-                <Button compact icon='download' content='Download' onClick={this.props.downloadDeck}/>
+                <Button
+                    compact
+                    icon="sort"
+                    content="Sort"
+                    onClick={this.props.sortDeck}
+                />
+                <Button
+                    compact
+                    icon="download"
+                    content="Download"
+                    onClick={this.props.downloadDeck}
+                />
             </Button.Group>
         );
     }

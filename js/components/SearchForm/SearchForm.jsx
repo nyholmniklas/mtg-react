@@ -9,7 +9,6 @@ import LegalitySelector from '~/components/SearchForm/LegalitySelector.jsx';
 //import ManaColorSelector from '~/components/SearchForm/ManaColorSelector.jsx';
 
 export default class SearchForm extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = this.props.searchParams;
@@ -18,45 +17,65 @@ export default class SearchForm extends React.Component {
         this.handleTypeUserInput = this.handleTypeUserInput.bind(this);
         this.handleSubtypeUserInput = this.handleSubtypeUserInput.bind(this);
         this.handleManaParamsInput = this.handleManaParamsInput.bind(this);
-        this.handleFormatLegalityChange = this.handleFormatLegalityChange.bind(this);
-        this.searchCards =     this.searchCards.bind(this);
+        this.handleFormatLegalityChange = this.handleFormatLegalityChange.bind(
+            this
+        );
+        this.searchCards = this.searchCards.bind(this);
         this.triggerSearch = _.debounce(this.searchCards, 500).bind(this);
     }
 
     handleSearchTextInput(searchText) {
-        this.setState(update(this.state, {
-            searchText: {$set: searchText}
-        }), this.triggerSearch);
+        this.setState(
+            update(this.state, {
+                searchText: { $set: searchText }
+            }),
+            this.triggerSearch
+        );
     }
 
     handleOracleUserInput(oracleSearchText) {
-        this.setState(update(this.state, {
-            searchOracleText: {$set: oracleSearchText}
-        }), this.triggerSearch);
+        this.setState(
+            update(this.state, {
+                searchOracleText: { $set: oracleSearchText }
+            }),
+            this.triggerSearch
+        );
     }
 
     handleTypeUserInput(typeSearchText) {
-        this.setState(update(this.state, {
-            searchTypeText: {$set: typeSearchText}
-        }), this.triggerSearch);
+        this.setState(
+            update(this.state, {
+                searchTypeText: { $set: typeSearchText }
+            }),
+            this.triggerSearch
+        );
     }
 
     handleSubtypeUserInput(subtypeSearchText) {
-        this.setState(update(this.state, {
-            searchSubtypeText: {$set: subtypeSearchText}
-        }), this.triggerSearch);
+        this.setState(
+            update(this.state, {
+                searchSubtypeText: { $set: subtypeSearchText }
+            }),
+            this.triggerSearch
+        );
     }
 
     handleManaParamsInput(manaParams) {
-        this.setState(update(this.state, {
-            manaParams: {$set: manaParams}
-        }), this.triggerSearch);
+        this.setState(
+            update(this.state, {
+                manaParams: { $set: manaParams }
+            }),
+            this.triggerSearch
+        );
     }
 
     handleFormatLegalityChange(formatLegalityFilter) {
-        this.setState(update(this.state, {
-            formatLegalityFilter: {$set: formatLegalityFilter}
-        }), this.triggerSearch);
+        this.setState(
+            update(this.state, {
+                formatLegalityFilter: { $set: formatLegalityFilter }
+            }),
+            this.triggerSearch
+        );
     }
 
     searchCards() {
@@ -74,22 +93,39 @@ export default class SearchForm extends React.Component {
     render() {
         return (
             <Form>
-
-                <SearchField id="search-card-name" label="Card name" placeholder="eg. Lightning Bolt"
-                             value={this.props.searchParams.searchText}
-                             onUserInput={this.handleSearchTextInput}/>
-                <SearchField id="oracle-card-name" label="Oracle text" placeholder="eg. Draw a card"
-                             value={this.props.searchParams.searchOracleText}
-                             onUserInput={this.handleOracleUserInput}/>
-                <SearchField id="type-card-name" label="Type" placeholder="eg. Creature"
-                             value={this.props.searchParams.searchTypeText}
-                             onUserInput={this.handleTypeUserInput}/>
-                <SearchField id="subtype-card-name" label="Subtype" placeholder="eg. Goblin"
-                             value={this.props.searchParams.searchSubtypeText}
-                             onUserInput={this.handleSubtypeUserInput}/>
-                <LegalitySelector value={this.props.searchParams.formatLegalityFilter}
-                                  onUserInput={this.handleFormatLegalityChange}/>
-                <br/>
+                <SearchField
+                    id="search-card-name"
+                    label="Card name"
+                    placeholder="eg. Lightning Bolt"
+                    value={this.props.searchParams.searchText}
+                    onUserInput={this.handleSearchTextInput}
+                />
+                <SearchField
+                    id="oracle-card-name"
+                    label="Oracle text"
+                    placeholder="eg. Draw a card"
+                    value={this.props.searchParams.searchOracleText}
+                    onUserInput={this.handleOracleUserInput}
+                />
+                <SearchField
+                    id="type-card-name"
+                    label="Type"
+                    placeholder="eg. Creature"
+                    value={this.props.searchParams.searchTypeText}
+                    onUserInput={this.handleTypeUserInput}
+                />
+                <SearchField
+                    id="subtype-card-name"
+                    label="Subtype"
+                    placeholder="eg. Goblin"
+                    value={this.props.searchParams.searchSubtypeText}
+                    onUserInput={this.handleSubtypeUserInput}
+                />
+                <LegalitySelector
+                    value={this.props.searchParams.formatLegalityFilter}
+                    onUserInput={this.handleFormatLegalityChange}
+                />
+                <br />
                 {/*<ManaColorSelector manaParams={this.state.manaParams}
                  manaParamsInputCallback={this.handleManaParamsInput}/>
 

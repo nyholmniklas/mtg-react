@@ -10,8 +10,7 @@ import CardActions from '~/Actions.js';
 
 import MainArea from '~/components/MainArea.jsx';
 import SideBar from '~/components/SideBar.jsx';
-import {initialState} from '~/OwlbrewInitState.js';
-
+import { initialState } from '~/OwlbrewInitState.js';
 
 import './../public/css/app.css'; // eslint-disable-line no-unused-vars
 import './../public/css/clean-scrollbar.css'; // eslint-disable-line no-unused-vars
@@ -36,12 +35,14 @@ class OwlbrewApp extends React.Component {
     }
 
     storeDidChange() {
-        this.setState(update(this.state, {
-            deck: {$set: DeckStore.getDeck()},
-            deckListAsText: {$set: DeckStore.getDeckListAsText()},
-            cardSearchResults: {$set: CardStore.getCards()},
-            searchParams: {$set: CardStore.getSearchParams()}
-        }));
+        this.setState(
+            update(this.state, {
+                deck: { $set: DeckStore.getDeck() },
+                deckListAsText: { $set: DeckStore.getDeckListAsText() },
+                cardSearchResults: { $set: CardStore.getCards() },
+                searchParams: { $set: CardStore.getSearchParams() }
+            })
+        );
     }
 
     searchCards(searchParams) {
@@ -49,24 +50,35 @@ class OwlbrewApp extends React.Component {
     }
 
     setMainAreaContent(content) {
-        this.setState(update(this.state, {
-            mainAreaContent: {$set: content}
-        }));
+        this.setState(
+            update(this.state, {
+                mainAreaContent: { $set: content }
+            })
+        );
     }
 
     render() {
         return (
-            <Grid className='app'>
+            <Grid className="app">
                 <Grid.Column width={12}>
-                    <MainArea mainAreaContent={this.state.mainAreaContent} searchParams={this.state.searchParams}
-                              searchCards={this.searchCards}
-                              cardSearchResults={this.state.cardSearchResults} deck={this.state.deck}/>
+                    <MainArea
+                        mainAreaContent={this.state.mainAreaContent}
+                        searchParams={this.state.searchParams}
+                        searchCards={this.searchCards}
+                        cardSearchResults={this.state.cardSearchResults}
+                        deck={this.state.deck}
+                    />
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    <SideBar deckListAsText={this.state.deckListAsText}
-                             deckListTextChanged={this.deckListTextChanged} deck={this.state.deck}
-                             mainAreaContent={this.state.mainAreaContent} setMainAreaContent={this.setMainAreaContent}
-                             sortDeck={CardActions.sortDeck} downloadDeck={CardActions.downloadDeck}/>
+                    <SideBar
+                        deckListAsText={this.state.deckListAsText}
+                        deckListTextChanged={this.deckListTextChanged}
+                        deck={this.state.deck}
+                        mainAreaContent={this.state.mainAreaContent}
+                        setMainAreaContent={this.setMainAreaContent}
+                        sortDeck={CardActions.sortDeck}
+                        downloadDeck={CardActions.downloadDeck}
+                    />
                 </Grid.Column>
             </Grid>
         );

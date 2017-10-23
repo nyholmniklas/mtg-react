@@ -9,21 +9,19 @@ module.exports = {
     extends: 'eslint:recommended',
     parserOptions: {
         sourceType: 'module',
-        "ecmaFeatures": {
-            "jsx": true,
-            "modules": true
+        ecmaFeatures: {
+            jsx: true,
+            modules: true
         }
     },
-    "plugins": [
-        "react"
-    ],
+    plugins: ['react'],
     rules: {
         indent: ['error', 4],
         quotes: ['error', 'single'],
         semi: ['error', 'always'],
         'no-unused-vars': ['warn'],
         'no-console': 0,
-        "react/jsx-uses-react": "error",
-        "react/jsx-uses-vars": "error"
-    },
+        'react/jsx-uses-react': 'error',
+        'react/jsx-uses-vars': 'error'
+    }
 };

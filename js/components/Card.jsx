@@ -14,7 +14,14 @@ export default class Card extends React.Component {
                 //position: 'absolute',
                 //'margin-top': offsetFromTop
             };
-            var cardImage = <Image key={i} src={card.image_uri} style={style} className="card-image"/>;
+            var cardImage = (
+                <Image
+                    key={i}
+                    src={card.image_uri}
+                    style={style}
+                    className="card-image"
+                />
+            );
             cardImages.push(cardImage);
         }
         return cardImages;
@@ -23,7 +30,7 @@ export default class Card extends React.Component {
     render() {
         let card = this.props.card;
         let callback = this.props.cardClickedCallback;
-        let cardClicked = function () {
+        let cardClicked = function() {
             callback(card);
         };
         let cardImages = this.getCardImages(card);

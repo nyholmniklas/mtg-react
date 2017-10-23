@@ -4,9 +4,7 @@ import { Button } from 'semantic-ui-react';
 
 export default class ExportButton extends React.Component {
     render() {
-        return (
-            <Button onClick={this.props.onClick}>Export Deck</Button>
-        );
+        return <Button onClick={this.props.onClick}>Export Deck</Button>;
     }
 }
 

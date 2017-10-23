@@ -1,9 +1,11 @@
-html, body {
+html,
+body {
     color: white;
     box-sizing: border-box;
 }
 
-.app, .mainArea {
+.app,
+.mainArea {
     height: 100vh;
 }
 

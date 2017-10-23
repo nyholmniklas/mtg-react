@@ -25,8 +25,11 @@ export default class EditableDeckList extends React.Component {
     }
 
     componentWillUpdate(nextProps) {
-        if (this.props.id !== document.activeElement.id && this.state.value !== nextProps.deckListAsText) {
-            this.setState({value: nextProps.deckListAsText});
+        if (
+            this.props.id !== document.activeElement.id &&
+            this.state.value !== nextProps.deckListAsText
+        ) {
+            this.setState({ value: nextProps.deckListAsText });
         }
     }
 
@@ -34,8 +37,12 @@ export default class EditableDeckList extends React.Component {
         return (
             <Container className="deckFormContainer">
                 <Form className="deckForm">
-                    <TextArea id={this.props.id} value={this.state.value} className="deckTextArea"
-                              onChange={this.onChange}/>
+                    <TextArea
+                        id={this.props.id}
+                        value={this.state.value}
+                        className="deckTextArea"
+                        onChange={this.onChange}
+                    />
                 </Form>
             </Container>
         );

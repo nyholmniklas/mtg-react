@@ -21,16 +21,51 @@ export default class ManaColorSelector extends React.Component {
     render() {
         return (
             <div>
-                <input type="checkbox" ref={(white) => {this.white = white;}} checked={this.props.manaParams.white}
-                       onChange={this.handleChange} value='W'/>
-                <input type="checkbox" ref={(blue) => {this.blue = blue;}} checked={this.props.manaParams.blue}
-                       onChange={this.handleChange} value='U'/>
-                <input type="checkbox" ref={(black) => {this.black = black;}} checked={this.props.manaParams.black}
-                       onChange={this.handleChange} value='B'/>
-                <input type="checkbox" ref={(red) => {this.red = red;}} checked={this.props.manaParams.red}
-                       onChange={this.handleChange} value='R'/>
-                <input type="checkbox" ref={(green) => {this.green = green;}} checked={this.props.manaParams.green}
-                       onChange={this.handleChange} value='G'/>
+                <input
+                    type="checkbox"
+                    ref={white => {
+                        this.white = white;
+                    }}
+                    checked={this.props.manaParams.white}
+                    onChange={this.handleChange}
+                    value="W"
+                />
+                <input
+                    type="checkbox"
+                    ref={blue => {
+                        this.blue = blue;
+                    }}
+                    checked={this.props.manaParams.blue}
+                    onChange={this.handleChange}
+                    value="U"
+                />
+                <input
+                    type="checkbox"
+                    ref={black => {
+                        this.black = black;
+                    }}
+                    checked={this.props.manaParams.black}
+                    onChange={this.handleChange}
+                    value="B"
+                />
+                <input
+                    type="checkbox"
+                    ref={red => {
+                        this.red = red;
+                    }}
+                    checked={this.props.manaParams.red}
+                    onChange={this.handleChange}
+                    value="R"
+                />
+                <input
+                    type="checkbox"
+                    ref={green => {
+                        this.green = green;
+                    }}
+                    checked={this.props.manaParams.green}
+                    onChange={this.handleChange}
+                    value="G"
+                />
             </div>
         );
     }

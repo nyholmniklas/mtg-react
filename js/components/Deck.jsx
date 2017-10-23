@@ -5,7 +5,11 @@ import EditableDeckList from '~/components/EditableDeckList.jsx';
 export default class Deck extends React.Component {
     render() {
         return (
-            <EditableDeckList id="editable-deck-list" deckListAsText={this.props.deckListAsText} deckListTextChanged={this.props.deckListTextChanged}/>
+            <EditableDeckList
+                id="editable-deck-list"
+                deckListAsText={this.props.deckListAsText}
+                deckListTextChanged={this.props.deckListTextChanged}
+            />
         );
     }
 }

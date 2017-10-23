@@ -9,33 +9,38 @@ import VisualDeck from '~/components/VisualDeck.jsx';
 
 export default class MainArea extends React.Component {
     render() {
-        let searchVisible = (this.props.mainAreaContent === 'search');
+        let searchVisible = this.props.mainAreaContent === 'search';
         //let statsVisible = (this.props.mainAreaContent === 'stats');
-        let visualDeckVisible = (this.props.mainAreaContent === 'visual-deck');
+        let visualDeckVisible = this.props.mainAreaContent === 'visual-deck';
 
         return (
-            <Grid className='mainArea'>
-                {searchVisible ?
+            <Grid className="mainArea">
+                {searchVisible ? (
                     <Grid.Column width={3}>
-                        <SearchForm searchCards={this.props.searchCards} searchParams={this.props.searchParams}
-                                    deck={this.props.deck}/>
+                        <SearchForm
+                            searchCards={this.props.searchCards}
+                            searchParams={this.props.searchParams}
+                            deck={this.props.deck}
+                        />
                     </Grid.Column>
-                    : null}
-                {searchVisible ?
+                ) : null}
+                {searchVisible ? (
                     <Grid.Column width={13}>
-                        <SearchResults cards={this.props.cardSearchResults}
-                                       cardClickedCallback={CardActions.addCardToDeck}/>
+                        <SearchResults
+                            cards={this.props.cardSearchResults}
+                            cardClickedCallback={CardActions.addCardToDeck}
+                        />
                     </Grid.Column>
-                    : null}
-                {visualDeckVisible ?
+                ) : null}
+                {visualDeckVisible ? (
                     <Grid.Column width={16}>
-                        <VisualDeck cards={this.props.deck.cards}
-                                    cardClickedCallback={() => {}}/>
+                        <VisualDeck
+                            cards={this.props.deck.cards}
+                            cardClickedCallback={() => {}}
+                        />
                     </Grid.Column>
-                    : null}
-
-
-            </Grid >
+                ) : null}
+            </Grid>
         );
     }
 }
