@@ -108,27 +108,6 @@ export default class SearchForm extends React.Component {
                     onUserInput={this.handleFormatLegalityChange}
                 />
                 <br />
-                <Form.Group inline>
-                    <label>Size</label>
-                    <Form.Radio
-                        label="Small"
-                        value="sm"
-                        checked={value === 'sm'}
-                        onChange={this.handleChange}
-                    />
-                    <Form.Radio
-                        label="Medium"
-                        value="md"
-                        checked={value === 'md'}
-                        onChange={this.handleChange}
-                    />
-                    <Form.Radio
-                        label="Large"
-                        value="lg"
-                        checked={value === 'lg'}
-                        onChange={this.handleChange}
-                    />
-                </Form.Group>
             </Form>
         );
     }
