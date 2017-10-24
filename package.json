@@ -4,7 +4,7 @@
     "description": "MTG deck builder built with React.",
     "author": "Niklas Nyholm <nyholmniklas@gmail.com>",
     "scripts": {
-        "build-dev": "webpack -p --config ./webpack.config.js",
+        "dev-build": "webpack -p --config ./webpack.config.js",
         "dev-server": "webpack-dev-server",
         "test":
             "mocha --require babel-register && eslint js/ webpack.*.js --cache && webpack --config ./webpack.config.js",

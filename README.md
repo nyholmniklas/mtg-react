@@ -39,7 +39,7 @@ npm install
 
 #### Build and run server
 ```
-npm run build-dev
+npm run dev-build
 npm run dev-server
 ```
 
