@@ -17,7 +17,7 @@ export default class Card extends React.Component {
             var cardImage = (
                 <Image
                     key={i}
-                    src={card.image_uri}
+                    src={card.image_uris.normal}
                     style={style}
                     className="card-image"
                 />
